@@ -1,0 +1,38 @@
+# Node
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.*
+
+# Logs
+logs/
+*.log
+
+# Build
+.next/
+dist/
+build/
+
+# Python
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# AI Models
+models/
+*.gguf
+
+# Databases
+*.sqlite
+*.db
+
+# Cache
+.cache/
