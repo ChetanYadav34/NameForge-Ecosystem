@@ -1,0 +1,26 @@
+{
+  "name": "@nameforge/dataset-compiler",
+  "version": "2.0.0",
+  "description": "LexForge Dataset Compiler — builds the foundational linguistic dataset for the NameForge ecosystem",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/src/index.js",
+    "compile": "npm run build && npm run start",
+    "test": "npm run build && node dist/tests/golden-test.js"
+  },
+  "keywords": [
+    "linguistics",
+    "dataset",
+    "nameforge",
+    "lexforge",
+    "compiler"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "typescript": "^5.8.0",
+    "@types/node": "^22.0.0"
+  }
+}
