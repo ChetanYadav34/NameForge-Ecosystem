@@ -8,13 +8,29 @@
 import { createReadStream } from "node:fs";
 import { createInterface } from "node:readline";
 import { BaseImporter } from "./base.importer.js";
-import { ImportResult, RawWord } from "../types/index.js";
+import { ImportResult, RawWord, PipelineModuleMetadata } from "../types/index.js";
+import { ResourceRegistry } from "../registry/resource.registry.js";
 import { logger } from "../utils/logger.js";
 
 export class WordsAlphaImporter extends BaseImporter<RawWord> {
   readonly name = "words_alpha.txt";
+  readonly metadata: PipelineModuleMetadata = {
+    id: "importer.wordsAlpha",
+    name: "Words Alpha Importer",
+    version: "1.0.0",
+    stage: "import",
+    priority: 10,
+    requiresModules: [],
+    requiresFeatures: [],
+    producesFeatures: [],
+    author: "LexForge",
+  };
 
-  async import(filePath: string): Promise<ImportResult<RawWord>> {
+  async import(): Promise<ImportResult<RawWord>> {
+    const resource = ResourceRegistry.get("resource.words_alpha");
+    ResourceRegistry.markLoaded(resource.id);
+    const filePath = resource.path;
+
     logger.info(`Reading ${this.name} from: ${filePath}`);
 
     const data: RawWord[] = [];

@@ -12,7 +12,7 @@
 //   • Non-blocking: informational warning, record still counts as valid
 // ============================================================================
 
-import { PhonologyWord, ValidationReport, ValidationWarning } from "../types/index.js";
+import { FamilyWord, ValidationReport, ValidationWarning } from "../types/index.js";
 import { ValidationRule, createValidationContext } from "./rules/base.rule.js";
 import { EmptyWordRule } from "./rules/empty-word.rule.js";
 import { DuplicateWordRule } from "./rules/duplicate-word.rule.js";
@@ -23,6 +23,9 @@ import { PhonologyCountsRule } from "./rules/phonology-counts.rule.js";
 import { HasVowelRule } from "./rules/has-vowel.rule.js";
 import { UnknownIpaRule } from "./rules/unknown-ipa.rule.js";
 import { StressPatternRule } from "./rules/stress-pattern.rule.js";
+import { UniqueSemanticsRule } from "./rules/unique-semantics.rule.js";
+import { NoEmptySemanticsRule } from "./rules/no-empty-semantics.rule.js";
+import { MorphologyRule } from "./rules/morphology.rule.js";
 import { logger } from "../utils/logger.js";
 
 /**
@@ -37,6 +40,9 @@ function getDefaultRules(): ValidationRule[] {
     new DuplicateWordRule(),
     new PhonologyCountsRule(),
     new StressPatternRule(),
+    new UniqueSemanticsRule(),
+    new NoEmptySemanticsRule(),
+    new MorphologyRule(),
     // Non-blocking rules
     new NonAlphabeticRule(),
     new ArpabetRule(),
@@ -47,14 +53,14 @@ function getDefaultRules(): ValidationRule[] {
 }
 
 /**
- * Validate all records using the rule-based engine.
+ * Validate a batch of records against all registered rules.
  *
- * @param records - The phonology records to validate.
- * @param rules - Optional custom rule set. Defaults to all built-in rules.
- * @returns A ValidationReport summarizing the results.
+ * @param records - Semantic/Morphology word records to validate
+ * @param rules - Optional custom rule set
+ * @returns A full ValidationReport containing all warnings.
  */
 export function validate(
-  records: PhonologyWord[],
+  records: FamilyWord[],
   rules?: ValidationRule[]
 ): ValidationReport {
   logger.info("Validating records...");

@@ -6,7 +6,7 @@
 // method that returns an ImportResult.
 // ============================================================================
 
-import { ImportResult } from "../types/index.js";
+import { ImportResult, PipelineModule, PipelineModuleMetadata } from "../types/index.js";
 
 /**
  * Abstract base class for all data importers.
@@ -19,15 +19,15 @@ import { ImportResult } from "../types/index.js";
  *
  * @typeParam T - The shape of each imported record.
  */
-export abstract class BaseImporter<T> {
+export abstract class BaseImporter<T> implements PipelineModule {
   /** Human-readable name of the data source this importer handles. */
   abstract readonly name: string;
+  abstract readonly metadata: PipelineModuleMetadata;
 
   /**
-   * Import data from the specified file path.
+   * Import data from the resource registry.
    *
-   * @param filePath - Absolute path to the raw data file.
    * @returns An ImportResult containing the parsed data, record count, and any errors.
    */
-  abstract import(filePath: string): Promise<ImportResult<T>>;
+  abstract import(): Promise<ImportResult<T>>;
 }

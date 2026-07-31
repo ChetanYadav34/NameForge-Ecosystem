@@ -2,7 +2,7 @@
 // Validation Rule: Stress Pattern
 // ============================================================================
 
-import { PhonologyWord, ValidationWarning } from "../../types/index.js";
+import { SemanticWord, ValidationWarning, PipelineModuleMetadata } from "../../types/index.js";
 import { ValidationRule, ValidationContext } from "./base.rule.js";
 
 /**
@@ -10,10 +10,22 @@ import { ValidationRule, ValidationContext } from "./base.rule.js";
  * Blocking rule.
  */
 export class StressPatternRule implements ValidationRule {
-  readonly name = "stress-pattern";
+  readonly name = "Stress Pattern";
+  readonly metadata: PipelineModuleMetadata = {
+    id: "validator.rule.stress-pattern",
+    name: "StressPatternRule",
+    version: "1.0.0",
+    stage: "validate",
+    priority: 60,
+    requiresModules: [],
+    requiresFeatures: [],
+    producesFeatures: [],
+    author: "LexForge",
+  };
+
   readonly isBlocking = true;
 
-  validate(record: PhonologyWord, _context: ValidationContext): ValidationWarning | null {
+  validate(record: SemanticWord, _context: ValidationContext): ValidationWarning | null {
     if (record.ipa.length > 0 && record.stressPattern.length !== record.vowelCount) {
       return {
         word: record.word,

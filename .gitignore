@@ -36,3 +36,10 @@ models/
 
 # Cache
 .cache/
+
+
+# Generated LexForge datasets
+products/LexForge/dataset-compiler/output/
+
+# Optional: keep the folder
+!products/LexForge/dataset-compiler/output/.gitkeep

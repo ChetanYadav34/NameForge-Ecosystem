@@ -10,47 +10,90 @@
 //   phonemes, syllables, categories
 // ============================================================================
 
-import { PhonologyWord, LexEntry } from "../types/index.js";
+import { FinalWord, LexEntry, PipelineModule, PipelineModuleMetadata } from "../types/index.js";
 import { logger } from "../utils/logger.js";
 
 /**
  * Build the final dataset from validated phonology records.
  *
  * Each record is assigned a sequential ID starting at 1.
- * The lemma is set equal to the word (no lemmatization in current version).
  *
- * @param records - Validated phonology records.
+ * @param records - Validated records.
  * @returns Array of complete LexEntry objects ready for export.
  */
-export function buildDataset(records: PhonologyWord[]): LexEntry[] {
-  logger.info("Building final dataset...");
+export class DatasetBuilder implements PipelineModule {
+  private nextId = 1;
 
-  const entries: LexEntry[] = [];
+  readonly metadata: PipelineModuleMetadata = {
+    id: "builder.dataset",
+    name: "Dataset Builder",
+    version: "1.0.0",
+    stage: "build",
+    priority: 100,
+    requiresModules: ["engine.word_family"],
+    requiresFeatures: [
+      "feature.lemma", 
+      "feature.stem", 
+      "feature.inflections", 
+      "feature.derivations",
+      "feature.familyId",
+      "feature.headword",
+      "feature.wordFamily",
+      "feature.familySize",
+      "feature.familyConfidence",
+      "feature.frequency"
+    ],
+    producesFeatures: [],
+    author: "LexForge",
+  };
 
-  for (let i = 0; i < records.length; i++) {
-    const record = records[i];
+  build(records: FinalWord[]): LexEntry[] {
+    logger.info("Building final dataset...");
 
-    entries.push({
-      id: i + 1,
-      word: record.word,
-      lemma: record.word, // lemma = word (no lemmatization yet)
-      arpabet: record.arpabet,
-      alternatePronunciations: record.alternatePronunciations,
-      ipa: record.ipa,
-      phonemes: record.phonemes,
-      vowels: record.vowels,
-      consonants: record.consonants,
-      stressPattern: record.stressPattern,
-      phonemeCount: record.phonemeCount,
-      vowelCount: record.vowelCount,
-      consonantCount: record.consonantCount,
-      syllables: [],       // Future version
-      categories: [],      // Future version
-      length: record.word.length,
-    });
+    const entries: LexEntry[] = [];
+
+    for (let i = 0; i < records.length; i++) {
+      const record = records[i];
+
+      entries.push({
+        id: this.nextId++,
+        word: record.word,
+        lemma: record.lemma,
+        stem: record.stem,
+        inflections: record.inflections,
+        derivations: record.derivations,
+        familyId: record.familyId,
+        headword: record.headword,
+        wordFamily: record.wordFamily,
+        familySize: record.familySize,
+        familyConfidence: record.familyConfidence,
+        frequency: record.frequency,
+        arpabet: record.arpabet,
+        alternatePronunciations: record.alternatePronunciations,
+        ipa: record.ipa,
+        phonemes: record.phonemes,
+        vowels: record.vowels,
+        consonants: record.consonants,
+        stressPattern: record.stressPattern,
+        phonemeCount: record.phonemeCount,
+        vowelCount: record.vowelCount,
+        consonantCount: record.consonantCount,
+        syllables: [],       // Future version
+        categories: [],      // Future version
+        length: record.word.length,
+        partOfSpeech: record.partOfSpeech,
+        definitions: record.definitions,
+        synonyms: record.synonyms,
+        antonyms: record.antonyms,
+        hypernyms: record.hypernyms,
+        hyponyms: record.hyponyms,
+        domains: record.domains,
+        sources: record.sources,
+      });
+    }
+
+    logger.success(`Built ${entries.length.toLocaleString()} dataset entries`);
+
+    return entries;
   }
-
-  logger.success(`Built ${entries.length.toLocaleString()} dataset entries`);
-
-  return entries;
 }

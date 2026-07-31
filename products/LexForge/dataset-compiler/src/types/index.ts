@@ -10,6 +10,41 @@
 // Each pipeline stage creates a NEW object rather than mutating the previous.
 // ============================================================================
 
+// ─── Registry Types ────────────────────────────────────────────────────────────
+
+export type PipelineStage = "import" | "normalize" | "merge" | "transform" | "enrich" | "engine" | "validate" | "build" | "export";
+
+export interface PipelineModuleMetadata {
+  id: string;
+  name: string;
+  version: string;
+  stage: PipelineStage;
+  priority: number;
+  requiresModules: string[];
+  requiresFeatures: string[];
+  producesFeatures: string[];
+  author: string;
+}
+
+export interface PipelineModule {
+  metadata: PipelineModuleMetadata;
+}
+
+export type FeatureCategory = "base" | "phonology" | "semantics" | "morphology" | "frequency" | "category" | "cluster" | "research";
+
+export interface FeatureDefinition {
+  id: string;
+  displayName: string;
+  description: string;
+  category: FeatureCategory;
+  stage: PipelineStage;
+  generatedBy: string; // Module ID
+  requiresFeatures: string[];
+  producesFeatures: string[];
+  outputFields: string[];
+  schemaVersion: number;
+}
+
 // ─── Pipeline Stage Models ───────────────────────────────────────────────────
 
 /**
@@ -17,26 +52,54 @@
  *
  * Version 3 populates: id, word, lemma, arpabet, alternatePronunciations, ipa, length,
  * phonemes, vowels, consonants, stressPattern, phonemeCount, vowelCount, consonantCount.
+ * Version 4 populates: partOfSpeech, definitions, synonyms, antonyms, hypernyms, hyponyms, domains, sources.
  * Future versions will populate: syllables, categories.
  */
-export interface LexEntry {
-  id: number;
-  word: string;
-  lemma: string;
-  arpabet: string;
-  alternatePronunciations: string[];
-  ipa: string;
-  phonemes: string[];
-  vowels: string[];
-  consonants: string[];
-  stressPattern: string;
-  phonemeCount: number;
-  vowelCount: number;
-  consonantCount: number;
-  syllables: string[];
-  categories: string[];
-  length: number;
-}
+  export interface FrequencyInfo {
+    zipf: number;
+    band: "very-common" | "common" | "uncommon" | "rare" | "very-rare";
+    source: string;
+    externalRank?: number;
+    externalPercentile?: number;
+    lexforgeRank?: number;
+    lexforgePercentile?: number;
+  }
+  
+  export interface LexEntry {
+    id: number;
+    word: string;
+    lemma?: string;
+    stem?: string;
+    inflections: string[];
+    derivations: string[];
+    familyId?: string;
+    headword?: string;
+    wordFamily: string[];
+    familySize: number;
+    familyConfidence: number;
+    frequency?: FrequencyInfo;
+    arpabet: string;
+    alternatePronunciations: string[];
+    ipa: string;
+    phonemes: string[];
+    vowels: string[];
+    consonants: string[];
+    stressPattern: string;
+    phonemeCount: number;
+    vowelCount: number;
+    consonantCount: number;
+    syllables: string[];
+    categories: string[];
+    length: number;
+    partOfSpeech: string[];
+    definitions: string[];
+    synonyms: string[];
+    antonyms: string[];
+    hypernyms: string[];
+    hyponyms: string[];
+    domains: string[];
+    sources: string[];
+  }
 
 /**
  * Raw word imported from a word list source (e.g., words_alpha.txt).
@@ -102,6 +165,44 @@ export interface PhonologyWord {
   vowelCount: number;
   consonantCount: number;
   unknownSymbols: string[];
+}
+
+/**
+ * A word enriched with semantic knowledge from WordNet.
+ * Produced by the WordNet enricher.
+ */
+export interface SemanticWord extends PhonologyWord {
+  partOfSpeech: string[];
+  definitions: string[];
+  synonyms: string[];
+  antonyms: string[];
+  hypernyms: string[];
+  hyponyms: string[];
+  domains: string[];
+  sources: string[];
+}
+
+export interface MorphologyWord extends SemanticWord {
+  lemma?: string;
+  stem?: string;
+  inflections: string[];
+  derivations: string[];
+}
+
+export interface FamilyWord extends MorphologyWord {
+  familyId?: string;
+  headword?: string;
+  wordFamily: string[];
+  familySize: number;
+  familyConfidence: number;
+}
+
+export interface FrequencyWord extends MorphologyWord {
+  frequency?: FrequencyInfo;
+}
+
+export interface FinalWord extends FamilyWord {
+  frequency?: FrequencyInfo;
 }
 
 // ─── Importer Types ──────────────────────────────────────────────────────────
@@ -186,7 +287,84 @@ export interface DatasetStats {
   mostCommonConsonant: string | null;
   unknownIpaSymbols: number;
   duplicatesRemoved: number;
+  wordsWithDefinitions: number;
+  wordsWithSynonyms: number;
+  wordsWithHypernyms: number;
+  wordsWithHyponyms: number;
+  averageDefinitionsPerWord: number;
+  averageSynonymsPerWord: number;
+  averageHypernymsPerWord: number;
+  averageHyponymsPerWord: number;
+  wordsWithMorphology: number;
+  totalInflectionsGenerated: number;
+  totalDerivationsGenerated: number;
+  totalFamilies: number;
+  averageFamilySize: number;
+  largestFamily: number;
+  singletonFamilies: number;
+  averageFamilyConfidence: number;
+  
+  // Frequency Stats
+  wordsWithFrequency: number;
+  missingFrequency: number;
+  coveragePercentage: number;
+  averageZipf: number;
+  medianZipf: number;
+  highestZipf: number;
+  lowestZipf: number;
+  frequencyBandDistribution: Record<string, number>;
+  top100MostCommonWords: string[];
+  
   warnings: number;
+}
+
+/**
+ * Resource format types.
+ */
+export type ResourceFormat = "json" | "jsonl" | "txt" | "csv" | "sqlite";
+
+/**
+ * Resource type categories.
+ */
+export type ResourceType =
+  | "dictionary"
+  | "pronunciation"
+  | "semantic"
+  | "morphology"
+  | "frequency"
+  | "variants"
+  | "knowledge-graph";
+
+/**
+ * Resource state enum.
+ */
+export enum ResourceState {
+  REGISTERED = "REGISTERED",
+  VALIDATED = "VALIDATED",
+  LOADED = "LOADED",
+  FAILED = "FAILED",
+}
+
+/**
+ * Represents an external resource dataset consumed by LexForge.
+ */
+export interface ResourceDefinition {
+  id: string;
+  name: string;
+  version: string;
+  description: string;
+  provider: string;
+  language: string;
+  format: ResourceFormat;
+  resourceType: ResourceType;
+  path: string;
+  homepage?: string;
+  size?: number;
+  checksum?: string;
+  license?: string;
+  lastUpdated?: string;
+  consumedBy: string[];
+  provides: string[];
 }
 
 /**
@@ -201,6 +379,12 @@ export interface DatasetManifest {
   generatedAt: string;
   sources: string[];
   records: number;
+  features: string[];
+  pipelineStages: string[];
+  enabledEnrichers: string[];
+  enabledTransformers: string[];
+  enabledValidators: string[];
+  resources: ResourceDefinition[];
 }
 
 // ─── Configuration ───────────────────────────────────────────────────────────

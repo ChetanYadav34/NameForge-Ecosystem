@@ -14,7 +14,7 @@
 //   • Word → Semantic Categories
 // ============================================================================
 
-import { TransformResult } from "../types/index.js";
+import { TransformResult, PipelineModule, PipelineModuleMetadata } from "../types/index.js";
 
 /**
  * Abstract base class for all data transformers.
@@ -29,9 +29,10 @@ import { TransformResult } from "../types/index.js";
  * @typeParam TInput - The shape of each input record.
  * @typeParam TOutput - The shape of each output record (must extend TInput).
  */
-export abstract class BaseTransformer<TInput, TOutput> {
+export abstract class BaseTransformer<TInput, TOutput> implements PipelineModule {
   /** Human-readable name of this transformer. */
   abstract readonly name: string;
+  abstract readonly metadata: PipelineModuleMetadata;
 
   /**
    * Transform a batch of records, enriching each with derived data.

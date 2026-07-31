@@ -18,7 +18,8 @@
 import { createReadStream } from "node:fs";
 import { createInterface } from "node:readline";
 import { BaseImporter } from "./base.importer.js";
-import { ImportResult, RawPronunciation } from "../types/index.js";
+import { ImportResult, RawPronunciation, PipelineModuleMetadata } from "../types/index.js";
+import { ResourceRegistry } from "../registry/resource.registry.js";
 import { logger } from "../utils/logger.js";
 
 /**
@@ -30,8 +31,23 @@ const VARIANT_REGEX = /^(.+)\((\d+)\)$/;
 
 export class CmudictImporter extends BaseImporter<RawPronunciation> {
   readonly name = "cmudict.dict";
+  readonly metadata: PipelineModuleMetadata = {
+    id: "importer.cmudict",
+    name: "CMU Dict Importer",
+    version: "1.0.0",
+    stage: "import",
+    priority: 20,
+    requiresModules: [],
+    requiresFeatures: [],
+    producesFeatures: [],
+    author: "LexForge",
+  };
 
-  async import(filePath: string): Promise<ImportResult<RawPronunciation>> {
+  async import(): Promise<ImportResult<RawPronunciation>> {
+    const resource = ResourceRegistry.get("resource.cmudict");
+    ResourceRegistry.markLoaded(resource.id);
+    const filePath = resource.path;
+
     logger.info(`Reading ${this.name} from: ${filePath}`);
 
     const data: RawPronunciation[] = [];

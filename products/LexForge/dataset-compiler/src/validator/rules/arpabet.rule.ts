@@ -2,7 +2,7 @@
 // Validation Rule: ARPABET Validation
 // ============================================================================
 
-import { PhonologyWord, ValidationWarning } from "../../types/index.js";
+import { SemanticWord, ValidationWarning, PipelineModuleMetadata } from "../../types/index.js";
 import { ValidationRule, ValidationContext } from "./base.rule.js";
 
 /**
@@ -53,10 +53,22 @@ function isValidArpabetToken(token: string): boolean {
  * This is informational only — the record is still considered valid.
  */
 export class ArpabetRule implements ValidationRule {
-  readonly name = "arpabet";
+  readonly name = "Arpabet";
+  readonly metadata: PipelineModuleMetadata = {
+    id: "validator.rule.arpabet",
+    name: "ArpabetRule",
+    version: "1.0.0",
+    stage: "validate",
+    priority: 60,
+    requiresModules: [],
+    requiresFeatures: [],
+    producesFeatures: [],
+    author: "LexForge",
+  };
+
   readonly isBlocking = false;
 
-  validate(record: PhonologyWord, _context: ValidationContext): ValidationWarning | null {
+  validate(record: SemanticWord, _context: ValidationContext): ValidationWarning | null {
     // Validate primary pronunciation
     if (record.arpabet.length > 0) {
       const tokens = record.arpabet.split(/\s+/);

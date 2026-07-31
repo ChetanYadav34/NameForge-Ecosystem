@@ -12,7 +12,7 @@
 // ============================================================================
 
 import { BaseTransformer } from "./base.transformer.js";
-import { MergedWord, TransformedWord, TransformResult } from "../types/index.js";
+import { MergedWord, TransformedWord, TransformResult, PipelineModuleMetadata } from "../types/index.js";
 import { logger } from "../utils/logger.js";
 
 // ─── ARPABET → IPA Mapping Tables ────────────────────────────────────────────
@@ -220,6 +220,17 @@ function convertArpabetToIpa(arpabet: string): ArpabetConversion {
 
 export class ArpabetToIpaTransformer extends BaseTransformer<MergedWord, TransformedWord> {
   readonly name = "ARPABET → IPA";
+  readonly metadata: PipelineModuleMetadata = {
+    id: "transformer.arpabetToIpa",
+    name: "ARPABET to IPA Transformer",
+    version: "1.0.0",
+    stage: "transform",
+    priority: 30,
+    requiresModules: ["importer.cmudict"],
+    requiresFeatures: ["feature.pronunciation"],
+    producesFeatures: ["feature.ipa"],
+    author: "LexForge",
+  };
 
   transform(records: MergedWord[]): TransformResult<TransformedWord> {
     logger.info("Converting ARPABET pronunciations to IPA...");

@@ -2,7 +2,7 @@
 // Validation Rule: Phonology Counts
 // ============================================================================
 
-import { PhonologyWord, ValidationWarning } from "../../types/index.js";
+import { SemanticWord, ValidationWarning, PipelineModuleMetadata } from "../../types/index.js";
 import { ValidationRule, ValidationContext } from "./base.rule.js";
 
 /**
@@ -12,10 +12,22 @@ import { ValidationRule, ValidationContext } from "./base.rule.js";
  * Blocking rule.
  */
 export class PhonologyCountsRule implements ValidationRule {
-  readonly name = "phonology-counts";
+  readonly name = "Phonology Counts";
+  readonly metadata: PipelineModuleMetadata = {
+    id: "validator.rule.phonology-counts",
+    name: "PhonologyCountsRule",
+    version: "1.0.0",
+    stage: "validate",
+    priority: 60,
+    requiresModules: [],
+    requiresFeatures: [],
+    producesFeatures: [],
+    author: "LexForge",
+  };
+
   readonly isBlocking = true;
 
-  validate(record: PhonologyWord, _context: ValidationContext): ValidationWarning | null {
+  validate(record: SemanticWord, _context: ValidationContext): ValidationWarning | null {
     if (record.phonemeCount !== record.phonemes.length) {
       return { word: record.word, rule: this.name, issue: "phonemeCount does not match phonemes.length" };
     }

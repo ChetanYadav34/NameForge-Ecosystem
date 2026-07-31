@@ -1,0 +1,9 @@
+{
+  "id": "wordfreq",
+  "provider": "wordfreq",
+  "language": "en",
+  "version": "3.1.1",
+  "scale": "zipf",
+  "generatedBy": "export_wordfreq.py",
+  "license": "Apache-2.0"
+}

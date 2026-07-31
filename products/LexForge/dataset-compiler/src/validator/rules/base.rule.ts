@@ -11,7 +11,7 @@
 // No existing code needs to be modified.
 // ============================================================================
 
-import { PhonologyWord, ValidationWarning } from "../../types/index.js";
+import { FamilyWord, ValidationWarning, PipelineModule } from "../../types/index.js";
 
 /**
  * Shared context passed to every validation rule.
@@ -41,7 +41,7 @@ export function createValidationContext(): ValidationContext {
  *
  * Rules may read/write the shared ValidationContext for stateful checks.
  */
-export interface ValidationRule {
+export interface ValidationRule<TRecord extends object = FamilyWord> extends PipelineModule {
   /** Human-readable name of this rule. */
   readonly name: string;
 
@@ -58,5 +58,5 @@ export interface ValidationRule {
    * @param context - Shared context for stateful rules.
    * @returns A ValidationWarning if an issue is found, or null if the record passes.
    */
-  validate(record: PhonologyWord, context: ValidationContext): ValidationWarning | null;
+  validate(record: TRecord, context: ValidationContext): ValidationWarning | null;
 }

@@ -2,7 +2,7 @@
 // Validation Rule: IPA Presence
 // ============================================================================
 
-import { PhonologyWord, ValidationWarning } from "../../types/index.js";
+import { SemanticWord, ValidationWarning, PipelineModuleMetadata } from "../../types/index.js";
 import { ValidationRule, ValidationContext } from "./base.rule.js";
 
 /**
@@ -11,10 +11,22 @@ import { ValidationRule, ValidationContext } from "./base.rule.js";
  * Informational only — does not block the record.
  */
 export class IpaPresenceRule implements ValidationRule {
-  readonly name = "ipa-presence";
+  readonly name = "Ipa Presence";
+  readonly metadata: PipelineModuleMetadata = {
+    id: "validator.rule.ipa-presence",
+    name: "IpaPresenceRule",
+    version: "1.0.0",
+    stage: "validate",
+    priority: 60,
+    requiresModules: [],
+    requiresFeatures: [],
+    producesFeatures: [],
+    author: "LexForge",
+  };
+
   readonly isBlocking = false;
 
-  validate(record: PhonologyWord, _context: ValidationContext): ValidationWarning | null {
+  validate(record: SemanticWord, _context: ValidationContext): ValidationWarning | null {
     if (record.arpabet.length > 0 && record.ipa.length === 0) {
       return {
         word: record.word,

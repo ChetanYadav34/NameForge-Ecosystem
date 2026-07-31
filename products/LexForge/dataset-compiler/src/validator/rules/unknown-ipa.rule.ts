@@ -2,7 +2,7 @@
 // Validation Rule: Unknown IPA
 // ============================================================================
 
-import { PhonologyWord, ValidationWarning } from "../../types/index.js";
+import { SemanticWord, ValidationWarning, PipelineModuleMetadata } from "../../types/index.js";
 import { ValidationRule, ValidationContext } from "./base.rule.js";
 
 /**
@@ -10,10 +10,22 @@ import { ValidationRule, ValidationContext } from "./base.rule.js";
  * Non-blocking rule.
  */
 export class UnknownIpaRule implements ValidationRule {
-  readonly name = "unknown-ipa";
+  readonly name = "Unknown Ipa";
+  readonly metadata: PipelineModuleMetadata = {
+    id: "validator.rule.unknown-ipa",
+    name: "UnknownIpaRule",
+    version: "1.0.0",
+    stage: "validate",
+    priority: 60,
+    requiresModules: [],
+    requiresFeatures: [],
+    producesFeatures: [],
+    author: "LexForge",
+  };
+
   readonly isBlocking = false;
 
-  validate(record: PhonologyWord, _context: ValidationContext): ValidationWarning | null {
+  validate(record: SemanticWord, _context: ValidationContext): ValidationWarning | null {
     if (record.unknownSymbols.length > 0) {
       return {
         word: record.word,

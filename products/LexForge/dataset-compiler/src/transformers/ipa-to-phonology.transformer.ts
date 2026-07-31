@@ -9,7 +9,7 @@
 // ============================================================================
 
 import { BaseTransformer } from "./base.transformer.js";
-import { TransformedWord, PhonologyWord, TransformResult } from "../types/index.js";
+import { TransformedWord, PhonologyWord, TransformResult, PipelineModuleMetadata } from "../types/index.js";
 import { logger } from "../utils/logger.js";
 import {
   IPA_VOWELS,
@@ -93,6 +93,17 @@ function parseIpa(ipa: string): PhonologyParseResult {
 
 export class IpaToPhonologyTransformer extends BaseTransformer<TransformedWord, PhonologyWord> {
   readonly name = "IPA → Phonology";
+  readonly metadata: PipelineModuleMetadata = {
+    id: "transformer.ipaToPhonology",
+    name: "IPA to Phonology Transformer",
+    version: "1.0.0",
+    stage: "transform",
+    priority: 40,
+    requiresModules: ["transformer.arpabetToIpa"],
+    requiresFeatures: ["feature.ipa"],
+    producesFeatures: ["feature.phonology"],
+    author: "LexForge",
+  };
 
   transform(records: TransformedWord[]): TransformResult<PhonologyWord> {
     logger.info("Parsing IPA into phonological structures...");
