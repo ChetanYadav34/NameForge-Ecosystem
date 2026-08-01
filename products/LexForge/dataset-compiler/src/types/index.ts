@@ -265,6 +265,27 @@ export interface ValidationReport {
   warnings: ValidationWarning[];
 }
 
+// ─── Index Types ─────────────────────────────────────────────────────────────
+
+export interface DatasetIndexEntry {
+  id: number;
+  word: string;
+  offset: number;
+  length: number;
+  familyId?: string;
+  zipf?: number;
+  partOfSpeech: string[];
+  sources: string[];
+  hasIpa: boolean;
+  hasMorphology: boolean;
+  hasFrequency: boolean;
+  hasWordNet: boolean;
+  hasFamily: boolean;
+  hasDefinitions: boolean;
+}
+
+export type DatasetLookup = Record<string, { id: number; offset: number }>;
+
 // ─── Output Types ────────────────────────────────────────────────────────────
 
 /**
@@ -314,6 +335,10 @@ export interface DatasetStats {
   lowestZipf: number;
   frequencyBandDistribution: Record<string, number>;
   top100MostCommonWords: string[];
+  // Index Stats
+  indexSize: number;
+  largestRecord: number;
+  averageRecordSize: number;
   
   warnings: number;
 }
@@ -376,15 +401,27 @@ export interface DatasetManifest {
   datasetVersion: string;
   compilerVersion: string;
   schemaVersion: string;
+  indexVersion: string;
   generatedAt: string;
+  generatedBy: string;
   sources: string[];
   records: number;
   features: string[];
+  featureVersions: Record<string, string>;
   pipelineStages: string[];
   enabledEnrichers: string[];
   enabledTransformers: string[];
   enabledValidators: string[];
   resources: ResourceDefinition[];
+  resourceVersions: Record<string, string>;
+  resourceChecksums: Record<string, string>;
+  artifacts: {
+    dataset: string;
+    index: string;
+    lookup: string;
+    stats: string;
+    graphIndex?: string;
+  };
 }
 
 // ─── Configuration ───────────────────────────────────────────────────────────

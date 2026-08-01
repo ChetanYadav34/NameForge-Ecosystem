@@ -1,0 +1,176 @@
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --color-background: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-elevated: var(--color-surface-elevated);
+  --color-surface-hover: var(--color-surface-hover);
+  
+  --color-border: var(--color-border);
+  --color-border-hover: var(--color-border-hover);
+  
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-accent-muted: var(--color-accent-muted);
+  
+  --color-danger: var(--color-danger);
+  --color-danger-hover: var(--color-danger-hover);
+  --color-danger-muted: var(--color-danger-muted);
+
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+
+  --color-foreground: var(--color-text-primary);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  --animate-fade-in: fade-in 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --animate-slide-up: slide-up 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --animate-zoom-in: zoom-in 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slide-up {
+    from { transform: translateY(10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  @keyframes zoom-in {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+}
+
+@layer base {
+  :root, [data-theme="lexforge-dark"] {
+    --color-bg: #090909;
+    --color-surface: #101010;
+    --color-surface-elevated: #141414;
+    --color-surface-hover: #1F1F1F;
+    --color-card: #181818;
+    
+    --color-border: #2A2A2A;
+    --color-border-hover: #333333;
+    
+    --color-accent: #D4AF37;
+    --color-accent-hover: #E8C45A;
+    --color-accent-muted: rgba(212, 175, 55, 0.2);
+    
+    --color-danger: #8B1E2D;
+    --color-danger-hover: #A82537;
+    --color-danger-muted: rgba(139, 30, 45, 0.2);
+    
+    --color-text-primary: #F5F5F5;
+    --color-text-secondary: #A0A0A0;
+    --color-text-muted: #6B6B6B;
+
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+  }
+
+  [data-theme="lexforge-midnight"] {
+    --color-bg: #05050A;
+    --color-surface: #0A0A12;
+    --color-surface-elevated: #10101A;
+    --color-surface-hover: #181824;
+    --color-border: #1E1E2D;
+    --color-border-hover: #2B2B3D;
+    --color-accent: #5A8BE8;
+    --color-accent-hover: #7FA9F2;
+    --color-accent-muted: rgba(90, 139, 232, 0.2);
+    --color-danger: #E85A71;
+    --color-danger-hover: #F27F91;
+    --color-danger-muted: rgba(232, 90, 113, 0.2);
+    --color-text-primary: #F0F4FA;
+    --color-text-secondary: #8A99B3;
+    --color-text-muted: #5C6B8A;
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 18px;
+    --radius-xl: 24px;
+  }
+
+  [data-theme="lexforge-ancient"] {
+    --color-bg: #121110;
+    --color-surface: #1A1817;
+    --color-surface-elevated: #24211F;
+    --color-surface-hover: #2E2B29;
+    --color-border: #3D3835;
+    --color-border-hover: #4D4743;
+    --color-accent: #C2A370;
+    --color-accent-hover: #D6B985;
+    --color-accent-muted: rgba(194, 163, 112, 0.2);
+    --color-danger: #9C3D35;
+    --color-danger-hover: #B54F45;
+    --color-danger-muted: rgba(156, 61, 53, 0.2);
+    --color-text-primary: #EBE6E0;
+    --color-text-secondary: #B3ABA3;
+    --color-text-muted: #7A736E;
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 20px;
+  }
+
+  [data-theme="lexforge-crimson"] {
+    --color-bg: #0A0505;
+    --color-surface: #120A0A;
+    --color-surface-elevated: #1C1010;
+    --color-surface-hover: #291818;
+    --color-border: #3D2424;
+    --color-border-hover: #523030;
+    --color-accent: #D4AF37;
+    --color-accent-hover: #E8C45A;
+    --color-accent-muted: rgba(212, 175, 55, 0.2);
+    --color-danger: #D4374A;
+    --color-danger-hover: #E85A6A;
+    --color-danger-muted: rgba(212, 55, 74, 0.2);
+    --color-text-primary: #FAEEEE;
+    --color-text-secondary: #B39191;
+    --color-text-muted: #7A5C5C;
+    --radius-sm: 12px;
+    --radius-md: 18px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-text-primary font-sans antialiased overflow-hidden selection:bg-accent/30 selection:text-accent-hover;
+  }
+
+  /* Custom Desktop Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 9999px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-border-hover);
+  }
+}

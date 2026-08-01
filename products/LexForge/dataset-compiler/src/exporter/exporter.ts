@@ -19,7 +19,9 @@ import {
   CompilerConfig,
   ValidationReport,
   PipelineModuleMetadata,
-  PipelineModule
+  PipelineModule,
+  DatasetIndexEntry,
+  DatasetLookup
 } from "../types/index.js";
 import { logger } from "../utils/logger.js";
 import { FeatureRegistry } from "../registry/feature.registry.js";
@@ -63,9 +65,17 @@ export async function exportDataset(params: ExportParams): Promise<void> {
   const datasetPath = path.join(config.outputPath, config.outputFilename);
   const statsPath = path.join(config.outputPath, config.statsFilename);
   const manifestPath = path.join(config.outputPath, config.manifestFilename);
+  const indexPath = path.join(config.outputPath, "dataset.index.json");
+  const lookupPath = path.join(config.outputPath, "dataset.lookup.json");
 
-  // --- Write JSONL dataset ---
-  logger.info(`Writing dataset to: ${datasetPath}`);
+  // --- Write JSONL dataset & Build Indexes ---
+  logger.info(`Writing dataset and building indexes: ${datasetPath}`);
+  
+  const index: DatasetIndexEntry[] = [];
+  const lookup: DatasetLookup = {};
+  
+  let largestRecord = 0;
+  let totalRecordBytes = 0;
 
   await new Promise<void>((resolve, reject) => {
     const writeStream = createWriteStream(datasetPath, { encoding: "utf-8" });
@@ -73,16 +83,56 @@ export async function exportDataset(params: ExportParams): Promise<void> {
     writeStream.on("error", reject);
     writeStream.on("finish", resolve);
 
+    let currentOffset = 0;
+
     for (const entry of entries) {
-      writeStream.write(JSON.stringify(entry) + "\n");
+      const line = JSON.stringify(entry) + "\n";
+      const length = Buffer.byteLength(line, "utf-8");
+      
+      const indexEntry: DatasetIndexEntry = {
+        id: entry.id,
+        word: entry.word,
+        offset: currentOffset,
+        length: length,
+        familyId: entry.familyId,
+        zipf: entry.frequency?.zipf,
+        partOfSpeech: entry.partOfSpeech || [],
+        sources: entry.sources || [],
+        hasIpa: (entry.ipa && entry.ipa.length > 0) || false,
+        hasMorphology: ((entry.inflections && entry.inflections.length > 0) || (entry.derivations && entry.derivations.length > 0)) || false,
+        hasFrequency: entry.frequency !== undefined,
+        hasWordNet: (entry.definitions && entry.definitions.length > 0) || false,
+        hasFamily: entry.familyId !== undefined,
+        hasDefinitions: (entry.definitions && entry.definitions.length > 0) || false,
+      };
+      
+      index.push(indexEntry);
+      lookup[entry.word] = { id: entry.id, offset: currentOffset };
+      
+      if (length > largestRecord) largestRecord = length;
+      totalRecordBytes += length;
+      
+      writeStream.write(line);
+      currentOffset += length;
     }
 
     writeStream.end();
   });
 
+  // Sort index alphabetically by word
+  index.sort((a, b) => a.word.localeCompare(b.word));
+  
+  logger.info(`Writing dataset.index.json`);
+  await writeJsonFile(indexPath, index);
+  
+  logger.info(`Writing dataset.lookup.json`);
+  await writeJsonFile(lookupPath, lookup);
+
   // Get file size
   const fileInfo = await stat(datasetPath);
   const fileSizeMB = (fileInfo.size / (1024 * 1024)).toFixed(2);
+  const indexInfo = await stat(indexPath);
+  const indexSize = indexInfo.size;
 
   logger.success(
     `Dataset written: ${entries.length.toLocaleString()} entries (${fileSizeMB} MB)`
@@ -285,6 +335,9 @@ export async function exportDataset(params: ExportParams): Promise<void> {
     lowestZipf,
     frequencyBandDistribution,
     top100MostCommonWords,
+    indexSize,
+    largestRecord,
+    averageRecordSize: entries.length > 0 ? Math.round(totalRecordBytes / entries.length) : 0,
     warnings: totalWarnings,
   };
 
@@ -301,15 +354,26 @@ export async function exportDataset(params: ExportParams): Promise<void> {
     datasetVersion: config.datasetVersion,
     compilerVersion: config.compilerVersion,
     schemaVersion: config.schemaVersion,
+    indexVersion: "1.0",
     generatedAt: stats.generatedAt,
+    generatedBy: "LexForge Dataset Compiler",
     sources: ["words_alpha", "cmudict", "wordnet"],
     records: entries.length,
     features: FeatureRegistry.getAll().map(f => f.id),
+    featureVersions: FeatureRegistry.getAll().reduce((acc, f) => { acc[f.id] = f.schemaVersion.toString(); return acc; }, {} as Record<string, string>),
     pipelineStages: PipelineRegistry.getAllModules().map(m => m.metadata.id),
     enabledEnrichers: PipelineRegistry.getEnrichers().map(e => e.metadata.id),
     enabledTransformers: PipelineRegistry.getTransformers().map(t => t.metadata.id),
     enabledValidators: PipelineRegistry.getValidators().map(v => v.metadata.id),
     resources: ResourceRegistry.getAll(),
+    resourceVersions: ResourceRegistry.getAll().reduce((acc, r) => { acc[r.id] = r.version; return acc; }, {} as Record<string, string>),
+    resourceChecksums: ResourceRegistry.getAll().reduce((acc, r) => { if (r.checksum) acc[r.id] = r.checksum; return acc; }, {} as Record<string, string>),
+    artifacts: {
+      dataset: config.outputFilename,
+      index: "dataset.index.json",
+      lookup: "dataset.lookup.json",
+      stats: config.statsFilename,
+    }
   };
 
   await writeJsonFile(manifestPath, manifest);
