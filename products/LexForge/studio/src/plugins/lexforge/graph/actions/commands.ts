@@ -39,3 +39,26 @@ export class PinNodeCommand implements GraphCommand {
     }
   }
 }
+
+import { EventType } from "@/core/event/types";
+
+export class FitViewCommand implements GraphCommand {
+  id = "graph.camera.fit";
+  description = "Fit camera to see entire graph";
+  
+  async execute(): Promise<void> {
+    const { coreEvents } = await import("@/core/event/bus");
+    coreEvents.publish(EventType.CameraFit, null);
+  }
+}
+
+export class FocusNodeCommand implements GraphCommand {
+  id = "graph.camera.focus";
+  description = "Focus camera on specific node";
+  
+  async execute(context: GraphCommandContext, args: Record<string, any>): Promise<void> {
+    if (!args.nodeId) throw new Error("FocusNodeCommand requires nodeId");
+    const { coreEvents } = await import("@/core/event/bus");
+    coreEvents.publish(EventType.CameraFocus, { nodeId: args.nodeId });
+  }
+}

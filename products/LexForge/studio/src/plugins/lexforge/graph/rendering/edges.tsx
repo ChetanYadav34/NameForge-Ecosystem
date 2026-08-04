@@ -31,9 +31,17 @@ export function DefaultEdgeRenderer({ id, sourceX, sourceY, targetX, targetY, da
           opacity: data?.sceneEdge.opacity || 0.6
         }} 
       />
+      {/* Invisible interaction path */}
+      <path
+        d={edgePath}
+        fill="none"
+        strokeOpacity={0}
+        strokeWidth={20}
+        className="peer cursor-pointer"
+      />
       <EdgeLabelRenderer>
         <div
-          className="absolute text-[10px] font-sans font-bold bg-[#161616] text-muted-foreground border border-[#27272C] rounded-full px-2 py-0.5 pointer-events-none opacity-0 transition-opacity duration-200"
+          className="absolute text-[10px] font-sans font-bold bg-[#161616] text-muted-foreground border border-[#27272C] rounded-full px-2 py-0.5 pointer-events-none opacity-0 peer-hover:opacity-100 transition-opacity duration-200 z-10"
           style={{
             transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
           }}

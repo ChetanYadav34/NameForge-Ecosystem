@@ -4,11 +4,11 @@ import { LayoutEngine } from "../registry/types";
 
 export class VisualizationRuntime {
   public convert(data: GraphData): SceneData {
-    // Initial basic conversion
+    // Initial basic conversion with better initial spacing
     const sceneNodes: SceneNode[] = data.nodes.map(n => ({
       id: n.id,
-      x: n.x || (Math.random() * 500 - 250),
-      y: n.y || (Math.random() * 500 - 250),
+      x: n.x || (Math.random() * 1500 - 750),
+      y: n.y || (Math.random() * 1500 - 750),
       width: 150,
       height: 50,
       data: n,

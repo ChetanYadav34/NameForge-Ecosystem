@@ -15,7 +15,9 @@ export enum EventType {
   SelectionChanged = "SelectionChanged",
   LayoutChanged = "LayoutChanged",
   StatisticsUpdated = "StatisticsUpdated",
-  TraversalCompleted = "TraversalCompleted"
+  TraversalCompleted = "TraversalCompleted",
+  CameraFit = "CameraFit",
+  CameraFocus = "CameraFocus"
 }
 
 export interface EventPayloadMap {
@@ -36,4 +38,6 @@ export interface EventPayloadMap {
   [EventType.LayoutChanged]: { layoutId: string };
   [EventType.StatisticsUpdated]: { statistics: any };
   [EventType.TraversalCompleted]: { path: string[]; durationMs: number };
+  [EventType.CameraFit]: null;
+  [EventType.CameraFocus]: { nodeId: string };
 }

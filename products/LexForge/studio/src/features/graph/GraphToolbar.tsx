@@ -26,10 +26,15 @@ export function GraphToolbar() {
   const { expandNode } = useGraphStore();
   const { activeLayout, setActiveLayout } = useGraphSessionStore();
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (searchQuery.trim()) {
-      expandNode(searchQuery.trim().toLowerCase());
+    const query = searchQuery.trim().toLowerCase();
+    if (query) {
+      await expandNode(query);
+      useGraphStore.getState().selectNode(query);
+      import("@/plugins/lexforge/graph/actions").then(({ commandManager }) => {
+        commandManager.execute("graph.focusNode", { sessionId: "default" }, { nodeId: query });
+      });
       setSearchQuery("");
     }
   };
@@ -75,7 +80,42 @@ export function GraphToolbar() {
         >
           {getLayoutIcon()}
         </Button>
+
+        <div className="w-px h-4 bg-white/10 mx-1" />
+
+        <Button
+          variant="ghost"
+          size="icon"
+          title="Fit View"
+          onClick={() => {
+            import("@/plugins/lexforge/graph/actions").then(({ commandManager }) => {
+              commandManager.execute("graph.fitView", { sessionId: "default" }, {});
+            });
+          }}
+          className="rounded-full w-8 h-8 text-muted-foreground hover:text-accent hover:bg-accent/10"
+        >
+          <Maximize className="w-4 h-4" />
+        </Button>
+
+        <Button
+          variant="ghost"
+          size="icon"
+          title="Focus Selected"
+          onClick={() => {
+            import("@/plugins/lexforge/graph/actions").then(({ commandManager }) => {
+              const { selectedNodeId } = useGraphStore.getState();
+              if (selectedNodeId) {
+                commandManager.execute("graph.focusNode", { sessionId: "default" }, { nodeId: selectedNodeId });
+              }
+            });
+          }}
+          className="rounded-full w-8 h-8 text-muted-foreground hover:text-accent hover:bg-accent/10"
+        >
+          <Focus className="w-4 h-4" />
+        </Button>
         
+        <div className="w-px h-4 bg-white/10 mx-1" />
+
         {actions.map(action => {
           const Icon = ICON_MAP[action.icon] || Layers;
           return (

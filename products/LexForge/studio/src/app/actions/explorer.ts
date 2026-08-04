@@ -17,3 +17,9 @@ export async function searchAction(
 export async function getWordAction(id: number) {
   return await ExplorerService.getWord(id);
 }
+
+export async function getWordDetailsAction(word: string) {
+  // Use DatasetRepository directly to bypass any numeric ID requirements
+  const { DatasetRepository } = await import("@/lib/dataset/repository");
+  return await DatasetRepository.findWord(word);
+}

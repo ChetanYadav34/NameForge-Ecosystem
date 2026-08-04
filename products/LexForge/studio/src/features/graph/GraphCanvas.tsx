@@ -15,7 +15,7 @@ import { useGraphSessionStore } from "@/plugins/lexforge/graph/history/session";
 const runtime = new VisualizationRuntime();
 
 export function GraphCanvas() {
-  const { view, loading, selectedNodeId, selectNode, expandNode, relationshipFilters } = useGraphStore();
+  const { view, loading, selectedNodeId, selectNode, expandNode, relationshipFilters, expandedNodeIds } = useGraphStore();
   const { selectWord } = useExplorerStore();
   
   const [sceneData, setSceneData] = useState<SceneData>({ nodes: [], edges: [] });
@@ -32,7 +32,7 @@ export function GraphCanvas() {
 
   useEffect(() => {
     const processScene = async () => {
-      const { expandedNodes, pinnedNodes, activeLayout } = useGraphSessionStore.getState();
+      const { pinnedNodes, activeLayout } = useGraphSessionStore.getState();
       
       const mappedView = {
         nodes: view.nodes.map(n => ({ ...n, metadata: n.metadata || {} })),
@@ -53,7 +53,7 @@ export function GraphCanvas() {
       }
 
       // 4. Apply hierarchy sizes and labels
-      const rootNodes = expandedNodes.length > 0 ? expandedNodes : (scene.nodes.length > 0 ? [scene.nodes[0].id] : []);
+      const rootNodes = expandedNodeIds.size > 0 ? Array.from(expandedNodeIds) : (scene.nodes.length > 0 ? [scene.nodes[0].id] : []);
       scene = runtime.applyHierarchy(scene, rootNodes, pinnedNodes);
 
       // 5. Apply selection decoration
@@ -64,6 +64,7 @@ export function GraphCanvas() {
       }
       
       setSceneData(scene);
+      useGraphStore.getState().setSceneData(scene);
     };
 
     processScene();

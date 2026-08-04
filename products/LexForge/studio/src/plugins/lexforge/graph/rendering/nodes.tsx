@@ -1,9 +1,8 @@
-import { NodeProps, Handle, Position, Node } from "@xyflow/react";
+import { NodeProps, Handle, Position, Node, useViewport } from "@xyflow/react";
 import { SceneNode } from "../scene/types";
 import { graphRegistry } from "../registry";
 
 import { Pin } from "lucide-react";
-import { useStore } from "@xyflow/react";
 
 function BaseNode({ children, selected, depth = 999, pinned, hovered }: { children: React.ReactNode, selected?: boolean, depth?: number, pinned?: boolean, hovered?: boolean }) {
   let sizeClass = "px-3 py-1 text-sm"; // Depth 2+
@@ -47,22 +46,32 @@ export function WordNodeRenderer({ data, selected }: NodeProps<Node<{ sceneNode:
   const isPinned = !!node.data?.metadata?.isPinned;
   const label = node.data?.label || "Unknown Word";
   const partOfSpeech = node.data?.metadata?.partOfSpeech;
-  const zoom = useStore((s) => s.transform[2]);
+  const zipf = node.data?.metadata?.zipf;
+  const { zoom } = useViewport();
   
-  // Smart Labels: Always visible for root, selected, pinned, hovered(handled by CSS group-hover). Hide others if zoom < 0.8
-  const showLabel = isRoot || isSelected || isPinned || zoom > 0.8;
+  // LOD logic
+  const isDistant = zoom < 0.45 && !isRoot && !isSelected && !isPinned;
+  const labelOpacity = isDistant ? "opacity-30 scale-90 blur-[0.5px]" : "opacity-100 scale-100 blur-0";
 
   return (
     <BaseNode selected={isSelected} depth={depth} pinned={isPinned}>
-      <div className="flex flex-col items-center justify-center h-full">
-        <span className={`font-bold font-sans transition-opacity duration-200 ${isSelected ? 'text-accent' : 'text-foreground'} ${showLabel ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
+      <div className="flex flex-col items-center justify-center h-full relative group-hover:scale-105 transition-transform duration-200">
+        <span className={`font-bold font-sans transition-all duration-300 ${isSelected ? 'text-accent' : 'text-foreground'} ${labelOpacity} group-hover:opacity-100 group-hover:scale-110 group-hover:blur-0`}>
           {label}
         </span>
-        {partOfSpeech && showLabel && (
-          <span className="text-[9px] uppercase tracking-wider text-muted-foreground mt-0.5 opacity-70 group-hover:opacity-100">
-            {partOfSpeech}
-          </span>
-        )}
+        
+        <div className={`flex items-center gap-1 mt-0.5 transition-all duration-300 ${isDistant ? 'opacity-0' : 'opacity-70'} group-hover:opacity-100`}>
+          {partOfSpeech && (
+            <span className="text-[9px] uppercase tracking-wider text-muted-foreground bg-black/40 px-1 rounded-sm border border-white/5">
+              {partOfSpeech}
+            </span>
+          )}
+          {zipf && (
+            <span className="text-[9px] text-accent/80 font-jetbrains-mono bg-accent/10 px-1 rounded-sm border border-accent/20">
+              f:{Number(zipf).toFixed(1)}
+            </span>
+          )}
+        </div>
       </div>
     </BaseNode>
   );

@@ -1,12 +1,18 @@
 "use client";
-
+import { useEffect, useState } from "react";
 import { useGraphStore } from "@/store/useGraphStore";
 import { graphRegistry } from "@/plugins/lexforge/graph/registry";
+import { getRelationshipDefinitionsAction } from "@/app/actions/graph";
+import { RelationshipDefinition } from "@/lib/graph/types";
 
 export function GraphSidebar() {
   const { relationshipFilters, toggleRelationship } = useGraphStore();
+  const [relationships, setRelationships] = useState<RelationshipDefinition[]>([]);
   
-  const providers = Array.from(graphRegistry.relationshipProviders.values());
+  useEffect(() => {
+    getRelationshipDefinitionsAction().then(setRelationships).catch(console.error);
+  }, []);
+  
   const visualizationModes = Array.from(graphRegistry.visualizationModes.values());
   const layouts = Array.from(graphRegistry.layoutEngines.values());
 
@@ -46,7 +52,7 @@ export function GraphSidebar() {
       <div className="p-4">
         <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">Relationships</h2>
         <div className="space-y-3">
-          {providers.map((def) => {
+          {relationships.map((def) => {
             const isActive = relationshipFilters.has(def.id) || relationshipFilters.size === 0;
             return (
               <div key={def.id} className="flex items-center space-x-2">
@@ -58,7 +64,7 @@ export function GraphSidebar() {
                   className="text-accent focus:ring-accent"
                 />
                 <label htmlFor={`rel-${def.id}`} className="text-sm text-foreground font-medium cursor-pointer">
-                  {def.name}
+                  {def.label}
                 </label>
               </div>
             );

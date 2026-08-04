@@ -1,9 +1,11 @@
 import { useCallback, useMemo, useEffect } from "react";
-import { ReactFlow, Background, BackgroundVariant, Controls, MiniMap, NodeProps, EdgeProps, Handle, Position, Node, Edge, useReactFlow } from "@xyflow/react";
+import { ReactFlow, Background, BackgroundVariant, Controls, MiniMap, NodeProps, EdgeProps, Handle, Position, Node, Edge, useReactFlow, useNodesState, useEdgesState } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { SceneData, SceneNode, SceneEdge } from "../scene/types";
 import { graphRegistry } from "../registry";
 import { commandManager } from "../actions";
+
+import { NodeChange } from "@xyflow/react";
 
 interface ReactFlowAdapterProps {
   scene: SceneData;
@@ -11,9 +13,10 @@ interface ReactFlowAdapterProps {
   onNodeClick?: (id: string) => void;
   onNodeDoubleClick?: (id: string) => void;
   onNodeContextMenu?: (event: React.MouseEvent, id: string) => void;
+  onNodesChange?: (changes: NodeChange<Node>[]) => void;
 }
 
-export function ReactFlowAdapter({ scene, focusNodeId, onNodeClick, onNodeDoubleClick, onNodeContextMenu }: ReactFlowAdapterProps) {
+export function ReactFlowAdapter({ scene, focusNodeId, onNodeClick, onNodeDoubleClick, onNodeContextMenu, onNodesChange }: ReactFlowAdapterProps) {
   // Convert registries to React Flow maps
   const nodeTypes = useMemo(() => {
     const types: Record<string, any> = {};
@@ -31,20 +34,38 @@ export function ReactFlowAdapter({ scene, focusNodeId, onNodeClick, onNodeDouble
     return types;
   }, []);
 
-  // Convert Scene to React Flow
-  const nodes: Node[] = useMemo(() => {
-    return scene.nodes.map(sn => ({
-      id: sn.id,
-      type: graphRegistry.nodeRenderers.has(sn.data?.type) ? sn.data.type : "default",
-      position: { x: sn.x, y: sn.y },
-      data: { sceneNode: sn },
-      hidden: !sn.isVisible,
-      style: { opacity: sn.opacity, zIndex: sn.zIndex }
-    }));
-  }, [scene.nodes]);
+  const { fitView } = useReactFlow();
+  
+  const [nodes, setNodes, onNodesChangeInner] = useNodesState<Node>([]);
+  const [edges, setEdges, onEdgesChangeInner] = useEdgesState<Edge>([]);
 
-  const edges: Edge[] = useMemo(() => {
-    return scene.edges.map(se => ({
+  // Sync SceneData to ReactFlow State
+  useEffect(() => {
+    // Preserve existing coordinates for nodes that are pinned or already positioned manually
+    setNodes((currentNodes) => {
+      const currentPosMap = new Map(currentNodes.map(n => [n.id, n.position]));
+      
+      return scene.nodes.map(sn => {
+        const isPinned = !!sn.data?.metadata?.isPinned;
+        const currentPos = currentPosMap.get(sn.id);
+        
+        // If node is pinned, ALWAYS use the current position from React Flow if it exists.
+        // Otherwise, use scene position (which came from random or layout engine)
+        const pos = (isPinned && currentPos) ? currentPos : { x: sn.x, y: sn.y };
+        
+        return {
+          id: sn.id,
+          type: graphRegistry.nodeRenderers.has(sn.data?.type) ? sn.data.type : "default",
+          position: pos,
+          data: { sceneNode: sn },
+          hidden: !sn.isVisible,
+          draggable: !isPinned, // Disable dragging for pinned nodes
+          style: { opacity: sn.opacity, zIndex: sn.zIndex }
+        };
+      });
+    });
+
+    setEdges(scene.edges.map(se => ({
       id: se.id,
       source: se.source,
       target: se.target,
@@ -52,8 +73,8 @@ export function ReactFlowAdapter({ scene, focusNodeId, onNodeClick, onNodeDouble
       data: { sceneEdge: se },
       hidden: !se.isVisible,
       style: { opacity: se.opacity, zIndex: se.zIndex }
-    }));
-  }, [scene.edges]);
+    })));
+  }, [scene, setNodes, setEdges]);
 
   const handleNodeClick = useCallback((_: React.MouseEvent, node: Node) => {
     if (onNodeClick) onNodeClick(node.id);
@@ -68,8 +89,6 @@ export function ReactFlowAdapter({ scene, focusNodeId, onNodeClick, onNodeDouble
     if (onNodeContextMenu) onNodeContextMenu(event, node.id);
   }, [onNodeContextMenu]);
 
-  const { fitView } = useReactFlow();
-
   useEffect(() => {
     if (nodes.length > 0) {
       setTimeout(() => {
@@ -82,6 +101,32 @@ export function ReactFlowAdapter({ scene, focusNodeId, onNodeClick, onNodeDouble
     }
   }, [nodes.length, fitView, focusNodeId]);
 
+  useEffect(() => {
+    // Dynamically import coreEvents to avoid server-side issues
+    let unsubscribeFit: () => void;
+    let unsubscribeFocus: () => void;
+    
+    import("@/core/event/bus").then(({ coreEvents }) => {
+      import("@/core/event/types").then(({ EventType }) => {
+        unsubscribeFit = coreEvents.subscribe(EventType.CameraFit, () => {
+          fitView({ padding: 0.2, duration: 800 });
+        });
+        
+        unsubscribeFocus = coreEvents.subscribe(EventType.CameraFocus, (event) => {
+          const payload = event.payload;
+          if (payload?.nodeId) {
+            fitView({ nodes: [{ id: payload.nodeId }], padding: 0.5, duration: 800, maxZoom: 1.5 });
+          }
+        });
+      });
+    });
+
+    return () => {
+      if (unsubscribeFit) unsubscribeFit();
+      if (unsubscribeFocus) unsubscribeFocus();
+    };
+  }, [fitView]);
+
   return (
     <div className="w-full h-full">
       <ReactFlow
@@ -89,10 +134,15 @@ export function ReactFlowAdapter({ scene, focusNodeId, onNodeClick, onNodeDouble
         edges={edges}
         nodeTypes={nodeTypes}
         edgeTypes={edgeTypes}
+        onNodesChange={(changes) => {
+          onNodesChangeInner(changes);
+          if (onNodesChange) onNodesChange(changes);
+        }}
+        onEdgesChange={onEdgesChangeInner}
         onNodeClick={handleNodeClick}
         onNodeDoubleClick={handleNodeDoubleClick}
         onNodeContextMenu={handleNodeContextMenu}
-        nodesDraggable={true} // React flow handles drag, but Scene Graph should be updated in real impl
+        nodesDraggable={true}
         nodesConnectable={false}
         elementsSelectable={true}
         colorMode="dark"

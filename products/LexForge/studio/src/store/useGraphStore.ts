@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { GraphView, GraphNode, GraphEdge, RelationshipDefinition } from "@/lib/graph/types";
 import { expandNodeAction } from "@/app/actions/graph";
+import { SceneData } from "@/plugins/lexforge/graph/scene/types";
 import { getRelationshipDefinitions } from "@/lib/graph/providers/registry";
 
 interface GraphState {
@@ -10,6 +11,7 @@ interface GraphState {
   searchQuery: string;
   loading: boolean;
   relationshipFilters: Set<string>; // IDs of active relationships
+  sceneData: SceneData | null; // For diagnostics
   
   // Actions
   setSearchQuery: (query: string) => void;
@@ -17,6 +19,7 @@ interface GraphState {
   expandNode: (id: string) => Promise<void>;
   collapseNode: (id: string) => void;
   toggleRelationship: (relId: string) => void;
+  setSceneData: (sceneData: SceneData) => void;
   resetView: () => void;
   initFilters: () => void;
 }
@@ -28,10 +31,12 @@ export const useGraphStore = create<GraphState>((set, get) => ({
   searchQuery: "",
   loading: false,
   relationshipFilters: new Set(),
+  sceneData: null,
 
   setSearchQuery: (query) => set({ searchQuery: query }),
   
   selectNode: (id) => set({ selectedNodeId: id }),
+  setSceneData: (sceneData) => set({ sceneData }),
 
   initFilters: () => {
     // If we're on the client, we might not have access to the server-side registry directly like this.
@@ -119,7 +124,8 @@ export const useGraphStore = create<GraphState>((set, get) => ({
       view: { nodes: [], edges: [], statistics: { nodeCount: 0, edgeCount: 0, connectedComponents: 0, averageDegree: 0, generatedAt: "" } },
       selectedNodeId: null,
       expandedNodeIds: new Set(),
-      searchQuery: ""
+      searchQuery: "",
+      sceneData: null
     });
   }
 }));

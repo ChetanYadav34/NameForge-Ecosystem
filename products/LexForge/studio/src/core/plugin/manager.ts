@@ -46,8 +46,9 @@ corePlugins.register({
       { id: "home", label: "Dashboard", icon: "Dashboard", route: "/", order: 1 },
       { id: "explorer", label: "Dataset Explorer", icon: "Dataset", route: "/explorer", order: 2 },
       { id: "graph", label: "Graph Explorer", icon: "Graph", route: "/graph", order: 3 },
-      { id: "validation", label: "Validation", icon: "Validation", route: "/validation", order: 4 },
-      { id: "resources", label: "Resources", icon: "Resource", route: "/resources", order: 5 },
+      { id: "generation", label: "Generation", icon: "Compile", route: "/generation", order: 4 },
+      { id: "validation", label: "Validation", icon: "Validation", route: "/validation", order: 5 },
+      { id: "resources", label: "Resources", icon: "Resource", route: "/resources", order: 6 },
       { id: "settings", label: "Settings", icon: "Settings", route: "/settings", order: 99 },
     ]
   }
