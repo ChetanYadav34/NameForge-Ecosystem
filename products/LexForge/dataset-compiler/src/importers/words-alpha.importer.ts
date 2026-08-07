@@ -8,7 +8,7 @@
 import { createReadStream } from "node:fs";
 import { createInterface } from "node:readline";
 import { BaseImporter } from "./base.importer.js";
-import { ImportResult, RawWord, PipelineModuleMetadata } from "../types/index.js";
+import { RawWord, PipelineModuleMetadata } from "../types/index.js";
 import { ResourceRegistry } from "../registry/resource.registry.js";
 import { logger } from "../utils/logger.js";
 
@@ -26,16 +26,12 @@ export class WordsAlphaImporter extends BaseImporter<RawWord> {
     author: "LexForge",
   };
 
-  async import(): Promise<ImportResult<RawWord>> {
+  async *import(): AsyncGenerator<RawWord, void, unknown> {
     const resource = ResourceRegistry.get("resource.words_alpha");
     ResourceRegistry.markLoaded(resource.id);
     const filePath = resource.path;
 
-    logger.info(`Reading ${this.name} from: ${filePath}`);
-
-    const data: RawWord[] = [];
-    const errors: string[] = [];
-    let lineNumber = 0;
+    logger.info(`Streaming ${this.name} from: ${filePath}`);
 
     const fileStream = createReadStream(filePath, { encoding: "utf-8" });
     const rl = createInterface({
@@ -44,7 +40,6 @@ export class WordsAlphaImporter extends BaseImporter<RawWord> {
     });
 
     for await (const rawLine of rl) {
-      lineNumber++;
       const word = rawLine.trim();
 
       // Skip empty lines
@@ -52,20 +47,7 @@ export class WordsAlphaImporter extends BaseImporter<RawWord> {
         continue;
       }
 
-      data.push({ word });
+      yield { word };
     }
-
-    logger.success(`Imported ${data.length.toLocaleString()} words from ${this.name}`);
-
-    if (errors.length > 0) {
-      logger.warn(`${errors.length} errors encountered during import`);
-    }
-
-    return {
-      source: this.name,
-      recordCount: data.length,
-      data,
-      errors,
-    };
   }
 }

@@ -1,0 +1,37 @@
+[
+  {
+    "id": "morph:gr:chron",
+    "origin": "greek",
+    "orthography": "chron",
+    "ipa": "kɹɒn",
+    "semanticTags": [
+      "time",
+      "duration"
+    ],
+    "metadata": {
+      "productivity": 0.8,
+      "frequency": 0.5,
+      "confidence": 1,
+      "source": "NameForge Linguistic DB",
+      "version": "1.0.0"
+    }
+  },
+  {
+    "id": "morph:gr:tech",
+    "origin": "greek",
+    "orthography": "tech",
+    "ipa": "tɛk",
+    "semanticTags": [
+      "art",
+      "skill",
+      "craft"
+    ],
+    "metadata": {
+      "productivity": 0.8,
+      "frequency": 0.5,
+      "confidence": 1,
+      "source": "NameForge Linguistic DB",
+      "version": "1.0.0"
+    }
+  }
+]

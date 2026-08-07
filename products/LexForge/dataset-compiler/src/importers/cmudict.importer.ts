@@ -18,7 +18,7 @@
 import { createReadStream } from "node:fs";
 import { createInterface } from "node:readline";
 import { BaseImporter } from "./base.importer.js";
-import { ImportResult, RawPronunciation, PipelineModuleMetadata } from "../types/index.js";
+import { RawPronunciation, PipelineModuleMetadata } from "../types/index.js";
 import { ResourceRegistry } from "../registry/resource.registry.js";
 import { logger } from "../utils/logger.js";
 
@@ -43,22 +43,21 @@ export class CmudictImporter extends BaseImporter<RawPronunciation> {
     author: "LexForge",
   };
 
-  async import(): Promise<ImportResult<RawPronunciation>> {
+  async *import(): AsyncGenerator<RawPronunciation, void, unknown> {
     const resource = ResourceRegistry.get("resource.cmudict");
     ResourceRegistry.markLoaded(resource.id);
     const filePath = resource.path;
 
-    logger.info(`Reading ${this.name} from: ${filePath}`);
-
-    const data: RawPronunciation[] = [];
-    const errors: string[] = [];
-    let lineNumber = 0;
+    logger.info(`Streaming ${this.name} from: ${filePath}`);
 
     const fileStream = createReadStream(filePath, { encoding: "utf-8" });
     const rl = createInterface({
       input: fileStream,
       crlfDelay: Infinity,
     });
+
+    let lineNumber = 0;
+    let errorCount = 0;
 
     for await (const rawLine of rl) {
       lineNumber++;
@@ -83,7 +82,8 @@ export class CmudictImporter extends BaseImporter<RawPronunciation> {
       // Split on first whitespace to separate word from pronunciation
       const firstSpaceIndex = line.indexOf(" ");
       if (firstSpaceIndex === -1) {
-        errors.push(`Line ${lineNumber}: No pronunciation found — "${rawLine.trim()}"`);
+        logger.warn(`Line ${lineNumber}: No pronunciation found — "${rawLine.trim()}"`);
+        errorCount++;
         continue;
       }
 
@@ -91,7 +91,8 @@ export class CmudictImporter extends BaseImporter<RawPronunciation> {
       const arpabet = line.substring(firstSpaceIndex + 1).trim();
 
       if (arpabet.length === 0) {
-        errors.push(`Line ${lineNumber}: Empty pronunciation for "${rawWord}"`);
+        logger.warn(`Line ${lineNumber}: Empty pronunciation for "${rawWord}"`);
+        errorCount++;
         continue;
       }
 
@@ -105,22 +106,11 @@ export class CmudictImporter extends BaseImporter<RawPronunciation> {
         variant = parseInt(variantMatch[2], 10);
       }
 
-      data.push({ word, arpabet, variant });
+      yield { word, arpabet, variant };
     }
 
-    logger.success(
-      `Imported ${data.length.toLocaleString()} pronunciation entries from ${this.name}`
-    );
-
-    if (errors.length > 0) {
-      logger.warn(`${errors.length} parse errors encountered`);
+    if (errorCount > 0) {
+      logger.warn(`${errorCount} parse errors encountered in ${this.name}`);
     }
-
-    return {
-      source: this.name,
-      recordCount: data.length,
-      data,
-      errors,
-    };
   }
 }

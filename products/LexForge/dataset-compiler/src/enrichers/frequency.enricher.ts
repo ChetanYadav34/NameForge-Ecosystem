@@ -22,6 +22,11 @@ export class FrequencyEnricher extends BaseEnricher<MorphologyWord, FrequencyWor
     author: "LexForge",
   };
 
+  private frequencyMap: FrequencyDataMap = {};
+  private activeSource = "none";
+  private isResourceAvailable = false;
+  private loaded = false;
+
   private calculateBand(zipf: number): "very-common" | "common" | "uncommon" | "rare" | "very-rare" {
     if (zipf >= 6.0) return "very-common";
     if (zipf >= 4.5) return "common";
@@ -30,25 +35,25 @@ export class FrequencyEnricher extends BaseEnricher<MorphologyWord, FrequencyWor
     return "very-rare";
   }
 
-  async enrich(records: MorphologyWord[]): Promise<TransformResult<FrequencyWord>> {
+  private loadData() {
+    if (this.loaded) return;
+    this.loaded = true;
+
     const resources = ["resource.wordfreq", "resource.subtlex"];
-    let frequencyMap: FrequencyDataMap = {};
-    let activeSource = "none";
-    let isResourceAvailable = false;
 
     // We try to find the first validated resource according to priority
     for (const resId of resources) {
       try {
         if (ResourceRegistry.getState(resId) === ResourceState.VALIDATED || ResourceRegistry.getState(resId) === ResourceState.LOADED) {
-          isResourceAvailable = true;
-          activeSource = resId.replace("resource.", "");
+          this.isResourceAvailable = true;
+          this.activeSource = resId.replace("resource.", "");
           
           if (ResourceRegistry.getState(resId) === ResourceState.VALIDATED) {
              ResourceRegistry.markLoaded(resId);
           }
           
           // Load frequencies from the CSV file
-          if (activeSource === "wordfreq") {
+          if (this.activeSource === "wordfreq") {
              const csvPath = ResourceRegistry.get(resId).path;
              const content = fs.readFileSync(csvPath, "utf-8");
              const lines = content.split(/\r?\n/);
@@ -57,7 +62,7 @@ export class FrequencyEnricher extends BaseEnricher<MorphologyWord, FrequencyWor
                if (!line) continue;
                const [word, zipf] = line.split(",");
                if (word && zipf) {
-                 frequencyMap[word] = parseFloat(zipf);
+                 this.frequencyMap[word] = parseFloat(zipf);
                }
              }
           }
@@ -68,19 +73,23 @@ export class FrequencyEnricher extends BaseEnricher<MorphologyWord, FrequencyWor
       }
     }
 
-    if (!isResourceAvailable) {
+    if (!this.isResourceAvailable) {
       logger.info(`No frequency resources found in LOADED state. Proceeding without frequency data.`);
     }
+  }
+
+  async enrich(records: MorphologyWord[]): Promise<TransformResult<FrequencyWord>> {
+    this.loadData();
 
     let transformedCount = 0;
     
     // Pass 1: enrich with base Zipf values
     const intermediateRecords: FrequencyWord[] = records.map(record => {
-      const frequencyValue = frequencyMap[record.word];
+      const frequencyValue = this.frequencyMap[record.word];
       if (frequencyValue !== undefined) {
         const sources = [...(record.sources || [])];
-        if (!sources.includes(activeSource)) {
-          sources.push(activeSource);
+        if (!sources.includes(this.activeSource)) {
+          sources.push(this.activeSource);
         }
         return {
           ...record,
@@ -88,7 +97,7 @@ export class FrequencyEnricher extends BaseEnricher<MorphologyWord, FrequencyWor
           frequency: {
             zipf: frequencyValue,
             band: this.calculateBand(frequencyValue),
-            source: activeSource,
+            source: this.activeSource,
           }
         };
       }

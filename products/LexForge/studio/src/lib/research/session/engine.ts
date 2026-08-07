@@ -118,7 +118,7 @@ class ConstructionStage implements PipelineStage<GenerationPlan, CandidateBatch>
   id = "stage:construction";
   name = "Candidate Construction";
   async execute(input: GenerationPlan, token: CancellationToken) {
-    return { artifact: constructionEngine.construct(input), durationMs: 10 };
+    return { artifact: await constructionEngine.construct(input), durationMs: 10 };
   }
 }
 

@@ -1,0 +1,19 @@
+[
+  {
+    "id": "morph:gm:feld",
+    "origin": "germanic",
+    "orthography": "feld",
+    "ipa": "fɛld",
+    "semanticTags": [
+      "field",
+      "open"
+    ],
+    "metadata": {
+      "productivity": 0.8,
+      "frequency": 0.5,
+      "confidence": 1,
+      "source": "NameForge Linguistic DB",
+      "version": "1.0.0"
+    }
+  }
+]

@@ -1,0 +1,12 @@
+{
+  "name": "nameforge-ecosystem",
+  "private": true,
+  "scripts": {
+    "lint": "npm run lint --workspace=products/LexForge/web"
+  },
+  "workspaces": [
+    "products/*",
+    "products/LexForge/*",
+    "packages/*"
+  ]
+}

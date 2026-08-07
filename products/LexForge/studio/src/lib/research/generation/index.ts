@@ -8,14 +8,14 @@ export * from "./engine";
 import { builderRegistry } from "./registry";
 export { builderRegistry };
 
-// Builders
-import { SkeletonBuilder } from "./builders/skeleton";
-import { ClusterBuilder } from "./builders/cluster";
-import { MorphologyBuilder } from "./builders/morphology";
-import { TransitionBuilder } from "./builders/transition";
-import { PhoneticBuilder } from "./builders/phonetic";
+// Legacy Builders (Deprecated in Phase 23)
+import { SkeletonBuilder } from "./legacy/skeleton";
+import { ClusterBuilder } from "./legacy/cluster";
+import { MorphologyBuilder } from "./legacy/morphology";
+import { TransitionBuilder } from "./legacy/transition";
+import { PhoneticBuilder } from "./legacy/phonetic";
 
-// Register default builders
+// Register default legacy builders (retained for backward compatibility if needed)
 builderRegistry.register(new SkeletonBuilder());
 builderRegistry.register(new ClusterBuilder());
 builderRegistry.register(new MorphologyBuilder());

@@ -44,12 +44,12 @@ export const config: CompilerConfig = {
     process.env["LEXFORGE_OUTPUT_PATH"] ||
     projectRoot("output"),
 
-  outputFilename: "lexforge-dataset-v6.jsonl",
+  outputFilename: "lexforge-dataset-v7.jsonl",
   statsFilename: "stats.json",
   manifestFilename: "dataset.manifest.json",
 
   // --- Metadata ---
-  compilerVersion: "6.0.0",
-  datasetVersion: "6.0.0",
-  schemaVersion: "6.0",
+  compilerVersion: "7.0.0",
+  datasetVersion: "7.0.0",
+  schemaVersion: "7.0",
 };

@@ -11,11 +11,8 @@ import { ImportResult, PipelineModule, PipelineModuleMetadata } from "../types/i
 /**
  * Abstract base class for all data importers.
  *
- * Each importer is responsible for reading one raw data source and
- * converting it into a structured ImportResult.
- *
- * To add a new data source, create a new class extending BaseImporter
- * without modifying any existing code.
+ * Each importer is responsible for streaming one raw data source.
+ * This ensures multi-gigabyte files do not cause V8 memory exhaustion.
  *
  * @typeParam T - The shape of each imported record.
  */
@@ -25,9 +22,9 @@ export abstract class BaseImporter<T> implements PipelineModule {
   abstract readonly metadata: PipelineModuleMetadata;
 
   /**
-   * Import data from the resource registry.
+   * Generates records progressively.
    *
-   * @returns An ImportResult containing the parsed data, record count, and any errors.
+   * @returns An AsyncGenerator yielding records one by one.
    */
-  abstract import(): Promise<ImportResult<T>>;
+  abstract import(): AsyncGenerator<T, void, unknown>;
 }

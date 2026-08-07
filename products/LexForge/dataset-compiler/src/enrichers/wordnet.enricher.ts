@@ -81,6 +81,8 @@ export class WordNetEnricher extends BaseEnricher<PhonologyWord, SemanticWord> {
   }
 
   private loadWordNetData() {
+    if (this.synsets.size > 0) return; // Already loaded
+
     const resource = ResourceRegistry.get("resource.wordnet");
     this.wordnetDir = resource.path;
 

@@ -1,0 +1,19 @@
+[
+  {
+    "id": "morph:fin:cap",
+    "origin": "finance",
+    "orthography": "cap",
+    "ipa": "kæp",
+    "semanticTags": [
+      "head",
+      "money"
+    ],
+    "metadata": {
+      "productivity": 0.8,
+      "frequency": 0.5,
+      "confidence": 1,
+      "source": "NameForge Linguistic DB",
+      "version": "1.0.0"
+    }
+  }
+]

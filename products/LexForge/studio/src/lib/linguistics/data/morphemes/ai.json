@@ -1,0 +1,19 @@
+[
+  {
+    "id": "morph:ai:cog",
+    "origin": "ai",
+    "orthography": "cog",
+    "ipa": "kɒg",
+    "semanticTags": [
+      "think",
+      "mind"
+    ],
+    "metadata": {
+      "productivity": 0.8,
+      "frequency": 0.5,
+      "confidence": 1,
+      "source": "NameForge Linguistic DB",
+      "version": "1.0.0"
+    }
+  }
+]

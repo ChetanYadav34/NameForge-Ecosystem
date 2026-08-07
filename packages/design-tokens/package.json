@@ -1,0 +1,16 @@
+{
+  "name": "@lexforge/design-tokens",
+  "version": "1.0.0",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": "./index.js",
+    "./dist/tokens.json": "./dist/tokens.json",
+    "./tailwind-theme.js": "./tailwind-theme.js",
+    "./variables.css": "./variables.css"
+  },
+  "scripts": {
+    "build": "node compile-tokens.js"
+  },
+  "dependencies": {}
+}

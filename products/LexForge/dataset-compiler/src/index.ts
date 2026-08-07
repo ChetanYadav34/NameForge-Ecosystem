@@ -16,7 +16,7 @@
 // with a clear error message.
 // ============================================================================
 
-import { Pipeline } from "./pipeline.js";
+import { LexForgeCompiler } from "./compiler/compiler.js";
 import { logger } from "./utils/logger.js";
 
 /**
@@ -24,8 +24,8 @@ import { logger } from "./utils/logger.js";
  */
 async function main(): Promise<void> {
   try {
-    Pipeline.bootstrap();
-    await Pipeline.execute();
+    LexForgeCompiler.bootstrap();
+    await LexForgeCompiler.execute();
   } catch (error) {
     logger.error("Pipeline failed:");
     console.error(error);

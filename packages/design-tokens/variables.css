@@ -1,0 +1,12 @@
+:root {
+  --color-core-bg: #FDFDFD;
+  --color-core-elevated: #FFFFFF;
+  --color-core-textPrimary: #0F172A;
+  --color-core-textSecondary: #64748B;
+  --color-aurora-cyan: #06B6D4;
+  --color-aurora-violet: #8B5CF6;
+  --color-aurora-coral: #F43F5E;
+  --color-semantic-success: #10B981;
+  --color-semantic-warning: #F59E0B;
+  --color-semantic-danger: #EF4444;
+}

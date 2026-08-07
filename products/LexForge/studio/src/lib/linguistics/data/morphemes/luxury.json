@@ -1,0 +1,19 @@
+[
+  {
+    "id": "morph:lux:aur",
+    "origin": "luxury",
+    "orthography": "aur",
+    "ipa": "ɔɹ",
+    "semanticTags": [
+      "gold",
+      "premium"
+    ],
+    "metadata": {
+      "productivity": 0.8,
+      "frequency": 0.5,
+      "confidence": 1,
+      "source": "NameForge Linguistic DB",
+      "version": "1.0.0"
+    }
+  }
+]

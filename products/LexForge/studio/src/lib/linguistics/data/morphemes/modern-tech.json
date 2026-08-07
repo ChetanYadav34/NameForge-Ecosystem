@@ -1,0 +1,36 @@
+[
+  {
+    "id": "morph:tech:syn",
+    "origin": "modern-tech",
+    "orthography": "syn",
+    "ipa": "sɪn",
+    "semanticTags": [
+      "synthetic",
+      "together"
+    ],
+    "metadata": {
+      "productivity": 0.8,
+      "frequency": 0.5,
+      "confidence": 1,
+      "source": "NameForge Linguistic DB",
+      "version": "1.0.0"
+    }
+  },
+  {
+    "id": "morph:tech:nex",
+    "origin": "modern-tech",
+    "orthography": "nex",
+    "ipa": "nɛks",
+    "semanticTags": [
+      "next",
+      "connection"
+    ],
+    "metadata": {
+      "productivity": 0.8,
+      "frequency": 0.5,
+      "confidence": 1,
+      "source": "NameForge Linguistic DB",
+      "version": "1.0.0"
+    }
+  }
+]

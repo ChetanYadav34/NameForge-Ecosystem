@@ -11,6 +11,9 @@
 // ============================================================================
 
 // ─── Registry Types ────────────────────────────────────────────────────────────
+import { KnowledgeQualityScore } from "./knowledge-package.js";
+export * from "./knowledge-package.js";
+
 
 export type PipelineStage = "import" | "normalize" | "merge" | "transform" | "enrich" | "engine" | "validate" | "build" | "export";
 
@@ -99,6 +102,7 @@ export interface FeatureDefinition {
     hyponyms: string[];
     domains: string[];
     sources: string[];
+    qualityScore?: KnowledgeQualityScore;
   }
 
 /**
