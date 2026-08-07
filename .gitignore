@@ -14,6 +14,8 @@ logs/
 .next/
 dist/
 build/
+.vercel/
+coverage/
 
 # Python
 __pycache__/
@@ -39,7 +41,11 @@ models/
 
 
 # Generated LexForge datasets
-products/LexForge/dataset-compiler/output/
+# Exclude raw JSONL datasets and oversized unused indexes
+products/LexForge/dataset-compiler/output/*
+products/LexForge/dataset-compiler/output/tmp/
 
-# Optional: keep the folder
-!products/LexForge/dataset-compiler/output/.gitkeep
+# Include ONLY the compiled JSON indexes required by the runtime
+!products/LexForge/dataset-compiler/output/semantic-index.json
+!products/LexForge/dataset-compiler/output/ontology-index.json
+!products/LexForge/dataset-compiler/output/definition-index.json

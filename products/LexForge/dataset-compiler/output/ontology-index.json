@@ -1,0 +1,21 @@
+{
+  "metadata": {
+    "version": "7.0.0",
+    "schemaVersion": "7.0",
+    "generatedAt": "2026-08-07T09:30:21.686Z",
+    "recordCount": 0,
+    "compilerVersion": "7.0.0",
+    "algorithmVersion": "2.0.0",
+    "dependencies": [
+      "artifact.validated"
+    ],
+    "knowledgePackages": [
+      "package.kaikki",
+      "package.wordnet",
+      "package.phoible",
+      "package.wikipron",
+      "package.brand_intelligence"
+    ]
+  },
+  "data": {}
+}

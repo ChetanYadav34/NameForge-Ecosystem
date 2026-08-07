@@ -5,8 +5,8 @@
     "lint": "npm run lint --workspace=products/LexForge/web"
   },
   "workspaces": [
-    "products/*",
-    "products/LexForge/*",
+    "products/LexForge/web",
+    "products/LexForge/dataset-compiler",
     "packages/*"
   ]
 }
