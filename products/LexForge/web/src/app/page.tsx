@@ -12,7 +12,6 @@ import { Research } from '../domains/landing/Research';
 import { KnowledgeGraph } from '../domains/landing/KnowledgeGraph';
 import { Testimonials } from '../domains/landing/Testimonials';
 import { FAQ } from '../domains/landing/FAQ';
-import { Pricing } from '../domains/landing/Pricing';
 import { CTA } from '../domains/landing/CTA';
 import { Footer } from '../domains/landing/Footer';
 export default function LandingPage() {
@@ -33,7 +32,6 @@ export default function LandingPage() {
         <KnowledgeGraph />
         <Testimonials />
         <FAQ />
-        <Pricing />
         <CTA />
       </main>
       <Footer />

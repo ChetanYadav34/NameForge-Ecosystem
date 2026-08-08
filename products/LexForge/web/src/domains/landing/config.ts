@@ -1,11 +1,49 @@
+export type FooterLink = { label: string; href: string; comingSoon?: boolean };
+export type FooterColumn = { title: string; links: FooterLink[] };
+
 export const landingConfig = {
   navigation: [
-    { label: 'Products', href: '#products' },
-    { label: 'Research', href: '#research' },
-    { label: 'Dataset', href: '#dataset' },
-    { label: 'Documentation', href: '#docs' },
-    { label: 'Pricing', href: '#pricing' },
-    { label: 'GitHub', href: '#github' }
+    { label: 'Generate', href: '/generate' },
+    { label: 'Pricing', href: '/pricing' },
+    { label: 'Research', href: '/research' },
+    { label: 'Dataset', href: '/dataset' },
+    { label: 'Changelog', href: '/changelog' }
+  ],
+  footerLinks: [
+    {
+      title: 'Company',
+      links: [
+        { label: 'About LexForge', href: '/about' },
+        { label: 'Research', href: '/research' },
+        { label: 'Roadmap', href: '/roadmap' }
+      ]
+    },
+    {
+      title: 'Product',
+      links: [
+        { label: 'Pricing', href: '/pricing' },
+        { label: 'Documentation', href: '/docs' },
+        { label: 'Dataset', href: '/dataset' },
+        { label: 'Changelog', href: '/changelog' }
+      ]
+    },
+    {
+      title: 'Community',
+      links: [
+        { label: 'Contact', href: '/contact' },
+        { label: 'GitHub', href: 'https://github.com/ChetanYadav34/NameForge-Ecosystem' }
+      ]
+    },
+    {
+      title: 'Legal',
+      links: [
+        { label: 'Privacy Policy', href: '/legal/privacy' },
+        { label: 'Terms of Service', href: '/legal/terms' },
+        { label: 'Cookie Policy', href: '/legal/cookies' },
+        { label: 'AI Usage Policy', href: '/legal/ai-usage' },
+        { label: 'Disclaimer', href: '/legal/disclaimer' }
+      ]
+    }
   ],
   hero: {
     badge: 'LINGUISTIC AI ENGINE',
@@ -50,7 +88,7 @@ export const landingConfig = {
   ],
   cta: {
     headline: 'Ready to Forge?',
-    button: 'Get Started'
+    button: 'Start Naming'
   },
   faq: [
     { question: 'How does LexForge differ from standard AI generators?', answer: 'LexForge uses a deterministic pipeline mapping cognitive psychology and phonetic resonance, rather than simple LLM text generation.' },

@@ -6,11 +6,16 @@ import {
   Container, Stack, Grid, Spacer, Divider
 } from '@lexforge/ui';
 import { FallbackManager } from '../../../shared/3d/FallbackManager';
+import { notFound } from 'next/navigation';
 
 const SceneManager = dynamic(() => import('../../../shared/3d/SceneManager').then(mod => mod.SceneManager), { ssr: false });
 const BackgroundScene = dynamic(() => import('../../../shared/3d/scenes/BackgroundScene').then(mod => mod.BackgroundScene), { ssr: false });
 
 export default function PlaygroundPage() {
+  if (process.env.NODE_ENV === 'production') {
+    notFound();
+  }
+
   return (
     <Container className="min-h-screen p-8 bg-background text-foreground selection:bg-primary/30">
       <Stack gap={8}>
