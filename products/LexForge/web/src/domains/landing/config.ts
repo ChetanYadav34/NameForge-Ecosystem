@@ -3,7 +3,7 @@ export type FooterColumn = { title: string; links: FooterLink[] };
 
 export const landingConfig = {
   navigation: [
-    { label: 'Generate', href: '/generate' },
+    { label: 'Generate', href: '/playground' },
     { label: 'Pricing', href: '/pricing' },
     { label: 'Research', href: '/research' },
     { label: 'Dataset', href: '/dataset' },
@@ -13,35 +13,23 @@ export const landingConfig = {
     {
       title: 'Company',
       links: [
-        { label: 'About LexForge', href: '/about' },
         { label: 'Research', href: '/research' },
-        { label: 'Roadmap', href: '/roadmap' }
-      ]
-    },
-    {
-      title: 'Product',
-      links: [
-        { label: 'Pricing', href: '/pricing' },
-        { label: 'Documentation', href: '/docs' },
         { label: 'Dataset', href: '/dataset' },
-        { label: 'Changelog', href: '/changelog' }
-      ]
-    },
-    {
-      title: 'Community',
-      links: [
-        { label: 'Contact', href: '/contact' },
-        { label: 'GitHub', href: 'https://github.com/ChetanYadav34/NameForge-Ecosystem' }
+        { label: 'Changelog', href: '/changelog' },
+        { label: 'Contact', href: '/contact' }
       ]
     },
     {
       title: 'Legal',
       links: [
         { label: 'Privacy Policy', href: '/legal/privacy' },
-        { label: 'Terms of Service', href: '/legal/terms' },
-        { label: 'Cookie Policy', href: '/legal/cookies' },
-        { label: 'AI Usage Policy', href: '/legal/ai-usage' },
-        { label: 'Disclaimer', href: '/legal/disclaimer' }
+        { label: 'Terms of Service', href: '/legal/terms' }
+      ]
+    },
+    {
+      title: 'Community',
+      links: [
+        { label: 'GitHub', href: 'https://github.com/ChetanYadav34/NameForge-Ecosystem' }
       ]
     }
   ],

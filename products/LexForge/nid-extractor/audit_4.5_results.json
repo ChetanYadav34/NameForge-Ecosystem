@@ -1,0 +1,3206 @@
+{
+  "metrics": {
+    "total": 399,
+    "shortlistRate": 32.581453634085214,
+    "highRiskRate": 62.15538847117794,
+    "availabilityStats": {
+      "high": 248,
+      "med": 0,
+      "low": 151
+    }
+  },
+  "candidates": [
+    {
+      "name": "Aibase",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 87.45735802971708,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8745735802971708
+    },
+    {
+      "name": "Aibase",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 87.45735802971708,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8745735802971708
+    },
+    {
+      "name": "Healio",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 86.80629827688651,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8680629827688651
+    },
+    {
+      "name": "Healio",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 86.80629827688651,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8680629827688651
+    },
+    {
+      "name": "Healio",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 86.80629827688651,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8680629827688651
+    },
+    {
+      "name": "Healio",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 86.80629827688651,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8680629827688651
+    },
+    {
+      "name": "Healio",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 86.80629827688651,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8680629827688651
+    },
+    {
+      "name": "Healio",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 86.80629827688651,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8680629827688651
+    },
+    {
+      "name": "Heala",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 86.62982768865123,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8662982768865123
+    },
+    {
+      "name": "Healta",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 86.62982768865123,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8662982768865123
+    },
+    {
+      "name": "Heabase",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 86.62982768865123,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8662982768865123
+    },
+    {
+      "name": "Heala",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 86.62982768865123,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8662982768865123
+    },
+    {
+      "name": "Healta",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 86.62982768865123,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8662982768865123
+    },
+    {
+      "name": "Heala",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 86.62982768865123,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8662982768865123
+    },
+    {
+      "name": "Heala",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 86.62982768865123,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8662982768865123
+    },
+    {
+      "name": "Heabase",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 86.62982768865123,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8662982768865123
+    },
+    {
+      "name": "Heaal",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 86.62982768865123,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8662982768865123
+    },
+    {
+      "name": "Inbase",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 86.38579067990833,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8638579067990833
+    },
+    {
+      "name": "Inbase",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 86.38579067990833,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8638579067990833
+    },
+    {
+      "name": "Inbase",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 86.38579067990833,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8638579067990833
+    },
+    {
+      "name": "Inbase",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 86.3378790962752,
+      "availabilityRisk": 0,
+      "finalComposite": 0.863378790962752
+    },
+    {
+      "name": "Altio",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 86.28399746995572,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8628399746995572
+    },
+    {
+      "name": "Altio",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 86.28399746995572,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8628399746995572
+    },
+    {
+      "name": "Altio",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 86.28399746995572,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8628399746995572
+    },
+    {
+      "name": "Altio",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 86.28399746995572,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8628399746995572
+    },
+    {
+      "name": "Altio",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 86.28399746995572,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8628399746995572
+    },
+    {
+      "name": "Dataio",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 86.28222075346993,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8628222075346993
+    },
+    {
+      "name": "Datio",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 86.28222075346993,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8628222075346993
+    },
+    {
+      "name": "Dataio",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 86.28222075346993,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8628222075346993
+    },
+    {
+      "name": "Datio",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 86.28222075346993,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8628222075346993
+    },
+    {
+      "name": "Datio",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 86.28222075346993,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8628222075346993
+    },
+    {
+      "name": "Dataio",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 86.28222075346993,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8628222075346993
+    },
+    {
+      "name": "Rebase",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 86.22703716785465,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8622703716785465
+    },
+    {
+      "name": "Ealtio",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 86.1258697027198,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8612586970271979
+    },
+    {
+      "name": "Ealtio",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 86.1258697027198,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8612586970271979
+    },
+    {
+      "name": "Ealtio",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 86.1258697027198,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8612586970271979
+    },
+    {
+      "name": "Ealbase",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 86.10752688172043,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8610752688172043
+    },
+    {
+      "name": "Ealer",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 86.10752688172043,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8610752688172043
+    },
+    {
+      "name": "Dater",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 86.10575016523464,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8610575016523464
+    },
+    {
+      "name": "Datbase",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 86.10575016523464,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8610575016523464
+    },
+    {
+      "name": "Ataer",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 86.10575016523464,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8610575016523464
+    },
+    {
+      "name": "Dabase",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 86.10575016523464,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8610575016523464
+    },
+    {
+      "name": "Dabase",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 86.10575016523464,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8610575016523464
+    },
+    {
+      "name": "Ataer",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 86.10575016523464,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8610575016523464
+    },
+    {
+      "name": "Enbase",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 86.03256665988195,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8603256665988195
+    },
+    {
+      "name": "Tebase",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 85.96575045019485,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8596575045019484
+    },
+    {
+      "name": "Ealter",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 85.9493991144845,
+      "availabilityRisk": 0,
+      "finalComposite": 0.859493991144845
+    },
+    {
+      "name": "Ealta",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 85.9493991144845,
+      "availabilityRisk": 0,
+      "finalComposite": 0.859493991144845
+    },
+    {
+      "name": "Ealal",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 85.9493991144845,
+      "availabilityRisk": 0,
+      "finalComposite": 0.859493991144845
+    },
+    {
+      "name": "Tebase",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 85.7272542234887,
+      "availabilityRisk": 0,
+      "finalComposite": 0.857272542234887
+    },
+    {
+      "name": "Tebase",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 85.7272542234887,
+      "availabilityRisk": 0,
+      "finalComposite": 0.857272542234887
+    },
+    {
+      "name": "Arbase",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 85.70229237477056,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8570229237477056
+    },
+    {
+      "name": "Heally",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 85.688651218063,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8568865121806301
+    },
+    {
+      "name": "Healy",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 85.688651218063,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8568865121806301
+    },
+    {
+      "name": "Heally",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 85.688651218063,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8568865121806301
+    },
+    {
+      "name": "Healify",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 85.688651218063,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8568865121806301
+    },
+    {
+      "name": "Hobase",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 85.65023847376789,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8565023847376788
+    },
+    {
+      "name": "Erbase",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 85.57410236822003,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8557410236822003
+    },
+    {
+      "name": "Arbase",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 85.57410236822003,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8557410236822003
+    },
+    {
+      "name": "Erbase",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 85.57410236822003,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8557410236822003
+    },
+    {
+      "name": "Arbase",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 85.57410236822003,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8557410236822003
+    },
+    {
+      "name": "Erbase",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 85.57410236822003,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8557410236822003
+    },
+    {
+      "name": "Erbase",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 85.57410236822003,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8557410236822003
+    },
+    {
+      "name": "Oubase",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 85.53431372549021,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8553431372549021
+    },
+    {
+      "name": "Oubase",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 85.53431372549021,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8553431372549021
+    },
+    {
+      "name": "Erbase",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 85.52371259922654,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8552371259922654
+    },
+    {
+      "name": "Tibase",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 85.50107988859487,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8550107988859488
+    },
+    {
+      "name": "Itbase",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 85.48717948717949,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8548717948717949
+    },
+    {
+      "name": "Etbase",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 85.45439045183292,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8545439045183292
+    },
+    {
+      "name": "Albase",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 85.3353705118411,
+      "availabilityRisk": 0,
+      "finalComposite": 0.853353705118411
+    },
+    {
+      "name": "Albase",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 85.3353705118411,
+      "availabilityRisk": 0,
+      "finalComposite": 0.853353705118411
+    },
+    {
+      "name": "Albase",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 85.3353705118411,
+      "availabilityRisk": 0,
+      "finalComposite": 0.853353705118411
+    },
+    {
+      "name": "Albase",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 85.3353705118411,
+      "availabilityRisk": 0,
+      "finalComposite": 0.853353705118411
+    },
+    {
+      "name": "Anbase",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 85.2184001628333,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8521840016283331
+    },
+    {
+      "name": "Anbase",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 85.21518444960424,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8521518444960424
+    },
+    {
+      "name": "Rebase",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 85.19213139801376,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8519213139801376
+    },
+    {
+      "name": "Rebase",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 85.19213139801376,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8519213139801376
+    },
+    {
+      "name": "Rebase",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 85.19213139801376,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8519213139801376
+    },
+    {
+      "name": "Rebase",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 85.19213139801376,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8519213139801376
+    },
+    {
+      "name": "Ealify",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 85.1663504111322,
+      "availabilityRisk": 0,
+      "finalComposite": 0.851663504111322
+    },
+    {
+      "name": "Eally",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 85.1663504111322,
+      "availabilityRisk": 0,
+      "finalComposite": 0.851663504111322
+    },
+    {
+      "name": "Ealify",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 85.1663504111322,
+      "availabilityRisk": 0,
+      "finalComposite": 0.851663504111322
+    },
+    {
+      "name": "Ataify",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 85.1645736946464,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8516457369464641
+    },
+    {
+      "name": "Dataify",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 85.1645736946464,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8516457369464641
+    },
+    {
+      "name": "Ataify",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 85.1645736946464,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8516457369464641
+    },
+    {
+      "name": "Ataly",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 85.1645736946464,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8516457369464641
+    },
+    {
+      "name": "Orbase",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 85.11662935070223,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8511662935070222
+    },
+    {
+      "name": "Rabase",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 85.11662935070223,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8511662935070222
+    },
+    {
+      "name": "Orbase",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 85.11662935070223,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8511662935070222
+    },
+    {
+      "name": "Eabase",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 85.11662935070223,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8511662935070222
+    },
+    {
+      "name": "Orbase",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 85.11662935070223,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8511662935070222
+    },
+    {
+      "name": "Exbase",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 85.02813299232737,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8502813299232738
+    },
+    {
+      "name": "Anbase",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 85.00114591291063,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8500114591291063
+    },
+    {
+      "name": "Pabase",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 85.00114591291063,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8500114591291063
+    },
+    {
+      "name": "Pabase",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 85.00114591291063,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8500114591291063
+    },
+    {
+      "name": "Anbase",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 85.00114591291063,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8500114591291063
+    },
+    {
+      "name": "Icbase",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 84.91308772644007,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8491308772644007
+    },
+    {
+      "name": "Tabase",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 84.91308772644007,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8491308772644007
+    },
+    {
+      "name": "Icbase",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 84.91308772644007,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8491308772644007
+    },
+    {
+      "name": "Icbase",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 84.91308772644007,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8491308772644007
+    },
+    {
+      "name": "Lobase",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 84.81131691430897,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8481131691430898
+    },
+    {
+      "name": "Ilbase",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 84.80023296447293,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8480023296447292
+    },
+    {
+      "name": "Iabase",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 84.65659777424484,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8465659777424485
+    },
+    {
+      "name": "Iobase",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 84.61743237440962,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8461743237440962
+    },
+    {
+      "name": "Rabase",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 84.57142857142858,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8457142857142859
+    },
+    {
+      "name": "Enbase",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 84.52368220015279,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8452368220015279
+    },
+    {
+      "name": "Onbase",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 84.52368220015279,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8452368220015279
+    },
+    {
+      "name": "Enbase",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 84.52368220015279,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8452368220015279
+    },
+    {
+      "name": "Onbase",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 84.52368220015279,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8452368220015279
+    },
+    {
+      "name": "Enbase",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 84.52368220015279,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8452368220015279
+    },
+    {
+      "name": "Onbase",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 84.52368220015279,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8452368220015279
+    },
+    {
+      "name": "Atbase",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 84.48509266720387,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8448509266720388
+    },
+    {
+      "name": "Tabase",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 84.42818945760122,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8442818945760122
+    },
+    {
+      "name": "Tabase",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 84.42818945760122,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8442818945760122
+    },
+    {
+      "name": "Cobase",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 84.38044308632544,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8438044308632544
+    },
+    {
+      "name": "Lebase",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 84.33269671504966,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8433269671504966
+    },
+    {
+      "name": "Lebase",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 84.33269671504966,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8433269671504966
+    },
+    {
+      "name": "Lebase",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 84.33269671504966,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8433269671504966
+    },
+    {
+      "name": "Lobase",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 84.28495034377387,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8428495034377387
+    },
+    {
+      "name": "Lobase",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 84.28495034377387,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8428495034377387
+    },
+    {
+      "name": "Lobase",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 84.28495034377387,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8428495034377387
+    },
+    {
+      "name": "Aybase",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 84.28495034377387,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8428495034377387
+    },
+    {
+      "name": "Lobase",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 84.28495034377387,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8428495034377387
+    },
+    {
+      "name": "Lobase",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 84.28495034377387,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8428495034377387
+    },
+    {
+      "name": "Aybase",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 84.28495034377387,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8428495034377387
+    },
+    {
+      "name": "Lobase",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 84.28495034377387,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8428495034377387
+    },
+    {
+      "name": "Aybase",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 84.28495034377387,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8428495034377387
+    },
+    {
+      "name": "Eaalt",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 81.63693864642632,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8163693864642632
+    },
+    {
+      "name": "Eaalt",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 81.63693864642632,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8163693864642632
+    },
+    {
+      "name": "Atalt",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 81.63516192994052,
+      "availabilityRisk": 0,
+      "finalComposite": 0.8163516192994053
+    },
+    {
+      "name": "Ther",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 73.64452877925365,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5864452877925365
+    },
+    {
+      "name": "Heal",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 73.21806298276887,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5821806298276887
+    },
+    {
+      "name": "Heal",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 73.21806298276887,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5821806298276887
+    },
+    {
+      "name": "Heal",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 73.21806298276887,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5821806298276887
+    },
+    {
+      "name": "Heal",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 73.21806298276887,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5821806298276887
+    },
+    {
+      "name": "Heal",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 73.21806298276887,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5821806298276887
+    },
+    {
+      "name": "Hean",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 73.21806298276887,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5821806298276887
+    },
+    {
+      "name": "Heac",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 73.21806298276887,
+      "availabilityRisk": 0,
+      "finalComposite": 0.7321806298276887
+    },
+    {
+      "name": "Heal",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 73.21806298276887,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5821806298276887
+    },
+    {
+      "name": "Hean",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 73.21806298276887,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5821806298276887
+    },
+    {
+      "name": "Heal",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 73.21806298276887,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5821806298276887
+    },
+    {
+      "name": "Lter",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 73.01201771030993,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5801201771030993
+    },
+    {
+      "name": "Iner",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 72.97402597402598,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5797402597402598
+    },
+    {
+      "name": "Alta",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 72.69576217583807,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5769576217583807
+    },
+    {
+      "name": "Alta",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 72.69576217583807,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5769576217583807
+    },
+    {
+      "name": "Data",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 72.69398545935228,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5769398545935227
+    },
+    {
+      "name": "Daer",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 72.69398545935228,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5769398545935227
+    },
+    {
+      "name": "Data",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 72.69398545935228,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5769398545935227
+    },
+    {
+      "name": "Data",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 72.69398545935228,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5769398545935227
+    },
+    {
+      "name": "Data",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 72.69398545935228,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5769398545935227
+    },
+    {
+      "name": "Data",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 72.69398545935228,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5769398545935227
+    },
+    {
+      "name": "Atta",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 72.69398545935228,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5769398545935227
+    },
+    {
+      "name": "Data",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 72.69398545935228,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5769398545935227
+    },
+    {
+      "name": "Atta",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 72.69398545935228,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5769398545935227
+    },
+    {
+      "name": "Data",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 72.69398545935228,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5769398545935227
+    },
+    {
+      "name": "Atta",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 72.69398545935228,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5769398545935227
+    },
+    {
+      "name": "Teer",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 72.5539857443125,
+      "availabilityRisk": 1,
+      "finalComposite": 0.575539857443125
+    },
+    {
+      "name": "Teer",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 72.5539857443125,
+      "availabilityRisk": 1,
+      "finalComposite": 0.575539857443125
+    },
+    {
+      "name": "Ealr",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 72.53763440860214,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5753763440860215
+    },
+    {
+      "name": "Ltal",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 72.53763440860214,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5753763440860215
+    },
+    {
+      "name": "Ealc",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 72.53763440860214,
+      "availabilityRisk": 0,
+      "finalComposite": 0.7253763440860215
+    },
+    {
+      "name": "Eall",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 72.53763440860214,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5753763440860215
+    },
+    {
+      "name": "Ealc",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 72.53763440860214,
+      "availabilityRisk": 0,
+      "finalComposite": 0.7253763440860215
+    },
+    {
+      "name": "Ltal",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 72.53763440860214,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5753763440860215
+    },
+    {
+      "name": "Ealn",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 72.53763440860214,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5753763440860215
+    },
+    {
+      "name": "Eder",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 72.4688832054561,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5746888320545609
+    },
+    {
+      "name": "Eder",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 72.4688832054561,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5746888320545609
+    },
+    {
+      "name": "Oter",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 72.4524886877828,
+      "availabilityRisk": 0,
+      "finalComposite": 0.724524886877828
+    },
+    {
+      "name": "Teer",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 72.31548951760635,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5731548951760636
+    },
+    {
+      "name": "Teer",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 72.31548951760635,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5731548951760636
+    },
+    {
+      "name": "Oner",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 72.29993688586765,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5729993688586765
+    },
+    {
+      "name": "Oler",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 72.25575447570333,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5725575447570332
+    },
+    {
+      "name": "Aler",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 72.22393936411065,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5722393936411064
+    },
+    {
+      "name": "Ster",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 72.18268356658541,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5718268356658541
+    },
+    {
+      "name": "Arer",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 72.16233766233766,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5716233766233766
+    },
+    {
+      "name": "Arer",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 72.16233766233766,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5716233766233766
+    },
+    {
+      "name": "Arer",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 72.16233766233766,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5716233766233766
+    },
+    {
+      "name": "Arer",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 72.16233766233766,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5716233766233766
+    },
+    {
+      "name": "Oner",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 72.1119478933442,
+      "availabilityRisk": 1,
+      "finalComposite": 0.571119478933442
+    },
+    {
+      "name": "Tier",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 72.08931518271253,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5708931518271252
+    },
+    {
+      "name": "Eter",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 72.04262574595056,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5704262574595056
+    },
+    {
+      "name": "Aler",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 71.92360580595874,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5692360580595874
+    },
+    {
+      "name": "Aler",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 71.92360580595874,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5692360580595874
+    },
+    {
+      "name": "Aler",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 71.92360580595874,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5692360580595874
+    },
+    {
+      "name": "Aler",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 71.90840626908204,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5690840626908203
+    },
+    {
+      "name": "Aner",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 71.80663545695094,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5680663545695094
+    },
+    {
+      "name": "Reer",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 71.7803666921314,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5678036669213139
+    },
+    {
+      "name": "Reer",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 71.7803666921314,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5678036669213139
+    },
+    {
+      "name": "Coer",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 71.76650666172563,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5676650666172562
+    },
+    {
+      "name": "Raer",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 71.70486464481988,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5670486464481987
+    },
+    {
+      "name": "Meer",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 71.63043490848452,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5663043490848452
+    },
+    {
+      "name": "Meer",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 71.63043490848452,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5663043490848452
+    },
+    {
+      "name": "Nter",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 71.59641697017423,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5659641697017423
+    },
+    {
+      "name": "Aner",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 71.58938120702827,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5658938120702827
+    },
+    {
+      "name": "Paer",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 71.58938120702827,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5658938120702827
+    },
+    {
+      "name": "Paer",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 71.58938120702827,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5658938120702827
+    },
+    {
+      "name": "Aner",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 71.58938120702827,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5658938120702827
+    },
+    {
+      "name": "Paer",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 71.58938120702827,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5658938120702827
+    },
+    {
+      "name": "Paer",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 71.58938120702827,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5658938120702827
+    },
+    {
+      "name": "Aner",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 71.58938120702827,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5658938120702827
+    },
+    {
+      "name": "Lier",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 71.57983193277312,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5657983193277312
+    },
+    {
+      "name": "Caer",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 71.57983193277312,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5657983193277312
+    },
+    {
+      "name": "Bier",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 71.54432477216238,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5654432477216238
+    },
+    {
+      "name": "Ceer",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 71.54432477216238,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5654432477216238
+    },
+    {
+      "name": "Roer",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 71.50980392156863,
+      "availabilityRisk": 0,
+      "finalComposite": 0.7150980392156864
+    },
+    {
+      "name": "Roer",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 71.50980392156863,
+      "availabilityRisk": 0,
+      "finalComposite": 0.7150980392156864
+    },
+    {
+      "name": "Taer",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 71.5013230205577,
+      "availabilityRisk": 1,
+      "finalComposite": 0.565013230205577
+    },
+    {
+      "name": "Icer",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 71.5013230205577,
+      "availabilityRisk": 1,
+      "finalComposite": 0.565013230205577
+    },
+    {
+      "name": "Raer",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 71.15966386554622,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5615966386554622
+    },
+    {
+      "name": "Veer",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 71.15966386554622,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5615966386554622
+    },
+    {
+      "name": "Raer",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 71.15966386554622,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5615966386554622
+    },
+    {
+      "name": "Raer",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 71.15966386554622,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5615966386554622
+    },
+    {
+      "name": "Raer",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 71.15966386554622,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5615966386554622
+    },
+    {
+      "name": "Ener",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 71.11191749427044,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5611191749427044
+    },
+    {
+      "name": "Oner",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 71.11191749427044,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5611191749427044
+    },
+    {
+      "name": "Ener",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 71.11191749427044,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5611191749427044
+    },
+    {
+      "name": "Oner",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 71.11191749427044,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5611191749427044
+    },
+    {
+      "name": "Ener",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 71.11191749427044,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5611191749427044
+    },
+    {
+      "name": "Oner",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 71.11191749427044,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5611191749427044
+    },
+    {
+      "name": "Peer",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 71.09134385461502,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5609134385461502
+    },
+    {
+      "name": "Taer",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 71.01642475171887,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5601642475171887
+    },
+    {
+      "name": "Taer",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 71.01642475171887,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5601642475171887
+    },
+    {
+      "name": "Taer",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 71.01642475171887,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5601642475171887
+    },
+    {
+      "name": "Taer",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 71.01642475171887,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5601642475171887
+    },
+    {
+      "name": "Taer",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 71.01642475171887,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5601642475171887
+    },
+    {
+      "name": "Coer",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 70.9686783804431,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5596867838044309
+    },
+    {
+      "name": "Coer",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 70.9686783804431,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5596867838044309
+    },
+    {
+      "name": "Coer",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 70.9686783804431,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5596867838044309
+    },
+    {
+      "name": "Coer",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 70.9686783804431,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5596867838044309
+    },
+    {
+      "name": "Leer",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 70.9209320091673,
+      "availabilityRisk": 1,
+      "finalComposite": 0.559209320091673
+    },
+    {
+      "name": "Leer",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 70.9209320091673,
+      "availabilityRisk": 1,
+      "finalComposite": 0.559209320091673
+    },
+    {
+      "name": "Leer",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 70.9209320091673,
+      "availabilityRisk": 1,
+      "finalComposite": 0.559209320091673
+    },
+    {
+      "name": "Inly",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 68.67990832696715,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5367990832696715
+    },
+    {
+      "name": "Inly",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 68.63199674333401,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5363199674333401
+    },
+    {
+      "name": "Tely",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 68.25986809725367,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5325986809725367
+    },
+    {
+      "name": "Tely",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 68.25986809725367,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5325986809725367
+    },
+    {
+      "name": "Thio",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 68.23276407337127,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5323276407337126
+    },
+    {
+      "name": "Thio",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 68.23276407337127,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5323276407337126
+    },
+    {
+      "name": "Thio",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 68.23276407337127,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5323276407337126
+    },
+    {
+      "name": "Edly",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 68.17476555839727,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5317476555839726
+    },
+    {
+      "name": "Tely",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 68.02137187054753,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5302137187054753
+    },
+    {
+      "name": "Only",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 68.00581923880883,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5300581923880883
+    },
+    {
+      "name": "Maly",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 67.94435612082671,
+      "availabilityRisk": 0,
+      "finalComposite": 0.6794435612082671
+    },
+    {
+      "name": "Holy",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 67.94435612082671,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5294435612082671
+    },
+    {
+      "name": "Holy",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 67.94435612082671,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5294435612082671
+    },
+    {
+      "name": "Ally",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 67.92982171705182,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5292982171705182
+    },
+    {
+      "name": "Esly",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 67.92547900152285,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5292547900152285
+    },
+    {
+      "name": "Erly",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 67.86822001527884,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5286822001527883
+    },
+    {
+      "name": "Arly",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 67.86822001527884,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5286822001527883
+    },
+    {
+      "name": "Erly",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 67.86822001527884,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5286822001527883
+    },
+    {
+      "name": "Arly",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 67.86822001527884,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5286822001527883
+    },
+    {
+      "name": "Erly",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 67.86822001527884,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5286822001527883
+    },
+    {
+      "name": "Only",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 67.81783024628537,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5281783024628537
+    },
+    {
+      "name": "Tily",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 67.7951975356537,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5279519753565369
+    },
+    {
+      "name": "Etly",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 67.74850809889173,
+      "availabilityRisk": 0,
+      "finalComposite": 0.6774850809889174
+    },
+    {
+      "name": "Ally",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 67.62948815889993,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5262948815889993
+    },
+    {
+      "name": "Ally",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 67.62948815889993,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5262948815889993
+    },
+    {
+      "name": "Ally",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 67.62948815889993,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5262948815889993
+    },
+    {
+      "name": "Ally",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 67.6142886220232,
+      "availabilityRisk": 1,
+      "finalComposite": 0.526142886220232
+    },
+    {
+      "name": "Ltio",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 67.60025300442757,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5260025300442757
+    },
+    {
+      "name": "Ltio",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 67.60025300442757,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5260025300442757
+    },
+    {
+      "name": "Ltio",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 67.60025300442757,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5260025300442757
+    },
+    {
+      "name": "Rely",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 67.48624904507258,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5248624904507259
+    },
+    {
+      "name": "Rely",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 67.48624904507258,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5248624904507259
+    },
+    {
+      "name": "Rely",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 67.48624904507258,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5248624904507259
+    },
+    {
+      "name": "Raly",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 67.41074699776104,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5241074699776104
+    },
+    {
+      "name": "Paly",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 67.29526355996944,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5229526355996944
+    },
+    {
+      "name": "Paly",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 67.29526355996944,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5229526355996944
+    },
+    {
+      "name": "Lily",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 67.28571428571428,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5228571428571428
+    },
+    {
+      "name": "Caly",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 67.28571428571428,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5228571428571428
+    },
+    {
+      "name": "Taly",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 67.20720537349888,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5220720537349888
+    },
+    {
+      "name": "Icly",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 67.20720537349888,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5220720537349888
+    },
+    {
+      "name": "Icly",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 67.20720537349888,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5220720537349888
+    },
+    {
+      "name": "Ialt",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 67.20520199417497,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5220520199417497
+    },
+    {
+      "name": "Loly",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 67.1054345613678,
+      "availabilityRisk": 1,
+      "finalComposite": 0.521054345613678
+    },
+    {
+      "name": "Raly",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 66.8655462184874,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5186554621848739
+    },
+    {
+      "name": "Hely",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 66.8655462184874,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5186554621848739
+    },
+    {
+      "name": "Raly",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.8655462184874,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5186554621848739
+    },
+    {
+      "name": "Vely",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.8655462184874,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5186554621848739
+    },
+    {
+      "name": "Raly",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 66.8655462184874,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5186554621848739
+    },
+    {
+      "name": "Raly",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 66.8655462184874,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5186554621848739
+    },
+    {
+      "name": "Raly",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.8655462184874,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5186554621848739
+    },
+    {
+      "name": "Shio",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 66.82670906200318,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5182670906200317
+    },
+    {
+      "name": "Shio",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 66.82670906200318,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5182670906200317
+    },
+    {
+      "name": "Shio",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.82670906200318,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5182670906200317
+    },
+    {
+      "name": "Only",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 66.8177998472116,
+      "availabilityRisk": 1,
+      "finalComposite": 0.518177998472116
+    },
+    {
+      "name": "Only",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.8177998472116,
+      "availabilityRisk": 1,
+      "finalComposite": 0.518177998472116
+    },
+    {
+      "name": "Enly",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 66.8177998472116,
+      "availabilityRisk": 1,
+      "finalComposite": 0.518177998472116
+    },
+    {
+      "name": "Only",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.8177998472116,
+      "availabilityRisk": 1,
+      "finalComposite": 0.518177998472116
+    },
+    {
+      "name": "Enly",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.8177998472116,
+      "availabilityRisk": 1,
+      "finalComposite": 0.518177998472116
+    },
+    {
+      "name": "Stio",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 66.77091886070305,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5177091886070304
+    },
+    {
+      "name": "Stio",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 66.77091886070305,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5177091886070304
+    },
+    {
+      "name": "Stio",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.77091886070305,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5177091886070304
+    },
+    {
+      "name": "Taly",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 66.72230710466005,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5172230710466005
+    },
+    {
+      "name": "Taly",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 66.72230710466005,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5172230710466005
+    },
+    {
+      "name": "Coly",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 66.67456073338425,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5167456073338426
+    },
+    {
+      "name": "Coly",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 66.67456073338425,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5167456073338426
+    },
+    {
+      "name": "Coly",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.67456073338425,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5167456073338426
+    },
+    {
+      "name": "Lely",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.62681436210848,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5162681436210848
+    },
+    {
+      "name": "Lely",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 66.62681436210848,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5162681436210848
+    },
+    {
+      "name": "Lely",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.62681436210848,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5162681436210848
+    },
+    {
+      "name": "Lely",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 66.62681436210848,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5162681436210848
+    },
+    {
+      "name": "Loly",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.5790679908327,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5157906799083269
+    },
+    {
+      "name": "Loly",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 66.5790679908327,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5157906799083269
+    },
+    {
+      "name": "Loly",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.5790679908327,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5157906799083269
+    },
+    {
+      "name": "Loly",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.5790679908327,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5157906799083269
+    },
+    {
+      "name": "Heak",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 66.5121806298277,
+      "availabilityRisk": 1,
+      "finalComposite": 0.515121806298277
+    },
+    {
+      "name": "Heas",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 66.5121806298277,
+      "availabilityRisk": 1,
+      "finalComposite": 0.515121806298277
+    },
+    {
+      "name": "Heat",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 66.5121806298277,
+      "availabilityRisk": 1,
+      "finalComposite": 0.515121806298277
+    },
+    {
+      "name": "Heat",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.5121806298277,
+      "availabilityRisk": 1,
+      "finalComposite": 0.515121806298277
+    },
+    {
+      "name": "Chio",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 66.41773231031543,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5141773231031542
+    },
+    {
+      "name": "Chio",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 66.41773231031543,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5141773231031542
+    },
+    {
+      "name": "Chio",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.41773231031543,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5141773231031542
+    },
+    {
+      "name": "Lalt",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 66.30613535736876,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5130613535736875
+    },
+    {
+      "name": "Ckio",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 66.20460358056266,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5120460358056266
+    },
+    {
+      "name": "Ckio",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 66.20460358056266,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5120460358056266
+    },
+    {
+      "name": "Ckio",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.20460358056266,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5120460358056266
+    },
+    {
+      "name": "Ntio",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 66.18465226429187,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5118465226429186
+    },
+    {
+      "name": "Ntio",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 66.18465226429187,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5118465226429186
+    },
+    {
+      "name": "Ntio",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 66.18465226429187,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5118465226429186
+    },
+    {
+      "name": "Ntio",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.18465226429187,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5118465226429186
+    },
+    {
+      "name": "Ngio",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 66.03179650238474,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5103179650238473
+    },
+    {
+      "name": "Ngio",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 66.03179650238474,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5103179650238473
+    },
+    {
+      "name": "Ngio",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 66.03179650238474,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5103179650238473
+    },
+    {
+      "name": "Ngio",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 66.03179650238474,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5103179650238473
+    },
+    {
+      "name": "Eath",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 65.98987982289691,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5098987982289691
+    },
+    {
+      "name": "Dalt",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 65.9881031064111,
+      "availabilityRisk": 1,
+      "finalComposite": 0.509881031064111
+    },
+    {
+      "name": "Dalt",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 65.9881031064111,
+      "availabilityRisk": 1,
+      "finalComposite": 0.509881031064111
+    },
+    {
+      "name": "Dalt",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 65.9881031064111,
+      "availabilityRisk": 1,
+      "finalComposite": 0.509881031064111
+    },
+    {
+      "name": "Ntio",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 65.98778750254426,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5098778750254426
+    },
+    {
+      "name": "Ntio",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 65.98778750254426,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5098778750254426
+    },
+    {
+      "name": "Ealt",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 65.83175205566098,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5083175205566098
+    },
+    {
+      "name": "Ealt",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 65.83175205566098,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5083175205566098
+    },
+    {
+      "name": "Ealt",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 65.83175205566098,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5083175205566098
+    },
+    {
+      "name": "Ealt",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 65.83175205566098,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5083175205566098
+    },
+    {
+      "name": "Ealt",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 65.83175205566098,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5083175205566098
+    },
+    {
+      "name": "Eath",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 65.83175205566098,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5083175205566098
+    },
+    {
+      "name": "Alat",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 65.83175205566098,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5083175205566098
+    },
+    {
+      "name": "Ealt",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 65.83175205566098,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5083175205566098
+    },
+    {
+      "name": "Ealg",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 65.83175205566098,
+      "availabilityRisk": 0,
+      "finalComposite": 0.6583175205566099
+    },
+    {
+      "name": "Ealt",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 65.83175205566098,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5083175205566098
+    },
+    {
+      "name": "Ltat",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 65.83175205566098,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5083175205566098
+    },
+    {
+      "name": "Ealh",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 65.83175205566098,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5083175205566098
+    },
+    {
+      "name": "Oalt",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 65.59405453292648,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5059405453292648
+    },
+    {
+      "name": "Halt",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 65.53259141494436,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5053259141494436
+    },
+    {
+      "name": "Salt",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 65.47680121364424,
+      "availabilityRisk": 1,
+      "finalComposite": 0.5047680121364423
+    },
+    {
+      "name": "Malt",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 64.92455255554334,
+      "availabilityRisk": 1,
+      "finalComposite": 0.49924552555543344
+    },
+    {
+      "name": "Calt",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 64.91048593350385,
+      "availabilityRisk": 1,
+      "finalComposite": 0.49910485933503845
+    },
+    {
+      "name": "Nalt",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 64.89053461723306,
+      "availabilityRisk": 1,
+      "finalComposite": 0.4989053461723305
+    },
+    {
+      "name": "Ralt",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 64.80392156862746,
+      "availabilityRisk": 1,
+      "finalComposite": 0.4980392156862745
+    },
+    {
+      "name": "Talt",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 64.53895071542131,
+      "availabilityRisk": 1,
+      "finalComposite": 0.49538950715421304
+    },
+    {
+      "name": "Ialt",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 64.4997853155861,
+      "availabilityRisk": 1,
+      "finalComposite": 0.494997853155861
+    },
+    {
+      "name": "Lalt",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 64.36744560838034,
+      "availabilityRisk": 1,
+      "finalComposite": 0.49367445608380334
+    },
+    {
+      "name": "Ealio",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 48.41745730550284,
+      "availabilityRisk": 0,
+      "finalComposite": 0.4841745730550284
+    },
+    {
+      "name": "Ealio",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 48.41745730550284,
+      "availabilityRisk": 0,
+      "finalComposite": 0.4841745730550284
+    },
+    {
+      "name": "Ealio",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 48.41745730550284,
+      "availabilityRisk": 0,
+      "finalComposite": 0.4841745730550284
+    },
+    {
+      "name": "Ataio",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 48.41639127561137,
+      "availabilityRisk": 0,
+      "finalComposite": 0.4841639127561137
+    },
+    {
+      "name": "Ataio",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 48.41639127561137,
+      "availabilityRisk": 0,
+      "finalComposite": 0.4841639127561137
+    },
+    {
+      "name": "Ataio",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 48.41639127561137,
+      "availabilityRisk": 0,
+      "finalComposite": 0.4841639127561137
+    },
+    {
+      "name": "Heaio",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 45.377896613190735,
+      "availabilityRisk": 0,
+      "finalComposite": 0.4537789661319074
+    },
+    {
+      "name": "Heaio",
+      "industry": "Healthcare",
+      "strategy": "intent",
+      "humanShortlistScore": 45.377896613190735,
+      "availabilityRisk": 0,
+      "finalComposite": 0.4537789661319074
+    },
+    {
+      "name": "Heaio",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 45.377896613190735,
+      "availabilityRisk": 0,
+      "finalComposite": 0.4537789661319074
+    },
+    {
+      "name": "Heaio",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 45.377896613190735,
+      "availabilityRisk": 0,
+      "finalComposite": 0.4537789661319074
+    },
+    {
+      "name": "Heaio",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 45.377896613190735,
+      "availabilityRisk": 0,
+      "finalComposite": 0.4537789661319074
+    },
+    {
+      "name": "Aier",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 39.062650111947896,
+      "availabilityRisk": 1,
+      "finalComposite": 0.24062650111947895
+    },
+    {
+      "name": "Aier",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 39.062650111947896,
+      "availabilityRisk": 1,
+      "finalComposite": 0.24062650111947895
+    },
+    {
+      "name": "Eala",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 38.15787476280835,
+      "availabilityRisk": 1,
+      "finalComposite": 0.23157874762808348
+    },
+    {
+      "name": "Eale",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 38.15787476280835,
+      "availabilityRisk": 1,
+      "finalComposite": 0.23157874762808348
+    },
+    {
+      "name": "Eale",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 38.15787476280835,
+      "availabilityRisk": 1,
+      "finalComposite": 0.23157874762808348
+    },
+    {
+      "name": "Eala",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 38.15787476280835,
+      "availabilityRisk": 1,
+      "finalComposite": 0.23157874762808348
+    },
+    {
+      "name": "Eata",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 38.15787476280835,
+      "availabilityRisk": 1,
+      "finalComposite": 0.23157874762808348
+    },
+    {
+      "name": "Eaal",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 38.15787476280835,
+      "availabilityRisk": 1,
+      "finalComposite": 0.23157874762808348
+    },
+    {
+      "name": "Ouer",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 37.90882352941177,
+      "availabilityRisk": 1,
+      "finalComposite": 0.22908823529411768
+    },
+    {
+      "name": "Ouer",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 37.90882352941177,
+      "availabilityRisk": 1,
+      "finalComposite": 0.22908823529411768
+    },
+    {
+      "name": "Eaer",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 37.65821290453898,
+      "availabilityRisk": 1,
+      "finalComposite": 0.2265821290453898
+    },
+    {
+      "name": "Iaer",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 37.38219395866455,
+      "availabilityRisk": 1,
+      "finalComposite": 0.2238219395866455
+    },
+    {
+      "name": "Ioer",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 37.35869471876341,
+      "availabilityRisk": 1,
+      "finalComposite": 0.22358694718763408
+    },
+    {
+      "name": "Ayer",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 37.159205500381965,
+      "availabilityRisk": 1,
+      "finalComposite": 0.22159205500381965
+    },
+    {
+      "name": "Ayer",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 37.159205500381965,
+      "availabilityRisk": 1,
+      "finalComposite": 0.22159205500381965
+    },
+    {
+      "name": "Ayer",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 37.159205500381965,
+      "availabilityRisk": 1,
+      "finalComposite": 0.22159205500381965
+    },
+    {
+      "name": "Aily",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 36.4861795237126,
+      "availabilityRisk": 1,
+      "finalComposite": 0.21486179523712604
+    },
+    {
+      "name": "Aily",
+      "industry": "AI",
+      "strategy": "hybrid",
+      "humanShortlistScore": 36.4861795237126,
+      "availabilityRisk": 1,
+      "finalComposite": 0.21486179523712604
+    },
+    {
+      "name": "Heai",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 35.31907308377897,
+      "availabilityRisk": 1,
+      "finalComposite": 0.20319073083778968
+    },
+    {
+      "name": "Ealy",
+      "industry": "AI",
+      "strategy": "intent",
+      "humanShortlistScore": 35.08174231630368,
+      "availabilityRisk": 1,
+      "finalComposite": 0.20081742316303683
+    },
+    {
+      "name": "Heaa",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 34.87789661319073,
+      "availabilityRisk": 1,
+      "finalComposite": 0.1987789661319073
+    },
+    {
+      "name": "Heaa",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 34.87789661319073,
+      "availabilityRisk": 1,
+      "finalComposite": 0.1987789661319073
+    },
+    {
+      "name": "Heae",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 34.87789661319073,
+      "availabilityRisk": 1,
+      "finalComposite": 0.1987789661319073
+    },
+    {
+      "name": "Heae",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 34.87789661319073,
+      "availabilityRisk": 1,
+      "finalComposite": 0.1987789661319073
+    },
+    {
+      "name": "Ialy",
+      "industry": "Healthcare",
+      "strategy": "industry",
+      "humanShortlistScore": 34.805723370429256,
+      "availabilityRisk": 1,
+      "finalComposite": 0.19805723370429254
+    },
+    {
+      "name": "Ialy",
+      "industry": "Healthcare",
+      "strategy": "hybrid",
+      "humanShortlistScore": 34.805723370429256,
+      "availabilityRisk": 1,
+      "finalComposite": 0.19805723370429254
+    },
+    {
+      "name": "Ealy",
+      "industry": "Fintech",
+      "strategy": "intent",
+      "humanShortlistScore": 34.654472199838835,
+      "availabilityRisk": 1,
+      "finalComposite": 0.19654472199838838
+    },
+    {
+      "name": "Ayly",
+      "industry": "Fintech",
+      "strategy": "industry",
+      "humanShortlistScore": 34.58273491214667,
+      "availabilityRisk": 1,
+      "finalComposite": 0.19582734912146668
+    },
+    {
+      "name": "Ayly",
+      "industry": "Fintech",
+      "strategy": "hybrid",
+      "humanShortlistScore": 34.58273491214667,
+      "availabilityRisk": 1,
+      "finalComposite": 0.19582734912146668
+    },
+    {
+      "name": "Ayly",
+      "industry": "AI",
+      "strategy": "industry",
+      "humanShortlistScore": 34.58273491214667,
+      "availabilityRisk": 1,
+      "finalComposite": 0.19582734912146668
+    },
+    {
+      "name": "Eaat",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 34.13434535104364,
+      "availabilityRisk": 0,
+      "finalComposite": 0.34134345351043643
+    },
+    {
+      "name": "Eali",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 34.13434535104364,
+      "availabilityRisk": 1,
+      "finalComposite": 0.19134345351043644
+    },
+    {
+      "name": "Ealo",
+      "industry": "SaaS",
+      "strategy": "intent",
+      "humanShortlistScore": 34.13434535104364,
+      "availabilityRisk": 1,
+      "finalComposite": 0.19134345351043644
+    },
+    {
+      "name": "Heao",
+      "industry": "SaaS",
+      "strategy": "industry",
+      "humanShortlistScore": 30.519073083778963,
+      "availabilityRisk": 1,
+      "finalComposite": 0.15519073083778964
+    },
+    {
+      "name": "Heao",
+      "industry": "SaaS",
+      "strategy": "hybrid",
+      "humanShortlistScore": 30.519073083778963,
+      "availabilityRisk": 1,
+      "finalComposite": 0.15519073083778964
+    }
+  ]
+}

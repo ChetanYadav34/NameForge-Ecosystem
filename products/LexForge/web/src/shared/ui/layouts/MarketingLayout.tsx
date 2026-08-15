@@ -12,9 +12,7 @@ interface MarketingLayoutProps {
 export const MarketingLayout = ({ children, title, subtitle, badge }: MarketingLayoutProps) => {
   return (
     <PageLayout>
-      <div className="pt-24 pb-12 bg-white border-b border-black/5 relative overflow-hidden">
-        {/* Subtle decorative background pattern */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, black 1px, transparent 0)', backgroundSize: '32px 32px' }} />
+      <div className="pt-24 pb-12 relative overflow-hidden">
         
         <Container className="relative z-10">
           <div className="max-w-3xl">

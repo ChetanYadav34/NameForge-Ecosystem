@@ -7,32 +7,26 @@ export interface Seed {
 }
 
 export interface GenerationResult {
-  id: string;
   name: string;
-  pronunciation: string;
-  meaning: string;
-  linguisticRoot: string;
-  culturalContext: string;
-  semanticScore: number;
-  brandScore: number;
-  availability: boolean;
-  
-  // Future extensions
-  domainStatus?: string;
-  trademarkStatus?: string;
-  socialHandleStatus?: string;
-  collisionRisk?: string;
-  reasoning?: string;
-  generationStrategy?: string;
-  engineVersion?: string;
-  pipelineVersion?: string;
-  datasetVersion?: string;
-  emotionProfile?: { trust: number; luxury: number };
-  brandArchetype?: string;
-  phoneticScore?: number;
-  psychologyScore?: number;
-  originalityScore?: number;
-  confidence?: number;
+  strategySource: string;
+  scores: {
+    generationComposite: number;
+    brandability: number;
+    humanShortlistScore: number;
+    availabilityRisk: number;
+    mutationQuality: number;
+    originalScore: number;
+  };
+  availability: {
+    companyConflict: { status: string; confidence: number; provider: string; checkedAt: string };
+    trademark: { status: string; confidence: number; provider: string; checkedAt: string };
+    domains: {
+      com: { status: string; confidence: number; provider: string; checkedAt: string };
+      io: { status: string; confidence: number; provider: string; checkedAt: string };
+      ai: { status: string; confidence: number; provider: string; checkedAt: string };
+      co: { status: string; confidence: number; provider: string; checkedAt: string };
+    };
+  };
 }
 
 export interface GenerationState {

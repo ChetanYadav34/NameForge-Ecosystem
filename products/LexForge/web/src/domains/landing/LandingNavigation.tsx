@@ -23,7 +23,7 @@ export const LandingNavigation = () => {
           ))}
         </div>
         <div className="flex items-center gap-4">
-          <Link href="/generate">
+          <Link href="/playground">
             <Button variant="primary" className="rounded-full px-6 bg-primary text-white hover:opacity-90 shadow-none border-none text-sm">
               Start Naming
             </Button>

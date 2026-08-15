@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const routes = [
     '',
-    '/generate',
+    '/playground',
     '/pricing',
     '/research',
     '/dataset',
@@ -23,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: route === '' || route === '/generate' ? 'daily' : 'weekly',
-    priority: route === '' || route === '/generate' ? 1 : 0.8,
+    changeFrequency: route === '' || route === '/playground' ? 'daily' : 'weekly',
+    priority: route === '' || route === '/playground' ? 1 : 0.8,
   }));
 }

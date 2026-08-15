@@ -1,0 +1,15 @@
+{
+  "name": "lexforge-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:web\" \"npm run dev:backend\"",
+    "dev:web": "cd web && npm run dev",
+    "dev:backend": "cd nid-extractor && npm run start:server",
+    "build": "cd web && npm run build",
+    "install:all": "cd web && npm install && cd ../nid-extractor && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

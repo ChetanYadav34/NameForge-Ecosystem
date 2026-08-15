@@ -1,0 +1,501 @@
+Domain,GeneratedName,SourceRoots,LCS,JaroWinkler,Levenshtein,IsDictionaryWord,Brandability,Pronounceability
+health,Cahlic,"chalcis",0.14,0.86,4,false,80,100
+health,Helxasn,"heal",0.29,0.82,4,false,80,100
+health,Idetis,"diet",0.33,0.81,4,false,80,100
+health,Ehalut,"healthful",0.22,0.78,6,false,80,100
+health,Galxesn,"aegle",0.14,0.71,6,false,80,100
+health,Hasuta,"ahs",0.17,0.72,5,false,80,100
+health,Cobar,"cobra",0.60,0.95,2,false,80,100
+health,Cnostur,"constructivism",0.14,0.76,10,false,80,100
+health,Heltah,"healthy",0.29,0.90,3,false,80,100
+health,Cnostit,"constitutional",0.29,0.81,9,false,80,100
+health,Uceris,"cure",0.17,0.72,4,false,80,100
+health,Helfaln,"healful",0.29,0.86,3,false,80,100
+health,Xrecsen,"exercise",0.25,0.73,5,false,80,100
+health,Hasxisn,"ahs",0.14,0.70,5,false,80,100
+health,Hoetis,"hot",0.33,0.87,3,false,80,100
+health,Ralit,"ariel",0.20,0.62,4,false,80,100
+health,Densit,"deinstitutionalization",0.09,0.74,16,false,80,100
+health,Galet,"aegle",0.40,0.73,4,false,80,100
+health,Conid,"condition",0.33,0.85,5,false,80,100
+health,Helafu,"healful",0.29,0.92,3,false,80,100
+health,Ofuram,"formulary",0.11,0.72,6,false,80,100
+health,Hsaxis,"ahs",0.33,0.67,4,false,80,100
+health,Cobara,"cobra",0.50,0.91,1,false,80,100
+health,Rables,"arbela",0.17,0.76,5,false,80,100
+health,Cahlics,"chalcis",0.14,0.91,4,false,80,100
+health,Hygnis,"hygiene",0.43,0.85,4,false,80,100
+health,Ocinid,"condition",0.11,0.75,6,false,80,100
+health,Helaf,"healful",0.29,0.87,4,false,80,100
+health,Ageles,"aegle",0.33,0.89,3,false,80,100
+health,Lnattan,"alaunt",0.14,0.58,6,false,80,100
+health,Racadi,"arcadian",0.50,0.86,4,false,80,100
+health,Ebelim,"belemnite",0.33,0.72,6,false,80,100
+health,Cnodtin,"condition",0.22,0.85,4,false,80,100
+health,Boolim,"blooming",0.25,0.82,4,false,80,100
+health,Laanut,"alaunt",0.33,0.89,3,false,80,100
+health,Raacid,"arcadian",0.13,0.75,5,false,80,100
+health,Blemen,"belemnite",0.33,0.80,5,false,80,100
+health,Cacera,"accrease",0.25,0.81,5,false,80,100
+health,Acrebud,"accrease, disbud",0.43,0.75,4,false,80,100
+health,Dawul,"dwalm",0.20,0.80,3,false,80,100
+health,Coinus,"constitutional",0.14,0.76,10,false,80,100
+health,Blomon,"blooming",0.38,0.90,3,false,80,100
+health,Ditet,"diet",0.40,0.88,1,false,80,100
+health,Hlefal,"healful",0.29,0.86,4,false,80,100
+health,Forum,"formulary",0.33,0.85,5,true,80,100
+health,Abelit,"balt",0.17,0.81,3,false,80,100
+health,Captitd,"capitated",0.33,0.91,3,false,80,100
+health,Cuerim,"crump",0.17,0.77,4,false,80,100
+health,Ehalis,"heal",0.33,0.81,4,false,80,100
+health,Blomnog,"blooming",0.38,0.92,3,false,80,100
+health,Blomah,"blooming, blah",0.38,0.91,2,false,80,100
+health,Rbales,"arbela",0.33,0.72,4,false,80,100
+health,Ralite,"ariel",0.17,0.78,4,false,80,100
+health,Cnosut,"constructivism",0.07,0.73,10,false,80,100
+health,Bolmon,"blooming",0.13,0.82,4,false,80,100
+health,Lanatu,"alaunt",0.33,0.83,4,false,80,100
+health,Broklon,"brooklyn",0.38,0.92,2,false,80,100
+health,Cohut,"cho",0.20,0.78,3,false,80,100
+health,Acucar,"accrual",0.29,0.87,4,false,80,100
+health,Dirnikn,"drink",0.14,0.85,4,false,80,100
+health,Baonar,"abnormal",0.13,0.75,5,false,80,100
+health,Dsibud,"disbud",0.50,0.95,2,false,80,100
+health,Coinid,"condition",0.22,0.84,5,false,80,100
+health,Dnestit,"deinstitutionalization",0.18,0.69,17,false,80,100
+health,Oboryk,"brooklyn",0.13,0.78,6,false,80,100
+health,Broktive,"brooklyn, elective",0.50,0.77,4,false,80,100
+health,Cacur,"accrual",0.29,0.77,5,false,80,100
+health,Lacoho,"alcoholism",0.40,0.81,6,false,80,100
+health,Nalpat,"analeptic",0.33,0.75,5,false,80,100
+health,Cruxten,"cure",0.14,0.80,4,false,80,100
+health,Glaxten,"aegle",0.29,0.67,6,false,80,100
+health,Diteta,"diet",0.33,0.84,2,false,80,100
+health,Xerces,"exercise",0.50,0.78,3,false,80,100
+health,Conidi,"condition",0.33,0.88,4,false,80,100
+health,Healut,"healthful",0.44,0.90,4,false,80,100
+health,Ahesis,"ahs",0.33,0.87,3,false,80,100
+health,Consit,"constitutional",0.29,0.85,8,false,80,100
+health,Obolim,"blooming",0.13,0.78,6,false,80,100
+health,Foruma,"formulary",0.33,0.88,4,false,80,100
+health,Hlexas,"heal",0.17,0.79,3,false,80,100
+health,Deinis,"deinstitutionalization",0.18,0.82,17,false,80,100
+health,Blomtic,"blooming, biotic",0.43,0.86,2,false,80,100
+health,Raebal,"arbela",0.17,0.83,4,false,80,100
+health,Hlethan,"healthy",0.29,0.77,5,false,80,100
+health,Bolomi,"blooming",0.38,0.88,4,false,80,100
+health,Ohetis,"hot",0.17,0.72,4,false,80,100
+health,Xereci,"exercise",0.38,0.81,4,false,80,100
+health,Blomad,"blooming, bad",0.38,0.81,3,false,80,100
+health,Lantas,"alaunt",0.33,0.72,4,false,80,100
+health,Ocabir,"cobra",0.17,0.78,4,false,80,100
+health,Haesis,"ahs",0.17,0.72,4,false,80,100
+health,Broktate,"brooklyn, capitate",0.50,0.77,4,false,80,100
+health,Cusot,"custom",0.50,0.91,2,false,80,100
+health,Conave,"convalescent",0.25,0.84,7,false,80,100
+health,Diset,"distemperate",0.25,0.82,7,false,80,100
+health,Abedis,"bad",0.17,0.72,4,false,80,100
+health,Rablesn,"arbela",0.14,0.72,5,false,80,100
+health,Blomhing,"blooming, earthing",0.50,0.94,2,false,80,100
+health,Disub,"disbud",0.50,0.91,2,false,80,100
+health,Ditxesn,"diet",0.29,0.82,4,false,80,100
+finance,Acreteral,"accrease, collateral",0.50,0.80,5,false,80,100
+finance,Berak,"break",0.40,0.94,2,false,80,100
+finance,Acipat,"capitalize",0.10,0.70,7,false,80,100
+finance,Naglesn,"angel",0.14,0.77,5,false,80,100
+finance,Acecar,"accrease",0.25,0.84,5,false,80,100
+finance,Alevialize,"alleviate, capitalize",0.50,0.83,4,false,80,100
+finance,Catul,"actuals",0.29,0.84,4,false,80,100
+finance,Baceka,"backspread",0.30,0.87,6,false,80,100
+finance,Blultan,"bull",0.29,0.80,4,false,80,100
+finance,Rabtir,"arbitrage",0.22,0.78,7,false,80,100
+finance,Arebis,"arb",0.33,0.87,3,false,80,100
+finance,Crartyn,"carry",0.29,0.85,3,false,80,100
+finance,Lavxas,"aa",0.17,0.56,4,false,80,100
+finance,Caipat,"capitalize",0.20,0.80,6,false,80,100
+finance,Raebal,"arbela",0.17,0.83,4,false,80,100
+finance,Carum,"carry, aum",0.60,0.81,2,false,80,100
+finance,Colal,"collateral",0.30,0.84,5,false,80,100
+finance,Cnosul,"consul",0.50,0.95,2,false,80,100
+finance,Beraka,"break",0.33,0.89,3,false,80,100
+finance,Ucehir,"churn",0.17,0.70,4,false,80,100
+finance,Naegil,"angel",0.17,0.81,3,false,80,100
+finance,Calaket,"callable, bucket",0.43,0.85,4,false,80,100
+finance,Ralxisn,"ariel",0.14,0.62,5,false,80,100
+finance,Rcadan,"arcadian",0.50,0.78,2,false,80,100
+finance,Cahlics,"chalcis",0.14,0.91,4,false,80,100
+finance,Ocalel,"collateral",0.20,0.73,6,false,80,100
+finance,Acelil,"call",0.17,0.81,3,false,80,100
+finance,Colatred,"collateral, beared",0.38,0.87,4,false,80,100
+finance,Lantas,"alaunt",0.33,0.72,4,false,80,100
+finance,Rlaxtin,"ariel",0.14,0.40,6,false,80,100
+finance,Byazin,"byzantium",0.22,0.82,5,false,80,100
+finance,Ocunis,"constructivism",0.14,0.64,10,false,80,100
+finance,Claltan,"call",0.29,0.80,4,false,80,100
+finance,Atestal,"attestation, call",0.45,0.77,5,false,80,100
+finance,Beelim,"belemnite",0.22,0.82,5,false,80,100
+finance,Cnosut,"constructivism",0.07,0.73,10,false,80,100
+finance,Racadi,"arcadian",0.50,0.86,4,false,80,100
+finance,Buleak,"bullet, break",0.50,0.84,2,false,80,100
+finance,Acumuldian,"accumulation, arcadian",0.42,0.88,4,false,80,100
+finance,Banuka,"bankrupt",0.38,0.83,4,false,80,100
+finance,Lavat,"aa",0.20,0.57,3,false,80,100
+finance,Bcaxis,"abc",0.33,0.67,5,false,80,100
+finance,Cuhur,"churn",0.60,0.80,2,false,80,100
+finance,Conusi,"constructivism",0.21,0.83,9,false,80,100
+finance,Rables,"arbela",0.17,0.76,5,false,80,100
+finance,Oboryk,"brooklyn",0.13,0.78,6,false,80,100
+finance,Agresalize,"aggressive, capitalize",0.50,0.84,4,false,80,100
+finance,Brokwof,"brooklyn, blowoff",0.43,0.83,3,false,80,100
+finance,Anegil,"angel",0.33,0.90,2,false,80,100
+finance,Bcaxtan,"abc",0.29,0.64,6,false,80,100
+finance,Blatis,"balt",0.17,0.82,4,false,80,100
+finance,Cacres,"accrease",0.38,0.86,4,false,80,100
+finance,Acregel,"accrease, angel",0.43,0.82,3,false,80,100
+finance,Datut,"audit",0.20,0.60,4,false,80,100
+finance,Cacepa,"acceptance",0.30,0.81,6,false,80,100
+finance,Bacxis,"abc",0.17,0.72,5,false,80,100
+finance,Ralite,"ariel",0.17,0.78,4,false,80,100
+finance,Acutal,"actuals",0.29,0.92,3,false,80,100
+finance,Bluber,"bluebird",0.38,0.90,3,false,80,100
+finance,Gmaxtin,"agio",0.14,0.43,5,false,80,100
+finance,Lapah,"alpha",0.20,0.87,4,false,80,100
+finance,Bolowa,"blowoff",0.43,0.74,4,false,80,100
+finance,Cacpet,"acceptance",0.20,0.76,7,false,80,100
+finance,Caelil,"call",0.33,0.91,2,false,80,100
+finance,Clalbal,"callable",0.25,0.88,4,false,80,100
+finance,Bular,"bullet, bear",0.50,0.80,2,false,80,100
+finance,Aracid,"arcadian",0.25,0.84,4,false,80,100
+finance,Aserteak,"assertion, break",0.44,0.78,4,false,80,100
+finance,Cloltar,"collateral",0.20,0.82,6,false,80,100
+finance,Rbaxtan,"arb",0.29,0.64,6,false,80,100
+finance,Racdan,"arcadian",0.25,0.81,4,false,80,100
+finance,Caecar,"accrease",0.13,0.75,6,false,80,100
+finance,Bomlon,"boomlet, balloon",0.43,0.80,3,false,80,100
+finance,Berxasn,"bear",0.29,0.82,4,false,80,100
+finance,Caalel,"callable",0.25,0.87,4,false,80,100
+finance,Abecis,"abc",0.33,0.87,3,false,80,100
+finance,Cuhura,"churn",0.50,0.77,2,false,80,100
+finance,Natpitn,"antioptionist",0.08,0.75,9,false,80,100
+finance,Ttaset,"attestation",0.18,0.74,7,false,80,100
+finance,Rbarten,"arber",0.29,0.74,4,false,80,100
+finance,Bacuta,"abc",0.17,0.72,5,false,80,100
+finance,Aela,"aa, arbela",0.50,0.90,2,false,80,100
+finance,Boroky,"brooklyn",0.25,0.88,4,false,80,100
+finance,Ralxis,"ariel",0.17,0.66,5,false,80,100
+finance,Ybazin,"byzantium",0.11,0.72,6,false,80,100
+finance,Counis,"consul",0.33,0.83,4,false,80,100
+finance,Ebarik,"break",0.17,0.81,4,false,80,100
+finance,Baelit,"balt",0.33,0.91,2,false,80,100
+finance,Bodut,"bd",0.20,0.82,3,false,80,100
+finance,Baneko,"bankerdom",0.33,0.88,4,false,80,100
+finance,Martoz,"amortize",0.25,0.78,4,false,80,100
+finance,Ssates,"assets",0.33,0.89,3,false,80,100
+finance,Bcaksep,"backspread",0.20,0.82,6,false,80,100
+finance,Belwele,"bellwether, able",0.30,0.88,4,false,80,100
+finance,Asenoka,"assented, bazooka",0.43,0.75,4,false,80,100
+finance,Alevifer,"alleviate, buffer",0.44,0.84,4,false,80,100
+finance,Buleb,"bluebird",0.25,0.83,5,false,80,100
+finance,Mavita,"aim",0.17,0.67,4,false,80,100
+finance,Oboned,"bondholder",0.30,0.70,7,false,80,100
+finance,Daevis,"adv",0.17,0.72,4,false,80,100
+legal,Cahlic,"chalcis",0.14,0.86,4,false,80,100
+legal,Celrikn,"clerk",0.14,0.85,4,false,80,100
+legal,Conusa,"consul",0.50,0.88,3,false,80,100
+legal,Bulbekn,"bluebook",0.13,0.78,5,false,80,100
+legal,Catut,"acquittal",0.11,0.72,7,false,80,100
+legal,Anunel,"annulment",0.22,0.82,5,false,80,100
+legal,Iberef,"briefed",0.29,0.79,5,false,80,100
+legal,Byazin,"byzantium",0.22,0.82,5,false,80,100
+legal,Btaxtan,"abate",0.14,0.51,5,false,80,100
+legal,Tatron,"attorney",0.25,0.81,5,false,80,100
+legal,Apepal,"appeal",0.33,0.96,2,false,80,100
+legal,Bercahn,"breach",0.14,0.86,4,false,80,100
+legal,Caehon,"chancellor",0.10,0.76,6,false,80,100
+legal,Caknow,"acknowledge",0.36,0.79,7,false,80,100
+legal,Naunel,"annulment",0.11,0.72,6,false,80,100
+legal,Apend,"appeal, bond",0.40,0.76,3,false,80,100
+legal,Celur,"clerk",0.20,0.80,3,false,80,100
+legal,Cnosul,"consul",0.50,0.95,2,false,80,100
+legal,Lalcot,"allocution",0.20,0.76,7,false,80,100
+legal,Buelob,"bluebook",0.25,0.80,4,false,80,100
+legal,Catuti,"acquittal",0.11,0.75,7,false,80,100
+legal,Asebok,"assent, bluebook",0.38,0.73,4,false,80,100
+legal,Atribuital,"attribution, acquittal",0.45,0.84,5,false,80,100
+legal,Amegment,"ameen, abridgment",0.50,0.91,3,false,80,100
+legal,Cahlics,"chalcis",0.14,0.91,4,false,80,100
+legal,Borcar,"brocard",0.43,0.91,3,false,80,100
+legal,Acetis,"act",0.33,0.87,3,false,80,100
+legal,Bradgim,"abridgment",0.20,0.76,6,false,80,100
+legal,Cacera,"accrease",0.25,0.81,5,false,80,100
+legal,Laanut,"alaunt",0.33,0.89,3,false,80,100
+legal,Aracid,"arcadian",0.25,0.84,4,false,80,100
+legal,Acrent,"accrease, assent",0.50,0.80,2,false,80,100
+legal,Conisu,"constitutional",0.21,0.83,9,false,80,100
+legal,Baired,"abridgment",0.10,0.70,7,false,80,100
+legal,Ctaxtan,"act",0.29,0.64,5,false,80,100
+legal,Brokutional,"brooklyn, constitutional",0.50,0.80,7,false,80,100
+legal,Caecar,"accrease",0.13,0.75,6,false,80,100
+legal,Rcadan,"arcadian",0.50,0.78,2,false,80,100
+legal,Borok,"brooklyn",0.25,0.83,5,false,80,100
+legal,Acredian,"accrease, arcadian",0.50,0.82,3,false,80,100
+legal,Cakon,"acknowledge",0.09,0.68,9,false,80,100
+legal,Cahnec,"chancellor",0.10,0.78,7,false,80,100
+legal,Ckanow,"acknowledgment",0.21,0.73,10,false,80,100
+legal,Nanul,"annulment",0.33,0.79,6,false,80,100
+legal,Racadi,"arcadian",0.50,0.86,4,false,80,100
+legal,Cnosut,"constructivism",0.07,0.73,10,false,80,100
+legal,Arebal,"arbela",0.33,0.91,3,false,80,100
+legal,Aplictivism,"applicant, constructivism",0.50,0.79,7,false,80,100
+legal,Birfed,"briefed",0.43,0.86,2,false,80,100
+legal,Ubelob,"bluebook",0.13,0.75,6,false,80,100
+legal,Ckanwol,"acknowledgment",0.14,0.71,11,false,80,100
+legal,Cmaden,"camden",0.50,0.95,2,false,80,100
+legal,Lanatu,"alaunt",0.33,0.83,4,false,80,100
+legal,Blemen,"belemnite",0.33,0.80,5,false,80,100
+legal,Abelit,"balt",0.17,0.81,3,false,80,100
+legal,Baride,"abridgment",0.30,0.81,6,false,80,100
+legal,Arestach,"arrestation, breach",0.45,0.81,3,false,80,100
+legal,Byznat,"byzantium",0.33,0.88,5,false,80,100
+legal,Blattan,"balt",0.14,0.80,4,false,80,100
+legal,Salym,"asylum",0.17,0.81,3,false,80,100
+legal,Abidac,"abdication",0.20,0.80,6,false,80,100
+legal,Cahleln,"challenger",0.20,0.82,6,false,80,100
+legal,Caetis,"act",0.17,0.72,4,false,80,100
+legal,Ibenid,"bind",0.17,0.81,3,false,80,100
+legal,Llacton,"allocution",0.20,0.78,4,false,80,100
+legal,Alocund,"allocution, band",0.40,0.86,5,false,80,100
+legal,Boroky,"brooklyn",0.25,0.88,4,false,80,100
+legal,Broknable,"brooklyn, actionable",0.50,0.82,5,false,80,100
+legal,Badic,"abdication",0.30,0.77,7,false,80,100
+legal,Ocunis,"consul",0.17,0.72,5,false,80,100
+legal,Nanule,"annulment",0.33,0.83,5,false,80,100
+legal,Consit,"constitutional",0.29,0.85,8,false,80,100
+legal,Anulmar,"annulment, bar",0.44,0.81,4,false,80,100
+legal,Bigmasn,"bigamy",0.43,0.85,3,false,80,100
+legal,Beurim,"bermudian",0.22,0.82,5,false,80,100
+legal,Batxas,"abate",0.50,0.66,4,false,80,100
+legal,Birfesn,"brief",0.14,0.79,4,false,80,100
+legal,Acoken,"acknowledgment",0.14,0.76,9,false,80,100
+legal,Laoluc,"allocution",0.10,0.70,7,false,80,100
+legal,Blubek,"bluebook",0.38,0.90,3,false,80,100
+legal,Caemid,"camden",0.33,0.83,4,false,80,100
+legal,Aloculum,"allocution, asylum",0.40,0.75,4,false,80,100
+legal,Cakone,"acknowledgment",0.07,0.70,11,false,80,100
+legal,Acehon,"chancellor",0.20,0.70,6,false,80,100
+legal,Bardig,"abridgment",0.10,0.76,8,false,80,100
+legal,Alanut,"alaunt",0.50,0.96,2,false,80,100
+legal,Byznatm,"byzantium",0.33,0.91,4,false,80,100
+legal,Counis,"consul",0.33,0.83,4,false,80,100
+legal,Acutit,"acquittal",0.22,0.87,5,false,80,100
+legal,Anexaden,"annexation, camden",0.40,0.83,4,false,80,100
+legal,Bilol,"billon",0.50,0.91,2,false,80,100
+legal,Dahren,"adherence",0.33,0.78,5,false,80,100
+legal,Catnibl,"actionable",0.20,0.80,6,false,80,100
+legal,Atorse,"attorney, case",0.38,0.86,3,false,80,100
+legal,Catina,"acting",0.50,0.82,3,false,80,100
+legal,Acesis,"case",0.17,0.72,4,false,80,100
+legal,Babsytt,"babysitter",0.30,0.90,4,false,80,100
+legal,Blulen,"blueline",0.38,0.90,3,false,80,100
+legal,Caknowl,"acknowledge",0.45,0.83,6,false,80,100
+legal,Nanlumn,"annulment",0.22,0.83,5,false,80,100
+crypto,Cahlic,"chalcis",0.14,0.86,4,false,80,100
+crypto,Racdann,"arcadian",0.25,0.76,5,false,80,100
+crypto,Ralite,"ariel",0.17,0.78,4,false,80,100
+crypto,Ycorip,"cryptos",0.14,0.62,6,false,80,100
+crypto,Balifi,"bailiff",0.43,0.87,2,false,80,100
+crypto,Nathem,"antehuman",0.11,0.78,6,false,80,100
+crypto,Alihys,"aliyah",0.50,0.88,3,false,80,100
+crypto,Babtasn,"abbatie",0.29,0.68,5,false,80,100
+crypto,Cnoslun,"consul",0.14,0.86,4,false,80,100
+crypto,Lantas,"alaunt",0.33,0.72,4,false,80,100
+crypto,Ralxisn,"ariel",0.14,0.62,5,false,80,100
+crypto,Acecar,"accrease",0.25,0.84,5,false,80,100
+crypto,Mnittan,"mint",0.14,0.80,4,false,80,100
+crypto,Cyorip,"cryptos",0.14,0.70,5,false,80,100
+crypto,Acrey,"accrease, by",0.38,0.81,4,false,80,100
+crypto,Cacor,"accourage",0.22,0.79,6,false,80,100
+crypto,Racad,"arcadian",0.38,0.81,5,false,80,100
+crypto,Rlaxis,"ariel",0.17,0.59,5,false,80,100
+crypto,Consut,"constructivism",0.29,0.85,8,false,80,100
+crypto,Laler,"allergy",0.43,0.84,4,false,80,100
+crypto,Ubecik,"buckler",0.14,0.66,6,false,80,100
+crypto,Cadxisn,"caid",0.29,0.82,4,false,80,100
+crypto,Baocok,"backwoodsman",0.17,0.80,9,false,80,100
+crypto,Blulys,"bully",0.33,0.89,3,false,80,100
+crypto,Cahlics,"chalcis",0.14,0.91,4,false,80,100
+crypto,Oboryk,"brooklyn",0.13,0.78,6,false,80,100
+crypto,Sasyr,"assyria",0.43,0.84,4,false,80,100
+crypto,Lageba,"algebra",0.43,0.90,3,false,80,100
+crypto,Bardig,"abridgment",0.10,0.76,8,false,80,100
+crypto,Baakal,"baklava",0.29,0.90,4,false,80,100
+crypto,Bdeder,"bedder",0.50,0.95,2,false,80,100
+crypto,Ccapnit,"accipient",0.22,0.81,5,false,80,100
+crypto,Broklon,"brooklyn",0.38,0.92,2,false,80,100
+crypto,Bucek,"buckler",0.43,0.89,3,false,80,100
+crypto,Bangys,"bayong",0.33,0.83,4,false,80,100
+crypto,Maphibr,"amphibrach",0.50,0.85,5,false,80,100
+crypto,Caicip,"accipient",0.33,0.72,6,false,80,100
+crypto,Starom,"astromancy",0.30,0.78,6,false,80,100
+crypto,Borok,"brook",0.40,0.94,2,false,80,100
+crypto,Blemen,"belemnite",0.33,0.80,5,false,80,100
+crypto,Cyrop,"cryptos",0.14,0.79,4,false,80,100
+crypto,Cacere,"accresce",0.25,0.81,5,false,80,100
+crypto,Bavxus,"abu",0.17,0.72,4,false,80,100
+crypto,Aneteh,"anthesterion",0.17,0.80,7,false,80,100
+crypto,Ramrocn,"armorica",0.13,0.76,5,false,80,100
+crypto,Beogen,"begone",0.33,0.91,3,false,80,100
+crypto,Bsotsin,"boistous",0.13,0.76,6,false,80,100
+crypto,Blemnet,"belemnite",0.44,0.83,3,false,80,100
+crypto,Tamun,"autumn",0.17,0.81,4,false,80,100
+crypto,Berteh,"brethren",0.13,0.82,5,false,80,100
+crypto,Abarib,"brabant",0.43,0.72,5,false,80,100
+crypto,Biasyc,"biscayan",0.25,0.84,5,false,80,100
+crypto,Ccalam,"acclaimer",0.22,0.83,5,false,80,100
+crypto,Mbantin,"ambient",0.29,0.74,5,false,80,100
+crypto,Cacoru,"accourage",0.22,0.78,6,false,80,100
+crypto,Belmen,"belemnite",0.33,0.88,5,false,80,100
+crypto,Sator,"astromancy",0.10,0.70,8,false,80,100
+crypto,Cacipi,"accipient",0.44,0.83,5,false,80,100
+crypto,Bordasw,"broadsword",0.30,0.82,6,false,80,100
+crypto,Lhaxtin,"aliyah",0.14,0.37,7,false,80,100
+crypto,Mabin,"ambient",0.29,0.84,4,false,80,100
+crypto,Bisacy,"biscayan",0.38,0.90,4,false,80,100
+crypto,Booryk,"brooklyn",0.25,0.82,4,false,80,100
+crypto,Cnostur,"constructivism",0.14,0.76,10,false,80,100
+crypto,Raebal,"arbela",0.17,0.83,4,false,80,100
+crypto,Lafatu,"alfaqui",0.29,0.78,4,false,80,100
+crypto,Lahxis,"aliyah",0.33,0.56,6,false,80,100
+crypto,Eberit,"brethren",0.13,0.60,6,false,80,100
+crypto,Ssarys,"assyria",0.29,0.72,4,false,80,100
+crypto,Rcadnan,"arcadian",0.50,0.70,2,false,80,100
+crypto,Ariles,"ariel",0.50,0.91,2,false,80,100
+crypto,Cyropa,"cryptos",0.14,0.74,5,false,80,100
+crypto,Blesdian,"blessing, arcadian",0.50,0.90,3,false,80,100
+crypto,Cacpet,"accept",0.33,0.89,3,false,80,100
+crypto,Begnosn,"begone",0.43,0.85,3,false,80,100
+crypto,Beedid,"bedder",0.33,0.86,3,false,80,100
+crypto,Ebelim,"belemnite",0.33,0.72,6,false,80,100
+crypto,Counis,"constructivism",0.14,0.76,9,false,80,100
+crypto,Rablesn,"arbela",0.14,0.72,5,false,80,100
+crypto,Broela,"brook, arbela",0.50,0.82,2,false,80,100
+crypto,Nathest,"anthesterion",0.42,0.81,7,false,80,100
+crypto,Ptahcor,"apothecary",0.10,0.76,6,false,80,100
+crypto,Bacok,"backwoods",0.33,0.85,5,false,80,100
+crypto,Lnattan,"alaunt",0.14,0.58,6,false,80,100
+crypto,Broknet,"brooklyn, bennet",0.43,0.85,3,false,80,100
+crypto,Mapih,"amphibrach",0.10,0.70,7,false,80,100
+crypto,Cacpin,"accipient",0.22,0.78,5,false,80,100
+crypto,Acocur,"accourage",0.22,0.87,5,false,80,100
+crypto,Boorik,"brook",0.33,0.89,3,false,80,100
+crypto,Ybazin,"byzantium",0.11,0.72,6,false,80,100
+crypto,Railes,"ariel",0.17,0.81,4,true,80,100
+crypto,Belol,"bellovaci",0.33,0.85,5,false,80,100
+crypto,Bapohe,"baphomet",0.38,0.90,3,false,80,100
+crypto,Nalsas,"analysis",0.38,0.78,3,false,80,100
+crypto,Mabnitn,"ambient",0.14,0.79,5,false,80,100
+crypto,Blaffin,"bailiff",0.29,0.81,5,false,80,100
+crypto,Bosit,"boistous",0.25,0.85,5,false,80,100
+crypto,Alerunt,"allergy, alaunt",0.43,0.88,2,false,80,100
+crypto,Belis,"blessing",0.13,0.77,5,false,80,100
+crypto,Lalery,"allergy",0.43,0.90,3,false,80,100
+forge,Racad,"arcadian",0.38,0.81,5,false,80,100
+forge,Ebelim,"belemnite",0.33,0.72,6,false,80,100
+forge,Consutr,"constructivism",0.29,0.86,8,false,80,100
+forge,Hamdian,"hammer, arcadian",0.50,0.75,4,false,80,100
+forge,Oterim,"trompe",0.17,0.65,5,false,80,100
+forge,Heeliv,"helve",0.33,0.88,3,false,80,100
+forge,Tlitis,"tilt",0.33,0.82,4,false,80,100
+forge,Hmamren,"hammer",0.29,0.86,3,false,80,100
+forge,Cnoslun,"consul",0.14,0.86,4,false,80,100
+forge,Bzyntam,"byzantium",0.22,0.83,4,false,80,100
+forge,Hamease,"hammer, accrease",0.50,0.82,4,false,80,100
+forge,Oferag,"forgeman",0.13,0.75,5,false,80,100
+forge,Fabira,"fabricate",0.33,0.88,4,false,80,100
+forge,Bolmorn,"bloomery",0.13,0.78,4,false,80,100
+forge,Ahemim,"hammer",0.17,0.76,5,false,80,100
+forge,Blomher,"bloomery, archer",0.43,0.91,3,false,80,100
+forge,Simyt,"smithy",0.17,0.83,4,false,80,100
+forge,Counis,"constructivism",0.14,0.76,9,false,80,100
+forge,Ccares,"accrease",0.25,0.86,4,false,80,100
+forge,Racadi,"arcadian",0.50,0.86,4,false,80,100
+forge,Ralit,"ariel",0.20,0.62,4,false,80,100
+forge,Oboryk,"brooklyn",0.13,0.78,6,false,80,100
+forge,Tiwer,"twire",0.20,0.88,3,false,80,100
+forge,Lebwosn,"elbow",0.14,0.77,5,false,80,100
+forge,Cahlics,"chalcis",0.14,0.91,4,false,80,100
+forge,Ariles,"ariel",0.50,0.91,2,false,80,100
+forge,Torema,"trombe",0.17,0.78,4,false,80,100
+forge,Cahfer,"chafery",0.43,0.91,3,false,80,100
+forge,Lbewton,"elbow",0.29,0.74,5,false,80,100
+forge,Hamem,"hammer",0.50,0.91,2,false,80,100
+forge,Faelis,"false",0.33,0.88,3,false,80,100
+forge,Afisoh,"fashion",0.14,0.79,5,false,80,100
+forge,Rlaxtin,"ariel",0.14,0.40,6,false,80,100
+forge,Racdann,"arcadian",0.25,0.76,5,false,80,100
+forge,Raebal,"arbela",0.17,0.83,4,false,80,100
+forge,Leobiw,"elbow",0.17,0.81,3,false,80,100
+forge,Faekis,"fake",0.33,0.84,3,false,80,100
+forge,Fsahin,"fashion",0.29,0.91,3,false,80,100
+forge,Dorope,"dropforge",0.33,0.80,5,false,80,100
+forge,Lanat,"alaunt",0.33,0.81,3,false,80,100
+forge,Rbales,"arbela",0.33,0.72,4,false,80,100
+forge,Borok,"brooklyn",0.25,0.83,5,false,80,100
+forge,Apenzsul,"appenzell, consul",0.44,0.84,3,false,80,50
+forge,Fasiho,"fashion",0.43,0.93,3,false,80,100
+forge,Copros,"cooper",0.33,0.83,4,false,80,100
+forge,Utyres,"tuyere",0.33,0.76,4,false,80,100
+forge,Ocunis,"constructivism",0.14,0.64,10,false,80,100
+forge,Rbalten,"arbela",0.29,0.68,5,false,80,100
+forge,Hamela,"hammer, arbela",0.50,0.84,3,false,80,100
+forge,Fbaric,"fabricate",0.33,0.85,5,false,80,100
+forge,Hmamer,"hammer",0.50,0.95,2,false,80,100
+forge,Ofirig,"forging",0.14,0.68,4,false,80,100
+forge,Laceh,"alchemy",0.14,0.77,5,false,80,100
+forge,Rables,"arbela",0.17,0.76,5,false,80,100
+forge,Erofer,"reforge",0.14,0.79,5,false,80,100
+forge,Itelit,"tilt",0.17,0.81,3,false,80,100
+forge,Frognig,"forging",0.14,0.91,4,false,80,100
+forge,Coprosn,"cooper",0.29,0.80,5,false,80,100
+forge,Copwods,"cooper, backwoods",0.33,0.76,5,false,80,100
+forge,Foerig,"forges",0.33,0.83,4,false,80,100
+forge,Blattan,"balt",0.14,0.80,4,false,80,100
+forge,Broki,"brooklyn, ai",0.38,0.84,4,false,80,100
+forge,Tormep,"trompe",0.17,0.90,4,false,80,100
+forge,Railes,"ariel",0.17,0.81,4,true,80,100
+forge,Acecar,"accrease",0.25,0.84,5,false,80,100
+forge,Byznat,"byzantium",0.33,0.88,5,false,80,100
+forge,Dorpof,"dropforge",0.22,0.80,6,false,80,100
+forge,Siytit,"stithy",0.50,0.72,4,false,80,100
+forge,Abathy,"abbatie, stithy",0.50,0.80,3,false,80,100
+forge,Cacip,"accipient",0.33,0.79,6,false,80,100
+forge,Lebowa,"elbow",0.50,0.88,3,false,80,100
+forge,Arebal,"arbela",0.33,0.91,3,false,80,100
+forge,Baelit,"balt",0.33,0.91,2,false,80,100
+forge,Boroky,"brooklyn",0.25,0.88,4,false,80,100
+forge,Cnosut,"constructivism",0.07,0.73,10,false,80,100
+forge,Aclailt,"acclaimer, balt",0.44,0.81,4,false,80,100
+forge,Tuyres,"tuyere",0.50,0.88,2,false,80,100
+forge,Nliltan,"nill",0.29,0.80,4,false,80,100
+forge,Frogden,"forged",0.14,0.86,4,false,80,100
+forge,Lantas,"alaunt",0.33,0.72,4,false,80,100
+forge,Falisy,"falsify",0.43,0.93,2,false,80,100
+forge,Lebwos,"elbow",0.17,0.81,4,false,80,100
+forge,Afelis,"false",0.17,0.78,4,false,80,100
+forge,Obedig,"bodge",0.17,0.78,4,false,80,100
+forge,Refrogn,"reforge",0.43,0.89,3,false,80,100
+forge,Aracid,"arcadian",0.25,0.84,4,false,80,100
+forge,Caecar,"accrease",0.13,0.75,6,false,80,100
+forge,Toerim,"trombe",0.17,0.72,5,false,80,100
+forge,Truxtyn,"tuyere",0.14,0.59,5,false,80,100
+forge,Faibar,"fabricate",0.22,0.82,5,false,80,100
+forge,Acrei,"accrease, ai",0.38,0.81,3,false,80,100
+forge,Mapihe,"amphitheatre",0.17,0.72,8,false,80,100
+forge,Alanut,"alaunt",0.50,0.96,2,false,80,100
+forge,Tiwera,"twire",0.17,0.83,3,false,80,100
+forge,Torem,"trompe",0.17,0.83,4,false,80,100
+forge,Vlucnan,"vulcan",0.29,0.86,3,false,80,100
+forge,Raceh,"archer",0.17,0.81,4,false,80,100
+forge,Lantasn,"alaunt",0.29,0.68,5,false,80,100
+forge,Belment,"belemnite",0.33,0.91,4,false,80,100
+forge,Forega,"forgeman",0.38,0.90,3,false,80,100

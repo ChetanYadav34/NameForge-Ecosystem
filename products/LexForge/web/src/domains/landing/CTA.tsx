@@ -11,9 +11,9 @@ export const CTA = () => {
       <Container className="relative z-10">
         <Stack gap={8} className="items-center text-center max-w-2xl mx-auto">
           <h2 className="text-5xl font-serif text-white">{headline}</h2>
-          <Link href="/generate">
+          <Link href="/playground">
             <Button variant="secondary" className="px-10 py-6 text-lg rounded-xl bg-white text-primary hover:bg-slate-50 border-none shadow-xl">
-              {button}
+              Start Naming
             </Button>
           </Link>
         </Stack>

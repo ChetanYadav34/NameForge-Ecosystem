@@ -92,7 +92,7 @@ export const GenerationForm = () => {
   const isLoading = fsmState === 'VALIDATING' || fsmState === 'GENERATING' || fsmState === 'STREAMING';
 
   return (
-    <div className="bg-white/70 backdrop-blur-xl rounded-3xl shadow-xl shadow-black/5 border border-black/5 p-6 md:p-8 flex flex-col gap-4">
+    <div className="bg-white/40 backdrop-blur-2xl rounded-3xl shadow-xl shadow-black/5 border border-white/50 p-6 md:p-8 flex flex-col gap-4">
       <div>
         <label className="text-xs font-mono font-medium text-slate-500 uppercase tracking-widest mb-2 block">Brand Vision</label>
         <Input 

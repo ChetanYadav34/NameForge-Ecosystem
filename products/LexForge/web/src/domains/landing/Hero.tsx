@@ -1,23 +1,12 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Container, Button, Stack } from '@lexforge/ui';
 import { landingConfig } from './config';
 import { motion } from 'framer-motion';
 import { GenerationForm } from './GenerationForm';
-import dynamic from 'next/dynamic';
-
-const DynamicBackgroundScene = dynamic(
-  () => import('../../shared/3d/scenes/BackgroundScene').then((mod) => mod.BackgroundScene),
-  { ssr: false }
-);
 
 export const Hero = () => {
-  const { badge, headline, description, primaryCTA, secondaryCTA } = landingConfig.hero;
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const { badge, headline, description } = landingConfig.hero;
 
   return (
     <section className="relative z-0 min-h-screen flex items-center pt-32 pb-20 overflow-hidden bg-transparent" id="hero">
@@ -27,7 +16,7 @@ export const Hero = () => {
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/70 backdrop-blur-xl border border-black/5 shadow-sm w-fit mb-8"
             >
               <span className="w-2 h-2 rounded-full bg-primary"></span>
@@ -37,7 +26,7 @@ export const Hero = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.2, 0.8, 0.2, 1] }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               <h1 className="text-5xl md:text-[56px] font-serif text-slate-900 leading-[1.1] tracking-tight mb-6">
                 {headline}
@@ -47,7 +36,7 @@ export const Hero = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.2, 0.8, 0.2, 1] }}
+              transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             >
               <p className="text-lg text-slate-600 max-w-2xl mb-12 leading-relaxed">
                 {description}
@@ -57,7 +46,7 @@ export const Hero = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
+              transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
               <GenerationForm />
             </motion.div>
@@ -67,9 +56,6 @@ export const Hero = () => {
           </div>
         </div>
       </Container>
-      
-      {/* 3D Scene anchored absolute to the section */}
-      {mounted && <DynamicBackgroundScene />}
     </section>
   );
 };

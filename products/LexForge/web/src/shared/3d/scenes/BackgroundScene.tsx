@@ -12,7 +12,7 @@ export const BackgroundScene = () => {
   const { results, fsmState } = useGenerationStore();
   const displayNames = results.length > 0 ? results.map(r => r.name) : defaultNames;
   return (
-    <div className="fixed inset-0 w-full h-full -z-10" style={{ pointerEvents: 'auto' }}>
+    <div className="fixed inset-0 w-full h-full z-0" style={{ pointerEvents: 'auto' }}>
       <Canvas camera={{ position: [0, 0, 5], fov: 75 }} gl={{ alpha: true, antialias: true }} dpr={[1, 2]}>
         <ambientLight intensity={1.0} />
         

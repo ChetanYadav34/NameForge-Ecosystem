@@ -19,7 +19,7 @@ export default function PricingPage() {
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           
-          <Card className="flex flex-col p-8 border border-slate-200 shadow-sm bg-white hover:border-slate-300 transition-all">
+          <Card className="flex flex-col p-8 border border-slate-200/50 shadow-sm bg-white/40 backdrop-blur-md hover:bg-white/60 hover:border-slate-300 transition-all">
             <h3 className="text-xl font-bold font-serif text-slate-900 mb-2">Starter</h3>
             <p className="text-sm text-slate-500 mb-6">For independent creators and side projects.</p>
             <div className="mb-6">
@@ -30,12 +30,12 @@ export default function PricingPage() {
               <li className="flex items-center gap-2"><svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path></svg> Basic linguistics filters</li>
               <li className="flex items-center gap-2"><svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path></svg> Standard export (CSV)</li>
             </ul>
-            <Link href="/generate" className="block w-full">
+            <Link href="/playground" className="block w-full">
               <Button variant="secondary" className="w-full">Start Naming</Button>
             </Link>
           </Card>
 
-          <Card className="flex flex-col p-8 border-2 border-primary shadow-md bg-white relative">
+          <Card className="flex flex-col p-8 border-2 border-primary shadow-md bg-white/60 backdrop-blur-md relative">
             <div className="absolute top-0 right-0 bg-primary text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 rounded-bl-lg rounded-tr-lg">Most Popular</div>
             <h3 className="text-xl font-bold font-serif text-slate-900 mb-2">Pro</h3>
             <p className="text-sm text-slate-500 mb-6">For professional namers and branding agencies.</p>
@@ -49,12 +49,12 @@ export default function PricingPage() {
               <li className="flex items-center gap-2"><svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path></svg> Trademark graph pre-screening</li>
               <li className="flex items-center gap-2"><svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path></svg> LexForge Studio access</li>
             </ul>
-            <Link href="/generate" className="block w-full">
+            <Link href="/playground" className="block w-full">
               <Button variant="primary" className="w-full shadow-none">Start Naming</Button>
             </Link>
           </Card>
 
-          <Card className="flex flex-col p-8 border border-slate-200 shadow-sm bg-white hover:border-slate-300 transition-all">
+          <Card className="flex flex-col p-8 border border-slate-200/50 shadow-sm bg-white/40 backdrop-blur-md hover:bg-white/60 hover:border-slate-300 transition-all">
             <h3 className="text-xl font-bold font-serif text-slate-900 mb-2">Enterprise</h3>
             <p className="text-sm text-slate-500 mb-6">For global brands and software integrators.</p>
             <div className="mb-6">
