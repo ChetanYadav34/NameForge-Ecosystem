@@ -78,11 +78,27 @@ app.post('/feedback', async (req, res) => {
     }
 });
 
+import { exec } from 'child_process';
+
 // For demonstration, serve some static/mock frontend if needed
 app.get('/', (req, res) => {
-    console.log(`LexForge Generation API listening on http://localhost:${PORT}`);
+    res.send(`LexForge Generation API listening on http://localhost:${PORT}`);
 });
 
 app.listen(PORT, () => {
-    console.log(`LexForge Generation API listening on http://localhost:${PORT}`);
+    console.log(`LexForge Generation API listening on port ${PORT}`);
+    
+    // Automate the learner to run every 1 hour
+    const LEARNER_INTERVAL = 60 * 60 * 1000;
+    setInterval(() => {
+        console.log('Running automated background learner...');
+        exec('npm run learn', { cwd: __dirname + '/..' }, (error, stdout, stderr) => {
+            if (error) {
+                console.error(`Automated Learner Error: ${error.message}`);
+                return;
+            }
+            if (stderr) console.error(`Learner Stderr: ${stderr}`);
+            console.log(`Learner Output:\n${stdout}`);
+        });
+    }, LEARNER_INTERVAL);
 });

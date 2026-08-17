@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest",
+    "start": "npx tsx src/server.ts",
     "start:server": "npx tsx src/server.ts",
     "learn": "npx tsx scripts/autonomous_learner.ts"
   },
