@@ -2,6 +2,7 @@ services:
   - type: web
     name: lexforge-api
     env: node
+    rootDir: products/LexForge/nid-extractor
     buildCommand: npm install
     startCommand: npm start
     plan: starter
@@ -15,3 +16,5 @@ services:
         value: 4000
       - key: NODE_ENV
         value: production
+      - key: DATA_DIR
+        value: /app/data
