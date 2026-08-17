@@ -36,25 +36,51 @@ const availabilityService = new AvailabilityService(companyChecker, trademarkChe
 
 app.post('/generate', async (req, res) => {
     try {
-        const { input, industry, tone, requestSeed } = req.body;
+        const { input, industry, tone, requestSeed, strategy } = req.body;
 
         // Default to a paid user with availability checking enabled for the demo
         const userId = 'paid_user'; 
+        
+        // Combine the user's explicit input vision with the selected tone
+        const intentConcepts = [input, tone].filter(Boolean) as string[];
+        
         const genReq: GenerationRequest = {
             requestId: `req_${Date.now()}`,
             prompt: input || 'tech startup',
             industry: industry || 'SaaS',
-            intent: [tone || 'modern'],
-            strategy: 'hybrid',
+            intent: intentConcepts,
+            strategy: strategy || 'hybrid',
             availabilityCheck: true
         };
 
         const result = await generateNamesEndpoint(genReq, availabilityService, userId);
         res.json(result);
-    } catch (error) {
-        console.error('Generation Error:', error);
-        res.status(500).json({ error: 'Failed to generate names' });
+    } catch (e: any) {
+        res.status(500).json({ error: e.message });
     }
+});
+
+app.post('/feedback', async (req, res) => {
+    try {
+        const { selectedCandidate, intent } = req.body;
+        if (!selectedCandidate) return res.status(400).json({ error: 'Missing candidate' });
+        
+        // Find unknown words from intent
+        // In a full implementation, the UI would track which exact word was unknown,
+        // but here we can just log the whole intent for the learner to parse
+        const mainDbPath = path.resolve(__dirname, '../data/nid.sqlite');
+        const db = new Database(mainDbPath);
+        db.prepare('INSERT INTO user_preference_signals (selected_candidate, unknown_word) VALUES (?, ?)').run(selectedCandidate, intent?.join(' ') || '');
+        
+        res.json({ status: 'success' });
+    } catch (e: any) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
+// For demonstration, serve some static/mock frontend if needed
+app.get('/', (req, res) => {
+    console.log(`LexForge Generation API listening on http://localhost:${PORT}`);
 });
 
 app.listen(PORT, () => {

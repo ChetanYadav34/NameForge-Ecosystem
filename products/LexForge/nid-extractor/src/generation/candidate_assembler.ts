@@ -35,6 +35,7 @@ function resolveIndustryId(industry: string): number {
 export function assembleCandidates(req: GenerationRequest): Candidate[] {
     const db = getDB();
     const strategy = resolveNamingStrategy(req);
+    const mutator = new MutationEngine(db);
     
     // Add strategy to request for downstream tools (if not explicitly set)
     req.strategy = strategy;
@@ -47,6 +48,7 @@ export function assembleCandidates(req: GenerationRequest): Candidate[] {
 
     // Concept Retrieval based on Strategy
     let concepts = new Map<number, { id: number, name: string, score: number, source: 'industry' | 'intent' | 'hybrid' }>();
+    let literalMorphemes: string[] = [];
 
     if (strategy === 'industry' || strategy === 'hybrid') {
         const indConcepts = db.prepare(`
@@ -65,7 +67,9 @@ export function assembleCandidates(req: GenerationRequest): Candidate[] {
 
     if ((strategy === 'intent' || strategy === 'hybrid') && req.intent && req.intent.length > 0) {
         const extracted = extractIntentConcepts(req.intent, req.industry, db);
-        for (const ec of extracted) {
+        
+        // 1. Process regular matched concepts
+        for (const ec of extracted.concepts) {
             if (concepts.has(ec.conceptId)) {
                 // Bridge found
                 const existing = concepts.get(ec.conceptId)!;
@@ -75,10 +79,13 @@ export function assembleCandidates(req: GenerationRequest): Candidate[] {
                 concepts.set(ec.conceptId, { id: ec.conceptId, name: ec.canonicalName, score: ec.abstractnessScore, source: 'intent' });
             }
         }
+        
+        // 2. Process unmatched tokens (e.g. user typed "creation", but no concept matched)
+        literalMorphemes = extracted.unmatchedTokens;
     }
 
-    // Fallback
-    if (concepts.size === 0) {
+    // Fallback if no concepts found at all and no literal morphemes
+    if (concepts.size === 0 && literalMorphemes.length === 0) {
         const fallbacks = db.prepare(`SELECT id, canonical_name, 1.0 as affinity_score FROM concept_catalog ORDER BY global_frequency DESC LIMIT 20`).all() as any[];
         for (const fb of fallbacks) {
             concepts.set(fb.id, { id: fb.id, name: fb.canonical_name, score: 0.5, source: 'industry' });
@@ -88,6 +95,21 @@ export function assembleCandidates(req: GenerationRequest): Candidate[] {
     // Retrieve Morphemes
     const morphemePool = new Map<number, { morpheme: string, score: number, source: 'industry' | 'intent' | 'hybrid' }>();
     
+    // 1. Inject Literal Morphemes first (highest priority)
+    for (const lm of literalMorphemes) {
+        // Find if this exists in morpheme_catalog, or just inject it artificially
+        const existing = db.prepare(`SELECT id, morpheme FROM morpheme_catalog WHERE morpheme = ? OR morpheme LIKE ? LIMIT 5`).all(lm, `${lm}%`) as any[];
+        if (existing.length > 0) {
+            for (const ex of existing) {
+                morphemePool.set(ex.id, { morpheme: ex.morpheme, score: 1.0, source: 'intent' });
+            }
+        } else {
+            // Artificial injection (fake ID: negative to avoid collisions)
+            const fakeId = -(morphemePool.size + 1);
+            morphemePool.set(fakeId, { morpheme: lm, score: 1.0, source: 'intent' });
+        }
+    }
+
     for (const c of concepts.values()) {
         const morphemes = db.prepare(`
             SELECT m.id, m.morpheme, m.detected_type, cmm.semantic_relevance 
@@ -170,11 +192,26 @@ export function assembleCandidates(req: GenerationRequest): Candidate[] {
             const valResult = validateCandidate(req.requestId, rawStr);
             if (!valResult.isValid) continue;
 
-            // Phase 4.5A: Mutation Engine Disabled for Baseline Audit
-            let finalStr = rawStr;
-            let mutationQuality = 1.0;
-            let semanticPreservation = 1.0;
-            let history: string[] = [];
+            // Phase 4.5A: Apply Mutation Engine to transform raw words
+            const mutationResult = mutator.mutateCandidate(rawStr, rawStr);
+            
+            // If mutation didn't change anything and we don't want exact dictionary words, we could drop it
+            // but we will trust the engine's checkNovelty. Let's force some change if it's an exact intent word.
+            let finalStr = mutationResult.mutatedString;
+            
+            // Safety measure: if the raw string is an exact match for one of the literal morphemes, 
+            // and the mutation engine failed to change it, we manually add a random tech suffix 
+            // so we don't output "Name" or "Creation".
+            if (finalStr.toLowerCase() === rawStr.toLowerCase() && literalMorphemes.includes(rawStr.toLowerCase())) {
+                const suffixes = ['io', 'ai', 'ify', 'ly', 'hq', 'tech'];
+                finalStr += suffixes[Math.floor(Math.random() * suffixes.length)];
+                mutationResult.mutationHistory.push('ForcedSuffix:PreventLiteralWord');
+                mutationResult.mutationQualityScore = Math.max(mutationResult.mutationQualityScore, 0.8);
+            }
+
+            let mutationQuality = mutationResult.mutationQualityScore;
+            let semanticPreservation = mutationResult.semanticPreservationScore;
+            let history: string[] = mutationResult.mutationHistory;
             
             const finalPhono = analyzePhonotactics(req.requestId, finalStr);
             const finalBrand = scoreBrandability(req.requestId, finalStr, valResult, finalPhono);

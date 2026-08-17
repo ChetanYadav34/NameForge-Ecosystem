@@ -70,7 +70,22 @@ export const ResultCard = ({ result }: { result: GenerationResult }) => {
         {/* Reserve space for actions */}
         <div className="mt-6 pt-4 border-t border-slate-100 flex justify-end gap-2 opacity-0 group-hover:opacity-100 hover:opacity-100 transition-opacity">
           <Button variant="secondary" className="text-xs py-1 px-3">Compare</Button>
-          <Button variant="primary" className="text-xs py-1 px-3">Save</Button>
+          <Button 
+            variant="primary" 
+            className="text-xs py-1 px-3"
+            onClick={() => {
+              import('../../core/services/GenerationService').then(({ GenerationService }) => {
+                import('../../store/useGenerationStore').then(({ useGenerationStore }) => {
+                  const input = useGenerationStore.getState().currentInput;
+                  if (GenerationService.sendFeedback) {
+                    GenerationService.sendFeedback(result.name, input);
+                  }
+                });
+              });
+            }}
+          >
+            Save
+          </Button>
         </div>
       </Card>
     </motion.div>

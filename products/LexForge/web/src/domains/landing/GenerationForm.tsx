@@ -13,6 +13,7 @@ export const GenerationForm = () => {
   const { currentInput, setInput, clearResults, addResult, fsmState, setFsmState } = useGenerationStore();
   const [industry, setIndustry] = useState('');
   const [tone, setTone] = useState('');
+  const [strategy, setStrategy] = useState('hybrid');
   const [pipelineMessage, setPipelineMessage] = useState('Forging...');
   
   // Listen to EventBus to sync FSM state
@@ -86,7 +87,7 @@ export const GenerationForm = () => {
     if (fsmState === 'GENERATING' || fsmState === 'STREAMING' || fsmState === 'VALIDATING') return;
     clearResults();
     // Start process via service
-    await GenerationService.generate(currentInput, [{ type: 'industry', value: industry }, { type: 'tone', value: tone }]);
+    await GenerationService.generate(currentInput, [{ type: 'industry', value: industry }, { type: 'tone', value: tone }], strategy);
   };
 
   const isLoading = fsmState === 'VALIDATING' || fsmState === 'GENERATING' || fsmState === 'STREAMING';
@@ -108,8 +109,7 @@ export const GenerationForm = () => {
           disabled={isLoading}
         />
       </div>
-      
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
           <label className="text-xs font-mono font-medium text-slate-500 uppercase tracking-widest mb-2 block">Industry</label>
           <select 
@@ -138,6 +138,18 @@ export const GenerationForm = () => {
             <option value="aggressive">Aggressive & Fast</option>
             <option value="luxurious">Luxurious & Premium</option>
             <option value="trustworthy">Trustworthy & Solid</option>
+          </select>
+        </div>
+        <div>
+          <label className="text-xs font-mono font-medium text-slate-500 uppercase tracking-widest mb-2 block">Approach</label>
+          <select
+            value={strategy}
+            onChange={(e) => setStrategy(e.target.value)}
+            className="w-full text-base py-3 px-4 bg-white/50 border border-slate-200 rounded-lg text-slate-900 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none disabled:opacity-50 appearance-none"
+          >
+            <option value="intent">Intent Focus</option>
+            <option value="industry">Industry Focus</option>
+            <option value="hybrid">Hybrid</option>
           </select>
         </div>
       </div>

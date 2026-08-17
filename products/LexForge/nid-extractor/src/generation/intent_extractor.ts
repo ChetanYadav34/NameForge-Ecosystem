@@ -7,8 +7,13 @@ export interface ExtractedConcept {
     abstractnessScore: number;
 }
 
-export function extractIntentConcepts(intentStrings: string[], industryName: string, db: Database.Database): ExtractedConcept[] {
-    if (!intentStrings || intentStrings.length === 0) return [];
+export interface IntentExtractionResult {
+    concepts: ExtractedConcept[];
+    unmatchedTokens: string[];
+}
+
+export function extractIntentConcepts(intentStrings: string[], industryName: string, db: Database.Database): IntentExtractionResult {
+    if (!intentStrings || intentStrings.length === 0) return { concepts: [], unmatchedTokens: [] };
     
     // Resolve industry ID
     const industryRow = db.prepare(`
@@ -29,16 +34,52 @@ export function extractIntentConcepts(intentStrings: string[], industryName: str
         
     const extracted: ExtractedConcept[] = [];
     const seenIds = new Set<number>();
+    const unmatchedTokens: string[] = [];
     
-    for (const token of tokens) {
-        // Look up concept
-        // We use LIKE to find concepts that might be variations (e.g. 'freedom' matches 'freedom')
-        const matches = db.prepare(`
-            SELECT id, canonical_name 
-            FROM concept_catalog 
-            WHERE canonical_name = ? OR canonical_name LIKE ?
-            LIMIT 5
-        `).all(token, `${token}%`) as any[];
+    for (const rawToken of tokens) {
+        let token = rawToken;
+        
+        // Very basic hardcoded typo correction for common user mistakes in intent
+        const typoMap: Record<string, string> = {
+            'carzy': 'crazy',
+            'tehc': 'tech',
+            'sofware': 'software',
+            'innvation': 'innovation',
+            'creatoin': 'creation'
+        };
+        if (typoMap[token]) token = typoMap[token];
+        
+        // Stemming variants to try if direct match fails
+        const variants = [token];
+        if (token.endsWith('s')) variants.push(token.slice(0, -1));
+        if (token.endsWith('ing')) variants.push(token.slice(0, -3));
+        if (token.endsWith('er')) variants.push(token.slice(0, -2));
+        if (token.endsWith('ed')) variants.push(token.slice(0, -2));
+
+        let matches: any[] = [];
+        
+        for (const variant of variants) {
+            // Look up concept
+            matches = db.prepare(`
+                SELECT id, canonical_name 
+                FROM concept_catalog 
+                WHERE canonical_name = ? OR canonical_name LIKE ?
+                LIMIT 5
+            `).all(variant, `${variant}%`) as any[];
+            
+            if (matches.length > 0) break; // Found matches with this variant
+        }
+        
+        if (matches.length === 0) {
+            unmatchedTokens.push(rawToken); // push original
+            
+            // Add to discovery queue for the autonomous learner
+            try {
+                db.prepare('INSERT INTO concept_discovery_queue (unknown_word, context) VALUES (?, ?)').run(rawToken, intentStrings.join(' '));
+            } catch (e) {
+                console.error("Discovery queue log failed:", e);
+            }
+        }
         
         for (const match of matches) {
             if (seenIds.has(match.id)) continue;
@@ -70,5 +111,8 @@ export function extractIntentConcepts(intentStrings: string[], industryName: str
     }
     
     // Return sorted by abstractness (most abstract intent first)
-    return extracted.sort((a, b) => b.abstractnessScore - a.abstractnessScore);
+    return {
+        concepts: extracted.sort((a, b) => b.abstractnessScore - a.abstractnessScore),
+        unmatchedTokens
+    };
 }
