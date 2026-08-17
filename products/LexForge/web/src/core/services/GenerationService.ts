@@ -14,7 +14,8 @@ export class RealGenerationService implements IGenerationService {
     try {
       InteractionEventBus.emit('VALIDATION_STARTED', { timestamp: Date.now() });
       
-      const response = await fetch('http://localhost:4000/generate', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+      const response = await fetch(`${apiUrl}/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ input, industry, tone, requestSeed, strategy })
@@ -50,7 +51,8 @@ export class RealGenerationService implements IGenerationService {
   public async sendFeedback(selectedCandidate: string, input: string): Promise<void> {
     try {
       const intent = input.split(' ');
-      await fetch('http://localhost:4000/feedback', {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+      await fetch(`${apiUrl}/feedback`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ selectedCandidate, intent })
