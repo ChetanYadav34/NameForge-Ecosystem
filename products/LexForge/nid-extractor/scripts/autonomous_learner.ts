@@ -1,7 +1,8 @@
 import Database from 'better-sqlite3';
 import path from 'path';
 
-const DB_PATH = path.resolve(__dirname, '../data/nid.sqlite');
+const dataDir = process.env.DATA_DIR || path.resolve(__dirname, '../data');
+const DB_PATH = path.join(dataDir, 'nid.sqlite');
 const db = new Database(DB_PATH);
 
 console.log('Starting Autonomous Hebbian Learner...');

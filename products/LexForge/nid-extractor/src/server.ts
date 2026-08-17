@@ -17,9 +17,9 @@ app.use(express.json());
 const PORT = process.env.PORT || 4000;
 
 // Initialize Availability Service
-const dbPath = path.resolve(__dirname, '../data/dummy.sqlite');
-const dir = path.dirname(dbPath);
-if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+const dataDir = process.env.DATA_DIR || path.resolve(__dirname, '../data');
+const dbPath = path.join(dataDir, 'dummy.sqlite');
+if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
 
 new Database(dbPath).exec(`
     DROP TABLE IF EXISTS domain_cache;
@@ -68,7 +68,8 @@ app.post('/feedback', async (req, res) => {
         // Find unknown words from intent
         // In a full implementation, the UI would track which exact word was unknown,
         // but here we can just log the whole intent for the learner to parse
-        const mainDbPath = path.resolve(__dirname, '../data/nid.sqlite');
+        const dataDir = process.env.DATA_DIR || path.resolve(__dirname, '../data');
+        const mainDbPath = path.join(dataDir, 'nid.sqlite');
         const db = new Database(mainDbPath);
         db.prepare('INSERT INTO user_preference_signals (selected_candidate, unknown_word) VALUES (?, ?)').run(selectedCandidate, intent?.join(' ') || '');
         

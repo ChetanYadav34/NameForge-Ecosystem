@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: lexforge-api
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    plan: starter
+    region: oregon
+    disk:
+      name: lexforge-data
+      mountPath: /app/data
+      sizeGB: 1
+    envVars:
+      - key: PORT
+        value: 4000
+      - key: NODE_ENV
+        value: production
