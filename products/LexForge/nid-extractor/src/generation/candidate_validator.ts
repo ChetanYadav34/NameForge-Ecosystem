@@ -90,14 +90,8 @@ export async function validateCandidate(requestId: string, candidate: string, db
 
     const isValid = failures.length === 0;
 
-    // Persist
-    try {
-        await db.prepare(`INSERT INTO candidate_validation (request_id, candidate_string, is_valid, failures, validation_score) VALUES (?, ?, ?, ?, ?)`).bind(
-            requestId, candidate, isValid ? 1 : 0, JSON.stringify(failures), score
-        ).run();
-    } catch (e) {
-        // ignore duplicate
-    }
+    // Skip persisting to DB during generation loop to avoid Cloudflare D1 subrequest limits (max 50/request)
+    // and daily write limits. We only persist the final winners.
 
     return {
         isValid,

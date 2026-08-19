@@ -35,17 +35,8 @@ export async function scoreBrandability(requestId: string, candidate: string, va
     let composite = isUnspeakable ? 0 : ((pronounceability * 0.5) + (structuralHarmony * 0.3) + (visualSimplicity * 0.2));
     const finalScore = composite * 100;
 
-    // Persist (Nullifying unused legacy columns to avoid schema changes)
-    
-    await db.prepare(`
-        INSERT INTO brandability_scores (
-            request_id, candidate_string, pronounceability, length_fitness, 
-            memorability, visual_simplicity, structural_harmony, brand_similarity_penalty, composite_score
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `).bind(
-        requestId, candidate, pronounceability, 1.0, 
-        1.0, visualSimplicity, structuralHarmony, 0, finalScore
-    ).run();
+    // Skip persisting to DB during generation loop to avoid Cloudflare D1 subrequest limits (max 50/request)
+    // and daily write limits. We only persist the final winners.
 
     return {
         brandabilityScore: finalScore,

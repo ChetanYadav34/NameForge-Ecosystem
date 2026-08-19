@@ -65,6 +65,7 @@ function computeSemanticPreservation(original: string, mutated: string): number 
 export class MutationEngine {
     private db: Database;
     private topSuffixes: string[] = [];
+    private benchmarks: string[] = [];
 
     constructor(db: Database) {
         this.db = db;
@@ -75,9 +76,14 @@ export class MutationEngine {
             const result = await this.db.prepare(`SELECT affix FROM affix_statistics WHERE type = 'suffix' ORDER BY global_frequency DESC LIMIT 20`).all() as any;
             const rows = result.results || [];
             this.topSuffixes = rows.map((r: any) => r.affix);
+            
+            const benchResult = await this.db.prepare(`SELECT company_name FROM benchmark_companies`).all() as any;
+            const benchRows = benchResult.results || [];
+            this.benchmarks = benchRows.map((r: any) => r.company_name.toLowerCase());
         } catch (e) {
             console.error("Failed to load affix statistics", e);
             this.topSuffixes = ['io', 'ify', 'ly', 'er'];
+            this.benchmarks = [];
         }
     }
 
@@ -154,31 +160,19 @@ export class MutationEngine {
         const lower = candidate.toLowerCase();
         
         // 1. Check exact match in benchmark
-        const benchMatch = await this.db.prepare(`SELECT 1 FROM benchmark_companies WHERE LOWER(company_name) = ?`).bind(lower).first();
-        if (benchMatch) return 0.0; // Fail novelty
+        if (this.benchmarks.includes(lower)) return 0.0; // Fail novelty
 
         // 2. Check Levenshtein against benchmarks
-        try {
-            const result = await this.db.prepare(`SELECT company_name FROM benchmark_companies`).all() as any;
-            const benchmarks = result.results || [];
-            for (const b of benchmarks) {
-                const dist = getEditDistance(lower, b.company_name.toLowerCase());
-                if (dist <= 2 && lower.length >= 5) { // e.g. Strype vs Stripe
-                    return 0.1; // Severe penalty
-                }
+        for (const b of this.benchmarks) {
+            const dist = getEditDistance(lower, b.toLowerCase());
+            if (dist <= 2 && lower.length >= 5) { // e.g. Strype vs Stripe
+                return 0.1; // Severe penalty
             }
-        } catch (e) {
-            // Ignore if table not present in test db
         }
 
         // 3. Fast exact match check against corpus (if table exists and is accessible)
-        try {
-            const exactMatch = await this.db.prepare(`SELECT 1 FROM company_raw_data WHERE LOWER(name) = ? LIMIT 1`).bind(lower).first();
-            if (exactMatch) return 0.2;
-        } catch (e) {
-            // Ignore if table not present in test db
-        }
-
+        // Skip this because D1 subrequest limits in CF workers will crash if we query per loop iteration.
+        // The availability checker handles exact matches anyway.
         return 0.9; // Good novelty
     }
 }

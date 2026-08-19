@@ -62,10 +62,8 @@ export async function analyzePhonotactics(requestId: string, candidate: string, 
     pronounceability = Math.max(0, Math.min(1, pronounceability));
     readability = Math.max(0, Math.min(1, readability));
 
-    // Persist
-    await db.prepare(`INSERT INTO phonotactic_scores (request_id, candidate_string, pronounceability_score, readability_score, syllable_count, phonetic_shape, issues) VALUES (?, ?, ?, ?, ?, ?, ?)`).bind(
-        requestId, candidate, pronounceability, readability, syllables, shape, JSON.stringify(issues)
-    ).run();
+    // Skip persisting to DB during generation loop to avoid Cloudflare D1 subrequest limits (max 50/request)
+    // and daily write limits. We only persist the final winners.
 
     return {
         pronounceabilityScore: pronounceability,

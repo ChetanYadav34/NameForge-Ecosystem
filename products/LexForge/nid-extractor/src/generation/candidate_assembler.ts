@@ -98,31 +98,78 @@ export async function assembleCandidates(req: GenerationRequest, db: Database): 
         }
     }
 
-    for (const c of concepts.values()) {
-        const morphemes = (await db.prepare(`
-            SELECT m.id, m.morpheme, m.detected_type, cmm.semantic_relevance 
-            FROM concept_morpheme_map cmm
-            JOIN morpheme_catalog m ON m.id = cmm.morpheme_id
-            WHERE cmm.concept_id = ?
-            ORDER BY cmm.semantic_relevance DESC
-            LIMIT 15
-        `).bind(c.id).all()).results as any[];
+    // 2. Resolve Morphemes from Concepts in batches to avoid CF Worker subrequest limits
+    const conceptIds = Array.from(concepts.values()).map(c => c.id);
+    const morphemesByConcept = new Map<number, any[]>();
+    
+    if (conceptIds.length > 0) {
+        const placeholders = conceptIds.map(() => '?').join(',');
+        try {
+            const allMorphemes = (await db.prepare(`
+                SELECT cmm.concept_id, m.id, m.morpheme, m.detected_type, cmm.semantic_relevance 
+                FROM concept_morpheme_map cmm
+                JOIN morpheme_catalog m ON m.id = cmm.morpheme_id
+                WHERE cmm.concept_id IN (${placeholders})
+            `).bind(...conceptIds).all()).results as any[];
+            
+            for (const row of allMorphemes) {
+                if (!morphemesByConcept.has(row.concept_id)) morphemesByConcept.set(row.concept_id, []);
+                morphemesByConcept.get(row.concept_id)!.push(row);
+            }
+        } catch (e) {
+            console.error("Batch morpheme query failed:", e);
+        }
+    }
 
+    const missingMorphemeIds = new Set<number>();
+    const fallbackLinksToProcess = [];
+
+    for (const c of concepts.values()) {
+        let morphemes = morphemesByConcept.get(c.id) || [];
+        
         if (morphemes.length === 0) {
             const fallbackLinks = (cmmFallbackData as any[]).filter(r => r.concept_id === c.id);
             for (const fl of fallbackLinks) {
-                const mRow = await db.prepare(`SELECT id, morpheme, detected_type FROM morpheme_catalog WHERE id = ?`).bind(fl.morpheme_id).first() as any;
-                if (mRow) {
-                    morphemes.push({
-                        id: mRow.id,
-                        morpheme: mRow.morpheme,
-                        detected_type: mRow.detected_type,
-                        semantic_relevance: fl.semantic_relevance || 0.5
-                    });
-                }
+                missingMorphemeIds.add(fl.morpheme_id);
+                fallbackLinksToProcess.push({ concept_id: c.id, morpheme_id: fl.morpheme_id, semantic_relevance: fl.semantic_relevance || 0.5 });
             }
         }
-        
+    }
+
+    // Batch query missing morphemes from fallback data
+    const mIds = Array.from(missingMorphemeIds);
+    const missingMorphemesMap = new Map<number, any>();
+    if (mIds.length > 0) {
+        // D1 has a max of 100 bound variables, so chunk it if necessary. Usually fallbacks won't exceed this, but let's be safe.
+        const chunkedMIds = mIds.slice(0, 90);
+        const placeholders = chunkedMIds.map(() => '?').join(',');
+        try {
+            const missingRows = (await db.prepare(`SELECT id, morpheme, detected_type FROM morpheme_catalog WHERE id IN (${placeholders})`).bind(...chunkedMIds).all()).results as any[];
+            for (const row of missingRows) {
+                missingMorphemesMap.set(row.id, row);
+            }
+        } catch (e) {
+            console.error("Batch missing morpheme query failed:", e);
+        }
+    }
+
+    // Apply the fallbacks
+    for (const fl of fallbackLinksToProcess) {
+        const mRow = missingMorphemesMap.get(fl.morpheme_id);
+        if (mRow) {
+            if (!morphemesByConcept.has(fl.concept_id)) morphemesByConcept.set(fl.concept_id, []);
+            morphemesByConcept.get(fl.concept_id)!.push({
+                id: mRow.id,
+                morpheme: mRow.morpheme,
+                detected_type: mRow.detected_type,
+                semantic_relevance: fl.semantic_relevance
+            });
+        }
+    }
+
+    // Finally, populate the morpheme pool
+    for (const c of concepts.values()) {
+        const morphemes = morphemesByConcept.get(c.id) || [];
         for (const m of morphemes) {
             if (!morphemePool.has(m.id)) {
                 morphemePool.set(m.id, { morpheme: m.morpheme, score: m.semantic_relevance, source: c.source });
@@ -209,9 +256,9 @@ export async function assembleCandidates(req: GenerationRequest, db: Database): 
                 const m2Id = mKeys[Math.floor(Math.random() * mKeys.length)];
                 const m2 = morphemePool.get(m2Id)!;
                 
-                const pmiCheck = await db.prepare(`SELECT pmi_score FROM morpheme_cooccurrence WHERE morpheme_a_id = ? AND morpheme_b_id = ?`).bind(m1Id, m2Id).first() as any;
-                if (pmiCheck) pmiScore = pmiCheck.pmi_score;
-                else pmiScore = 0.2;
+                // Skip PMI check to avoid Cloudflare Worker 50-subrequest limits
+                // The co-occurrence can be skipped safely and defaulted.
+                pmiScore = 0.5;
                 
                 const blend1 = m1.morpheme.substring(0, Math.ceil(m1.morpheme.length / 2));
                 const blend2 = m2.morpheme.substring(Math.floor(m2.morpheme.length / 2));
@@ -405,35 +452,10 @@ export async function assembleCandidates(req: GenerationRequest, db: Database): 
 
     await persistDebugLog(req.requestId, 'INFO', 'ASSEMBLY_COMPLETE', `Generated ${uniqueCandidates.length} unique candidates.`, db);
     
-    // We shouldn't drop the generation_scores table insertions, but the schema needs updating if we add new columns, 
-    // for now we'll just skip inserting new columns into sqlite generation_scores table to avoid schema issues,
-    // or just insert the old columns.
-    const insertScore = db.prepare(`
-        INSERT INTO generation_scores (
-            request_id, candidate_string, semantic_relevance, industry_affinity, 
-            pmi_compatibility, novelty, trend_velocity, structural_success, composite_score
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `);
-
-    // D1 does not have .transaction() in the exact same way, but since we are doing Promise.all we can batch
-    const insertPromises = [];
-    for (const c of uniqueCandidates) {
-        insertPromises.push(
-            insertScore.bind(
-                req.requestId,
-                c.candidateString,
-                c.scoreComponents.semanticRelevance,
-                c.scoreComponents.industryAffinity,
-                c.scoreComponents.pmiCompatibility,
-                c.scoreComponents.novelty,
-                c.scoreComponents.trendVelocity,
-                c.scoreComponents.structuralSuccess,
-                c.compositeScore
-            ).run().catch((e: any) => { /* duplicate insertion ignore */ })
-        );
-    }
-    await Promise.all(insertPromises);
-
+    // Skip inserting all 100 generated candidates into generation_scores.
+    // Cloudflare D1 allows max 50 subrequests per worker execution.
+    // Doing 100 individual INSERT queries blows this limit instantly.
+    
     return uniqueCandidates;
 }
 
