@@ -120,9 +120,16 @@ export const GenerationForm = () => {
           >
             <option value="">Any Industry</option>
             <option value="tech">Technology</option>
-            <option value="automotive">Automotive</option>
-            <option value="fashion">Fashion</option>
+            <option value="automation">Automation</option>
+            <option value="healthcare">Healthcare</option>
             <option value="finance">Finance</option>
+            <option value="automotive">Automotive</option>
+            <option value="real_estate">Real Estate</option>
+            <option value="ecommerce">E-commerce</option>
+            <option value="fashion">Fashion</option>
+            <option value="education">Education</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="food">Food & Beverage</option>
           </select>
         </div>
         <div>
