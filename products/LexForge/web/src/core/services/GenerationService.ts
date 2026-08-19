@@ -14,7 +14,7 @@ export class RealGenerationService implements IGenerationService {
     try {
       InteractionEventBus.emit('VALIDATION_STARTED', { timestamp: Date.now() });
       
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://lexforge-api.chetan3contact.workers.dev';
       const response = await fetch(`${apiUrl}/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -51,7 +51,7 @@ export class RealGenerationService implements IGenerationService {
   public async sendFeedback(selectedCandidate: string, input: string): Promise<void> {
     try {
       const intent = input.split(' ');
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://lexforge-api.chetan3contact.workers.dev';
       await fetch(`${apiUrl}/feedback`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

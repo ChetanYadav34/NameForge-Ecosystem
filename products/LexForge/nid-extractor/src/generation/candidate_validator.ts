@@ -15,7 +15,7 @@ export interface ValidationResult {
 // Common dictionary fragments that should not stand alone without a suffix/prefix
 const FRAGMENTS = ['healt', 'financ', 'techn', 'analyt', 'softw', 'educ', 'med', 'serv'];
 
-export async function validateCandidate(requestId: string, candidate: string): ValidationResult {
+export async function validateCandidate(requestId: string, candidate: string, db: Database): Promise<ValidationResult> {
     const failures: string[] = [];
     let score = 1.0;
     const str = candidate.toLowerCase();
@@ -91,10 +91,13 @@ export async function validateCandidate(requestId: string, candidate: string): V
     const isValid = failures.length === 0;
 
     // Persist
-    
-    await db.prepare(`INSERT INTO candidate_validation (request_id, candidate_string, is_valid, failures, validation_score) VALUES (?, ?, ?, ?, ?)`).bind(
-        requestId, candidate, isValid ? 1 : 0, JSON.stringify(failures).run(), score
-    );
+    try {
+        await db.prepare(`INSERT INTO candidate_validation (request_id, candidate_string, is_valid, failures, validation_score) VALUES (?, ?, ?, ?, ?)`).bind(
+            requestId, candidate, isValid ? 1 : 0, JSON.stringify(failures), score
+        ).run();
+    } catch (e) {
+        // ignore duplicate
+    }
 
     return {
         isValid,

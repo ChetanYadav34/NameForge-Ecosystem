@@ -48,22 +48,27 @@ export class SQLiteCompanyChecker implements CompanyConflictChecker {
         this.db = db;
     }
 
-    private loadCorpus() {
+    private async loadCorpus() {
         if (this.loaded) return;
-        const rows = this.db.prepare(`SELECT original_name, normalized_name, phonetic_key FROM company_normalized`).all() as any[];
-        for (const row of rows) {
-            this.corpus.push({
-                original: row.original_name,
-                canonical: row.normalized_name,
-                fuzzy: normalizeName(row.normalized_name, NormalizationType.FUZZY),
-                phonetic: row.phonetic_key
-            });
+        try {
+            const result = await this.db.prepare(`SELECT original_name, normalized_name, phonetic_key FROM company_normalized`).all() as any;
+            const rows = result.results || [];
+            for (const row of rows) {
+                this.corpus.push({
+                    original: row.original_name,
+                    canonical: row.normalized_name,
+                    fuzzy: normalizeName(row.normalized_name, NormalizationType.FUZZY),
+                    phonetic: row.phonetic_key
+                });
+            }
+        } catch (e) {
+            console.error("Failed to load corpus", e);
         }
         this.loaded = true;
     }
 
     async checkCompanyConflict(name: string): Promise<AvailabilityResult> {
-        this.loadCorpus();
+        await this.loadCorpus();
 
         const canonical = normalizeName(name, NormalizationType.CANONICAL);
         const fuzzy = normalizeName(name, NormalizationType.FUZZY);

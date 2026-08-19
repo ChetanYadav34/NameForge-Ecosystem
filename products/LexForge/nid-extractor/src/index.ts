@@ -45,6 +45,17 @@ app.post('/generate', async (c) => {
     }
 });
 
+app.get('/debug', async (c) => {
+    try {
+        const db = c.env.DB as any;
+        const iap = await db.prepare('SELECT COUNT(*) as c FROM industry_archetype_preference').first();
+        const scores = await db.prepare('SELECT archetype, confidence_score, success_weighting FROM industry_archetype_preference WHERE industry_id = 1').all();
+        return c.json({ industry_archetype_preference: iap, scores: scores.results });
+    } catch (e: any) {
+        return c.json({ error: e.message }, 500);
+    }
+});
+
 app.post('/feedback', async (c) => {
     try {
         const body = await c.req.json();

@@ -51,10 +51,10 @@ export class CachedTrademarkChecker implements TrademarkChecker {
                     jurisdiction, 
                     result.status, 
                     result.provider, 
-                    result.details ? JSON.stringify(result.details).run() : null,
+                    result.details ? JSON.stringify(result.details) : null,
                     now.toISOString(), 
                     expiresAt.toISOString()
-                );
+                ).run();
             }
 
             return result;

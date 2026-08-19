@@ -1,4 +1,5 @@
 export type Database = any;
+import cimData from '../data/cim.json';
 
 export interface ExtractedConcept {
     conceptId: number;
@@ -92,8 +93,15 @@ export async function extractIntentConcepts(intentStrings: string[], industryNam
                     SELECT affinity_score FROM concept_industry_map
                     WHERE concept_id = ? AND industry_id = ?
                 `).bind(match.id, industryId).first() as any;
+                
                 if (mapRow) {
                     industryAffinity = mapRow.affinity_score;
+                } else {
+                    // Fallback to JSON if missing in D1
+                    const jsonRow = (cimData as any[]).find(r => r.concept_id === match.id && r.industry_id === industryId);
+                    if (jsonRow) {
+                        industryAffinity = jsonRow.affinity_score;
+                    }
                 }
             }
             

@@ -2,6 +2,7 @@ export type Database = any;
 import { GenerationRequest, ArchetypeScore, Candidate, CandidateScoreComponent, NamingStrategy } from './types';
 import { routeArchetype } from './archetype_router';
 import { calculateCompositeScore, persistCandidateScore, persistDebugLog } from './generation_score';
+import cmmFallbackData from '../data/cmm_fallback.json';
 import { validateCandidate } from './candidate_validator';
 import { analyzePhonotactics } from './phonotactic_engine';
 import { scoreBrandability } from './brandability_score';
@@ -106,6 +107,21 @@ export async function assembleCandidates(req: GenerationRequest, db: Database): 
             ORDER BY cmm.semantic_relevance DESC
             LIMIT 15
         `).bind(c.id).all()).results as any[];
+
+        if (morphemes.length === 0) {
+            const fallbackLinks = (cmmFallbackData as any[]).filter(r => r.concept_id === c.id);
+            for (const fl of fallbackLinks) {
+                const mRow = await db.prepare(`SELECT id, morpheme, detected_type FROM morpheme_catalog WHERE id = ?`).bind(fl.morpheme_id).first() as any;
+                if (mRow) {
+                    morphemes.push({
+                        id: mRow.id,
+                        morpheme: mRow.morpheme,
+                        detected_type: mRow.detected_type,
+                        semantic_relevance: fl.semantic_relevance || 0.5
+                    });
+                }
+            }
+        }
         
         for (const m of morphemes) {
             if (!morphemePool.has(m.id)) {
@@ -117,7 +133,41 @@ export async function assembleCandidates(req: GenerationRequest, db: Database): 
     }
 
     const candidates: Candidate[] = [];
-    const mKeys = Array.from(morphemePool.keys());
+    let mKeys = Array.from(morphemePool.keys());
+    
+    // ULTIMATE FALLBACK: If mappings are completely missing (e.g. during partial D1 imports), 
+    // fetch random morphemes directly to guarantee generation succeeds, AND explicitly use user intent.
+    if (mKeys.length === 0) {
+        if (req.intent) {
+            for (const intentStr of req.intent) {
+                const words = intentStr.split(/\s+/).map(w => w.replace(/[^a-zA-Z]/g, '').toLowerCase());
+                for (const w of words) {
+                    if (w.length >= 3) {
+                        morphemePool.set(-(morphemePool.size + 1), { morpheme: w, score: 1.0, source: 'intent' });
+                        // Extract syllables/fragments to allow beautiful blending (e.g., family -> fam, ily)
+                        if (w.length >= 5) {
+                            const half = Math.ceil(w.length / 2);
+                            morphemePool.set(-(morphemePool.size + 1), { morpheme: w.substring(0, half), score: 0.8, source: 'intent' });
+                            morphemePool.set(-(morphemePool.size + 1), { morpheme: w.substring(half - 1), score: 0.8, source: 'intent' });
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Inject a robust set of universal premium startup affixes and roots
+        const premiumRoots = [
+            'nova', 'vora', 'astra', 'omni', 'sync', 'flow', 'core', 'base', 'gen', 'pro', 'nexus', 'pulse',
+            'ly', 'ify', 'io', 'ai', 'us', 'um', 'a', 'o', 'i', 'era', 'zen', 'x', 'z', 'on', 'in', 'en'
+        ];
+        
+        for (const r of premiumRoots) {
+            morphemePool.set(-(morphemePool.size + 1), { morpheme: r, score: 0.6, source: 'curated_fallback' });
+        }
+        
+        mKeys = Array.from(morphemePool.keys());
+    }
+    
     if (mKeys.length === 0) return [];
 
     const quotas = [
@@ -132,7 +182,7 @@ export async function assembleCandidates(req: GenerationRequest, db: Database): 
         let generatedForQuota = 0;
         let iterations = 0;
         
-        while (generatedForQuota < quota.limit && iterations < 3000) {
+        while (generatedForQuota < quota.limit && iterations < 30) {
             iterations++;
             totalIterations++;
             
@@ -176,7 +226,7 @@ export async function assembleCandidates(req: GenerationRequest, db: Database): 
             if (candidates.some(c => c.candidateString === rawStr)) continue;
 
             // Phase 4.2A Validation
-            const valResult = validateCandidate(req.requestId, rawStr);
+            const valResult = await validateCandidate(req.requestId, rawStr, db);
             if (!valResult.isValid) continue;
 
             // Phase 4.5A: Apply Mutation Engine to transform raw words

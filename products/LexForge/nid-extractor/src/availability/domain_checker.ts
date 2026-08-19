@@ -48,7 +48,7 @@ export class CachedDomainChecker implements DomainChecker {
                         provider=excluded.provider, 
                         checked_at=excluded.checked_at, 
                         expires_at=excluded.expires_at
-                `).bind(name, tld, result.status, result.provider, now.toISOString().run(), expiresAt.toISOString());
+                `).bind(name, tld, result.status, result.provider, now.toISOString(), expiresAt.toISOString()).run();
             }
 
             return result;

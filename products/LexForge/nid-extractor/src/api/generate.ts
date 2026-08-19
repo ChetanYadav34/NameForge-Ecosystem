@@ -19,6 +19,11 @@ export async function generateNamesEndpoint(
     
     // 1. Core Generation Pipeline
     let candidates = await assembleCandidates(req, db);
+    console.log(`Generated ${candidates.length} candidates`);
+
+    if (candidates.length === 0) {
+        return { candidates: [], debug: 'Assembler returned 0 candidates. Check DB mappings.' };
+    }
 
     // 2. Capability Boundary (FREE vs PAID)
     const paidTier = isUserPaid(userId);
