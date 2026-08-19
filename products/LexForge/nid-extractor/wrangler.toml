@@ -1,11 +1,12 @@
 name = "lexforge-api"
 main = "src/index.ts"
-compatibility_date = "2024-08-19"
+compatibility_date = "2024-11-01"
+compatibility_flags = [ "nodejs_compat" ]
 
 [[d1_databases]]
 binding = "DB"
 database_name = "lexforge-db"
-database_id = "xxx-yyy-zzz" # Users will fill this after running create
+database_id = "39f04aed-705d-43e1-a360-64a89094f6fb"
 
 [triggers]
 crons = ["0 * * * *"] # Run learner every hour

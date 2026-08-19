@@ -1,17 +1,12 @@
-import Database from 'better-sqlite3';
-import path from 'path';
+export type Database = any;
+
 import { ValidationResult } from './candidate_validator';
 import { PhonotacticResult } from './phonotactic_engine';
 
-const DB_PATH = path.resolve(__dirname, '../../data/nid.sqlite');
-let dbInstance: Database.Database | null = null;
 
-function getDB() {
-    if (!dbInstance) {
-        dbInstance = new Database(DB_PATH);
-    }
-    return dbInstance;
-}
+
+
+
 
 export interface BrandabilityResult {
     brandabilityScore: number;
@@ -25,7 +20,7 @@ export interface BrandabilityResult {
     }
 }
 
-export function scoreBrandability(requestId: string, candidate: string, validation: ValidationResult, phonotactics: PhonotacticResult): BrandabilityResult {
+export async function scoreBrandability(requestId: string, candidate: string, validation: ValidationResult, phonotactics: PhonotacticResult): BrandabilityResult {
     // Phase 4.5 Refactor: Phonotactics is now a guardrail.
     const pronounceability = phonotactics.pronounceabilityScore;
     
@@ -41,16 +36,16 @@ export function scoreBrandability(requestId: string, candidate: string, validati
     const finalScore = composite * 100;
 
     // Persist (Nullifying unused legacy columns to avoid schema changes)
-    const db = getDB();
-    db.prepare(`
+    
+    await db.prepare(`
         INSERT INTO brandability_scores (
             request_id, candidate_string, pronounceability, length_fitness, 
             memorability, visual_simplicity, structural_harmony, brand_similarity_penalty, composite_score
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `).run(
+    `).bind(
         requestId, candidate, pronounceability, 1.0, 
         1.0, visualSimplicity, structuralHarmony, 0, finalScore
-    );
+    ).run();
 
     return {
         brandabilityScore: finalScore,

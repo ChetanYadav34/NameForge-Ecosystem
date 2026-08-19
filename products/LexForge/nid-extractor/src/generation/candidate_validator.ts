@@ -1,15 +1,10 @@
-import Database from 'better-sqlite3';
-import path from 'path';
+export type Database = any;
 
-const DB_PATH = path.resolve(__dirname, '../../data/nid.sqlite');
-let dbInstance: Database.Database | null = null;
 
-function getDB() {
-    if (!dbInstance) {
-        dbInstance = new Database(DB_PATH);
-    }
-    return dbInstance;
-}
+
+
+
+
 
 export interface ValidationResult {
     isValid: boolean;
@@ -20,7 +15,7 @@ export interface ValidationResult {
 // Common dictionary fragments that should not stand alone without a suffix/prefix
 const FRAGMENTS = ['healt', 'financ', 'techn', 'analyt', 'softw', 'educ', 'med', 'serv'];
 
-export function validateCandidate(requestId: string, candidate: string): ValidationResult {
+export async function validateCandidate(requestId: string, candidate: string): ValidationResult {
     const failures: string[] = [];
     let score = 1.0;
     const str = candidate.toLowerCase();
@@ -96,9 +91,9 @@ export function validateCandidate(requestId: string, candidate: string): Validat
     const isValid = failures.length === 0;
 
     // Persist
-    const db = getDB();
-    db.prepare(`INSERT INTO candidate_validation (request_id, candidate_string, is_valid, failures, validation_score) VALUES (?, ?, ?, ?, ?)`).run(
-        requestId, candidate, isValid ? 1 : 0, JSON.stringify(failures), score
+    
+    await db.prepare(`INSERT INTO candidate_validation (request_id, candidate_string, is_valid, failures, validation_score) VALUES (?, ?, ?, ?, ?)`).bind(
+        requestId, candidate, isValid ? 1 : 0, JSON.stringify(failures).run(), score
     );
 
     return {
