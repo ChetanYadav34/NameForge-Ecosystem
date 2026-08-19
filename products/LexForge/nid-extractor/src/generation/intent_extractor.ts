@@ -1,4 +1,4 @@
-import Database from 'better-sqlite3';
+export type Database = any;
 
 export interface ExtractedConcept {
     conceptId: number;
@@ -12,15 +12,15 @@ export interface IntentExtractionResult {
     unmatchedTokens: string[];
 }
 
-export function extractIntentConcepts(intentStrings: string[], industryName: string, db: Database.Database): IntentExtractionResult {
+export async function extractIntentConcepts(intentStrings: string[], industryName: string, db: Database): Promise<IntentExtractionResult> {
     if (!intentStrings || intentStrings.length === 0) return { concepts: [], unmatchedTokens: [] };
     
     // Resolve industry ID
-    const industryRow = db.prepare(`
+    const industryRow = await db.prepare(`
         SELECT canonical_id FROM industry_alias WHERE alias_name = ? COLLATE NOCASE
         UNION
         SELECT id FROM industry_ontology WHERE canonical_name = ? COLLATE NOCASE
-    `).get(industryName, industryName) as any;
+    `).bind(industryName, industryName).first() as any;
     
     const industryId = industryRow ? (industryRow.canonical_id || industryRow.id) : -1;
     
@@ -60,12 +60,12 @@ export function extractIntentConcepts(intentStrings: string[], industryName: str
         
         for (const variant of variants) {
             // Look up concept
-            matches = db.prepare(`
+            matches = (await db.prepare(`
                 SELECT id, canonical_name 
                 FROM concept_catalog 
                 WHERE canonical_name = ? OR canonical_name LIKE ?
                 LIMIT 5
-            `).all(variant, `${variant}%`) as any[];
+            `).bind(variant, `${variant}%`).all()).results as any[];
             
             if (matches.length > 0) break; // Found matches with this variant
         }
@@ -75,7 +75,7 @@ export function extractIntentConcepts(intentStrings: string[], industryName: str
             
             // Add to discovery queue for the autonomous learner
             try {
-                db.prepare('INSERT INTO concept_discovery_queue (unknown_word, context) VALUES (?, ?)').run(rawToken, intentStrings.join(' '));
+                await db.prepare('INSERT INTO concept_discovery_queue (unknown_word, context) VALUES (?, ?)').bind(rawToken, intentStrings.join(' ')).run();
             } catch (e) {
                 console.error("Discovery queue log failed:", e);
             }
@@ -88,10 +88,10 @@ export function extractIntentConcepts(intentStrings: string[], industryName: str
             // Check industry affinity to distinguish FACT vs INTENT
             let industryAffinity = 0;
             if (industryId !== -1) {
-                const mapRow = db.prepare(`
+                const mapRow = await db.prepare(`
                     SELECT affinity_score FROM concept_industry_map
                     WHERE concept_id = ? AND industry_id = ?
-                `).get(match.id, industryId) as any;
+                `).bind(match.id, industryId).first() as any;
                 if (mapRow) {
                     industryAffinity = mapRow.affinity_score;
                 }

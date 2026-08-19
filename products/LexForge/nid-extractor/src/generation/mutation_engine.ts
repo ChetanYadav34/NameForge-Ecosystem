@@ -1,4 +1,4 @@
-import Database from 'better-sqlite3';
+export type Database = any;
 import { Candidate } from './types';
 import { ValidationResult } from './candidate_validator';
 import { PhonotacticResult } from './phonotactic_engine';
@@ -63,18 +63,25 @@ function computeSemanticPreservation(original: string, mutated: string): number 
 }
 
 export class MutationEngine {
-    private db: Database.Database;
-    private topSuffixes: string[];
+    private db: Database;
+    private topSuffixes: string[] = [];
 
-    constructor(db: Database.Database) {
+    constructor(db: Database) {
         this.db = db;
-        // Fetch top suffixes, filtering out very common ones that lead to cheap sounding names if we want, or use success_weighting if available
-        // For now, grab top 20
-        const rows = this.db.prepare(`SELECT affix FROM affix_statistics WHERE type = 'suffix' ORDER BY global_frequency DESC LIMIT 20`).all() as any[];
+    }
+
+    public async init() {
+        const rows = (await this.db.prepare(`SELECT affix FROM affix_statistics WHERE type = 'suffix' ORDER BY global_frequency DESC LIMIT 20`).all()).results as any[];
         this.topSuffixes = rows.map(r => r.affix);
     }
 
-    public mutateCandidate(candidateStr: string, originalMorphemesStr: string): MutationResult {
+    public static async create(db: Database): Promise<MutationEngine> {
+        const engine = new MutationEngine(db);
+        await engine.init();
+        return engine;
+    }
+
+    public async mutateCandidate(candidateStr: string, originalMorphemesStr: string): Promise<MutationResult> {
         let currentStr = candidateStr.toLowerCase();
         const history: string[] = [];
         let mutationQuality = 0.5; // Neutral starting point
@@ -108,9 +115,9 @@ export class MutationEngine {
 
         // 4. Suffix Harmonization
         // Only if it doesn't already have a recognized suffix and it's short
-        if (currentStr.length <= 6 && Math.random() > 0.7) {
+        if (currentStr.length <= 6 && Math.random() > 0.7 && this.topSuffixes.length > 0) {
             // Pick a random top suffix that fits
-            const suffix = this.topSuffixes[Math.floor(Math.random() * 5)]; // Pick from top 5
+            const suffix = this.topSuffixes[Math.floor(Math.random() * Math.min(5, this.topSuffixes.length))]; // Pick from top 5
             if (!currentStr.endsWith(suffix) && !['ify', 'io', 'ly', 'er'].includes(suffix)) { // User rule: don't just append these blindly
                 currentStr += suffix;
                 history.push(`SuffixHarmonization:Added${suffix}`);
@@ -125,7 +132,7 @@ export class MutationEngine {
         const preservationScore = computeSemanticPreservation(originalMorphemesStr, currentStr);
 
         // Check Novelty
-        const noveltyScore = this.checkNovelty(currentStr);
+        const noveltyScore = await this.checkNovelty(currentStr);
 
         return {
             success: history.length > 0 && preservationScore > 0.5 && noveltyScore > 0.3,
@@ -137,15 +144,15 @@ export class MutationEngine {
         };
     }
 
-    private checkNovelty(candidate: string): number {
+    private async checkNovelty(candidate: string): Promise<number> {
         const lower = candidate.toLowerCase();
         
         // 1. Check exact match in benchmark
-        const benchMatch = this.db.prepare(`SELECT 1 FROM benchmark_companies WHERE LOWER(company_name) = ?`).get(lower);
+        const benchMatch = await this.db.prepare(`SELECT 1 FROM benchmark_companies WHERE LOWER(company_name) = ?`).bind(lower).first();
         if (benchMatch) return 0.0; // Fail novelty
 
         // 2. Check Levenshtein against benchmarks
-        const benchmarks = this.db.prepare(`SELECT company_name FROM benchmark_companies`).all() as any[];
+        const benchmarks = (await this.db.prepare(`SELECT company_name FROM benchmark_companies`).all()).results as any[];
         for (const b of benchmarks) {
             const dist = getEditDistance(lower, b.company_name.toLowerCase());
             if (dist <= 2 && lower.length >= 5) { // e.g. Strype vs Stripe
@@ -155,7 +162,7 @@ export class MutationEngine {
 
         // 3. Fast exact match check against corpus (if table exists and is accessible)
         try {
-            const exactMatch = this.db.prepare(`SELECT 1 FROM company_raw_data WHERE LOWER(name) = ? LIMIT 1`).get(lower);
+            const exactMatch = await this.db.prepare(`SELECT 1 FROM company_raw_data WHERE LOWER(name) = ? LIMIT 1`).bind(lower).first();
             if (exactMatch) return 0.2;
         } catch (e) {
             // Ignore if table not present in test db

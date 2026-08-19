@@ -1,28 +1,14 @@
-import Database from 'better-sqlite3';
-import path from 'path';
+export type Database = any;
 import { GenerationRequest, ArchetypeScore } from './types';
 
-const DB_PATH = path.resolve(__dirname, '../../data/nid.sqlite');
-let dbInstance: Database.Database | null = null;
-
-function getDB() {
-    if (!dbInstance) {
-        dbInstance = new Database(DB_PATH, { readonly: true });
-    }
-    return dbInstance;
-}
-
-export function routeArchetype(req: GenerationRequest): ArchetypeScore[] {
-    const db = getDB();
-    
+export async function routeArchetype(req: GenerationRequest, db: Database): Promise<ArchetypeScore[]> {
     // Resolve canonical industry
-    const getIndustryId = db.prepare(`
+    const indRow = await db.prepare(`
         SELECT canonical_id FROM industry_alias WHERE alias_name = ? COLLATE NOCASE
         UNION
         SELECT id FROM industry_ontology WHERE canonical_name = ? COLLATE NOCASE
-    `);
+    `).bind(req.industry, req.industry).first() as any;
     
-    let indRow = getIndustryId.get(req.industry, req.industry) as any;
     let industryId = indRow ? (indRow.canonical_id || indRow.id) : null;
     
     if (!industryId) {
@@ -31,7 +17,7 @@ export function routeArchetype(req: GenerationRequest): ArchetypeScore[] {
     }
 
     // Retrieve preferences for this industry
-    const prefs = db.prepare(`SELECT archetype, confidence_score, success_weighting FROM industry_archetype_preference WHERE industry_id = ?`).all(industryId) as any[];
+    const prefs = (await db.prepare(`SELECT archetype, confidence_score, success_weighting FROM industry_archetype_preference WHERE industry_id = ?`).bind(industryId).all()).results as any[];
     
     // Adjust scores based on style references if applicable
     let scores: ArchetypeScore[] = prefs.map(p => {

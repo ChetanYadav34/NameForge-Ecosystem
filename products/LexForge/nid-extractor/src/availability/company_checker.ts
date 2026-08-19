@@ -1,4 +1,4 @@
-import Database from 'better-sqlite3';
+export type Database = any;
 import { CompanyConflictChecker, AvailabilityResult } from './types';
 import { normalizeName, NormalizationType, generatePhoneticKey } from './normalization';
 
@@ -40,12 +40,12 @@ interface InMemoryCompany {
 }
 
 export class SQLiteCompanyChecker implements CompanyConflictChecker {
-    private db: Database.Database;
+    private db: Database;
     private corpus: InMemoryCompany[] = [];
     private loaded = false;
 
-    constructor(dbPath: string) {
-        this.db = new Database(dbPath);
+    constructor(db: Database) {
+        this.db = db;
     }
 
     private loadCorpus() {

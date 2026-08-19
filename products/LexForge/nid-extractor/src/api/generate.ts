@@ -3,6 +3,8 @@ import { GenerationRequest, Candidate } from '../generation/types';
 import { AvailabilityService } from '../availability/availability_service';
 import { SCORING_WEIGHTS } from '../generation/human_shortlist_optimizer';
 
+export type Database = any;
+
 // Simulate an Access Policy or billing layer
 function isUserPaid(userId: string): boolean {
     return userId === 'paid_user';
@@ -11,11 +13,12 @@ function isUserPaid(userId: string): boolean {
 export async function generateNamesEndpoint(
     req: GenerationRequest, 
     availabilityService: AvailabilityService,
-    userId: string = 'free_user'
+    userId: string = 'free_user',
+    db: Database
 ): Promise<any> {
     
     // 1. Core Generation Pipeline
-    let candidates = assembleCandidates(req);
+    let candidates = await assembleCandidates(req, db);
 
     // 2. Capability Boundary (FREE vs PAID)
     const paidTier = isUserPaid(userId);

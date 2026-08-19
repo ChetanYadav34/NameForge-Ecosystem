@@ -1,22 +1,22 @@
-import Database from 'better-sqlite3';
+export type Database = any;
 import { TrademarkChecker, AvailabilityResult } from './types';
 
 export class CachedTrademarkChecker implements TrademarkChecker {
-    private db: Database.Database;
+    private db: Database;
     private provider: TrademarkChecker;
 
-    constructor(dbPath: string, provider: TrademarkChecker) {
-        this.db = new Database(dbPath);
+    constructor(db: Database, provider: TrademarkChecker) {
+        this.db = db;
         this.provider = provider;
     }
 
     async checkTrademark(name: string, jurisdiction: string = 'US'): Promise<AvailabilityResult> {
         const now = new Date();
-        const cached = this.db.prepare(`
+        const cached = await this.db.prepare(`
             SELECT status, provider, checked_at, expires_at, raw_response 
             FROM trademark_cache 
             WHERE name = ? AND jurisdiction = ?
-        `).get(name, jurisdiction) as any;
+        `).bind(name, jurisdiction).first() as any;
 
         if (cached && cached.expires_at) {
             const expires = new Date(cached.expires_at);
@@ -37,7 +37,7 @@ export class CachedTrademarkChecker implements TrademarkChecker {
             if (result.status !== 'UNKNOWN' && result.status !== 'ERROR') {
                 const expiresAt = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000); // 7 days
                 
-                this.db.prepare(`
+                await this.db.prepare(`
                     INSERT INTO trademark_cache (name, jurisdiction, status, provider, raw_response, checked_at, expires_at)
                     VALUES (?, ?, ?, ?, ?, ?, ?)
                     ON CONFLICT(name, jurisdiction) DO UPDATE SET 
@@ -46,12 +46,12 @@ export class CachedTrademarkChecker implements TrademarkChecker {
                         raw_response=excluded.raw_response,
                         checked_at=excluded.checked_at, 
                         expires_at=excluded.expires_at
-                `).run(
+                `).bind(
                     name, 
                     jurisdiction, 
                     result.status, 
                     result.provider, 
-                    result.details ? JSON.stringify(result.details) : null,
+                    result.details ? JSON.stringify(result.details).run() : null,
                     now.toISOString(), 
                     expiresAt.toISOString()
                 );

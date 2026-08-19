@@ -1,16 +1,5 @@
-import Database from 'better-sqlite3';
-import path from 'path';
+export type Database = any;
 import { CandidateScoreComponent } from './types';
-
-const DB_PATH = path.resolve(__dirname, '../../data/nid.sqlite');
-let dbInstance: Database.Database | null = null;
-
-function getDB() {
-    if (!dbInstance) {
-        dbInstance = new Database(DB_PATH);
-    }
-    return dbInstance;
-}
 
 export function calculateCompositeScore(components: CandidateScoreComponent): number {
     return (
@@ -28,8 +17,7 @@ export function calculateCompositeScore(components: CandidateScoreComponent): nu
     );
 }
 
-export function persistCandidateScore(requestId: string, candidateString: string, comps: CandidateScoreComponent, composite: number) {
-    const db = getDB();
+export async function persistCandidateScore(requestId: string, candidateString: string, comps: CandidateScoreComponent, composite: number, db: Database) {
     const insertScore = db.prepare(`
         INSERT INTO generation_scores (
             request_id, candidate_string, semantic_relevance, industry_affinity, 
@@ -37,7 +25,7 @@ export function persistCandidateScore(requestId: string, candidateString: string
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `);
 
-    insertScore.run(
+    await insertScore.bind(
         requestId,
         candidateString,
         comps.semanticRelevance,
@@ -47,10 +35,9 @@ export function persistCandidateScore(requestId: string, candidateString: string
         comps.trendVelocity,
         comps.structuralSuccess,
         composite
-    );
+    ).run();
 }
 
-export function persistDebugLog(requestId: string, level: string, stepName: string, details: string) {
-    const db = getDB();
-    db.prepare(`INSERT INTO generation_debug_log (request_id, log_level, step_name, details) VALUES (?, ?, ?, ?)`).run(requestId, level, stepName, details);
+export async function persistDebugLog(requestId: string, level: string, stepName: string, details: string, db: Database) {
+    await db.prepare(`INSERT INTO generation_debug_log (request_id, log_level, step_name, details) VALUES (?, ?, ?, ?)`).bind(requestId, level, stepName, details).run();
 }

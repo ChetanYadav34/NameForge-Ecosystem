@@ -1,22 +1,22 @@
-import Database from 'better-sqlite3';
+export type Database = any;
 import { DomainChecker, AvailabilityResult } from './types';
 
 export class CachedDomainChecker implements DomainChecker {
-    private db: Database.Database;
+    private db: Database;
     private provider: DomainChecker;
 
-    constructor(dbPath: string, provider: DomainChecker) {
-        this.db = new Database(dbPath);
+    constructor(db: Database, provider: DomainChecker) {
+        this.db = db;
         this.provider = provider;
     }
 
     async checkDomain(name: string, tld: string): Promise<AvailabilityResult> {
         const now = new Date();
-        const cached = this.db.prepare(`
+        const cached = await this.db.prepare(`
             SELECT status, provider, checked_at, expires_at 
             FROM domain_cache 
             WHERE name = ? AND tld = ?
-        `).get(name, tld) as any;
+        `).bind(name, tld).first() as any;
 
         if (cached && cached.expires_at) {
             const expires = new Date(cached.expires_at);
@@ -40,7 +40,7 @@ export class CachedDomainChecker implements DomainChecker {
             if (result.status !== 'UNKNOWN' && result.status !== 'ERROR') {
                 const expiresAt = new Date(now.getTime() + 24 * 60 * 60 * 1000); // 24 hours
                 
-                this.db.prepare(`
+                await this.db.prepare(`
                     INSERT INTO domain_cache (name, tld, status, provider, checked_at, expires_at)
                     VALUES (?, ?, ?, ?, ?, ?)
                     ON CONFLICT(name, tld) DO UPDATE SET 
@@ -48,7 +48,7 @@ export class CachedDomainChecker implements DomainChecker {
                         provider=excluded.provider, 
                         checked_at=excluded.checked_at, 
                         expires_at=excluded.expires_at
-                `).run(name, tld, result.status, result.provider, now.toISOString(), expiresAt.toISOString());
+                `).bind(name, tld, result.status, result.provider, now.toISOString().run(), expiresAt.toISOString());
             }
 
             return result;

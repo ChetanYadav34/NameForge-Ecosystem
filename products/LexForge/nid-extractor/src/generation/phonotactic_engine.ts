@@ -1,15 +1,4 @@
-import Database from 'better-sqlite3';
-import path from 'path';
-
-const DB_PATH = path.resolve(__dirname, '../../data/nid.sqlite');
-let dbInstance: Database.Database | null = null;
-
-function getDB() {
-    if (!dbInstance) {
-        dbInstance = new Database(DB_PATH);
-    }
-    return dbInstance;
-}
+export type Database = any;
 
 export interface PhonotacticResult {
     pronounceabilityScore: number;
@@ -19,7 +8,7 @@ export interface PhonotacticResult {
     issues: string[];
 }
 
-export function analyzePhonotactics(requestId: string, candidate: string): PhonotacticResult {
+export async function analyzePhonotactics(requestId: string, candidate: string, db: Database): Promise<PhonotacticResult> {
     const str = candidate.toLowerCase();
     const issues: string[] = [];
     
@@ -74,10 +63,9 @@ export function analyzePhonotactics(requestId: string, candidate: string): Phono
     readability = Math.max(0, Math.min(1, readability));
 
     // Persist
-    const db = getDB();
-    db.prepare(`INSERT INTO phonotactic_scores (request_id, candidate_string, pronounceability_score, readability_score, syllable_count, phonetic_shape, issues) VALUES (?, ?, ?, ?, ?, ?, ?)`).run(
+    await db.prepare(`INSERT INTO phonotactic_scores (request_id, candidate_string, pronounceability_score, readability_score, syllable_count, phonetic_shape, issues) VALUES (?, ?, ?, ?, ?, ?, ?)`).bind(
         requestId, candidate, pronounceability, readability, syllables, shape, JSON.stringify(issues)
-    );
+    ).run();
 
     return {
         pronounceabilityScore: pronounceability,

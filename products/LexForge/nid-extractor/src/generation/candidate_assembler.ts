@@ -1,5 +1,4 @@
-import Database from 'better-sqlite3';
-import path from 'path';
+export type Database = any;
 import { GenerationRequest, ArchetypeScore, Candidate, CandidateScoreComponent, NamingStrategy } from './types';
 import { routeArchetype } from './archetype_router';
 import { calculateCompositeScore, persistCandidateScore, persistDebugLog } from './generation_score';
@@ -11,54 +10,42 @@ import { extractIntentConcepts } from './intent_extractor';
 import { MutationEngine } from './mutation_engine';
 import { optimizeHumanShortlist } from './human_shortlist_optimizer';
 
-const DB_PATH = path.resolve(__dirname, '../../data/nid.sqlite');
-let dbInstance: Database.Database | null = null;
-
-function getDB() {
-    if (!dbInstance) {
-        dbInstance = new Database(DB_PATH);
-    }
-    return dbInstance;
-}
-
-function resolveIndustryId(industry: string): number {
-    const db = getDB();
-    const row = db.prepare(`
+async function resolveIndustryId(industry: string, db: Database): Promise<number> {
+    const row = await db.prepare(`
         SELECT canonical_id FROM industry_alias WHERE alias_name = ? COLLATE NOCASE
         UNION
         SELECT id FROM industry_ontology WHERE canonical_name = ? COLLATE NOCASE
-    `).get(industry, industry) as any;
+    `).bind(industry, industry).first() as any;
     
     return row ? (row.canonical_id || row.id) : 1; 
 }
 
-export function assembleCandidates(req: GenerationRequest): Candidate[] {
-    const db = getDB();
+export async function assembleCandidates(req: GenerationRequest, db: Database): Promise<Candidate[]> {
     const strategy = resolveNamingStrategy(req);
-    const mutator = new MutationEngine(db);
+    const mutator = await MutationEngine.create(db);
     
     // Add strategy to request for downstream tools (if not explicitly set)
     req.strategy = strategy;
     
-    const indId = resolveIndustryId(req.industry);
-    persistDebugLog(req.requestId, 'INFO', 'ROUTING', `Strategy: ${strategy}. Industry: ${req.industry} (ID ${indId}).`);
+    const indId = await resolveIndustryId(req.industry, db);
+    await persistDebugLog(req.requestId, 'INFO', 'ROUTING', `Strategy: ${strategy}. Industry: ${req.industry} (ID ${indId}).`, db);
 
-    const rankedArchetypes = routeArchetype(req);
-    const mutationEngine = new MutationEngine(db);
+    const rankedArchetypes = await routeArchetype(req, db);
+    const mutationEngine = await MutationEngine.create(db);
 
     // Concept Retrieval based on Strategy
     let concepts = new Map<number, { id: number, name: string, score: number, source: 'industry' | 'intent' | 'hybrid' }>();
     let literalMorphemes: string[] = [];
 
     if (strategy === 'industry' || strategy === 'hybrid') {
-        const indConcepts = db.prepare(`
+        const indConcepts = (await db.prepare(`
             SELECT c.id, c.canonical_name, cim.affinity_score
             FROM concept_industry_map cim
             JOIN concept_catalog c ON c.id = cim.concept_id
             WHERE cim.industry_id = ?
             ORDER BY cim.affinity_score DESC
             LIMIT 20
-        `).all(indId) as any[];
+        `).bind(indId).all()).results as any[];
         
         for (const ic of indConcepts) {
             concepts.set(ic.id, { id: ic.id, name: ic.canonical_name, score: ic.affinity_score, source: 'industry' });
@@ -66,7 +53,7 @@ export function assembleCandidates(req: GenerationRequest): Candidate[] {
     }
 
     if ((strategy === 'intent' || strategy === 'hybrid') && req.intent && req.intent.length > 0) {
-        const extracted = extractIntentConcepts(req.intent, req.industry, db);
+        const extracted = await extractIntentConcepts(req.intent, req.industry, db);
         
         // 1. Process regular matched concepts
         for (const ec of extracted.concepts) {
@@ -86,7 +73,7 @@ export function assembleCandidates(req: GenerationRequest): Candidate[] {
 
     // Fallback if no concepts found at all and no literal morphemes
     if (concepts.size === 0 && literalMorphemes.length === 0) {
-        const fallbacks = db.prepare(`SELECT id, canonical_name, 1.0 as affinity_score FROM concept_catalog ORDER BY global_frequency DESC LIMIT 20`).all() as any[];
+        const fallbacks = (await db.prepare(`SELECT id, canonical_name, 1.0 as affinity_score FROM concept_catalog ORDER BY global_frequency DESC LIMIT 20`).all()).results as any[];
         for (const fb of fallbacks) {
             concepts.set(fb.id, { id: fb.id, name: fb.canonical_name, score: 0.5, source: 'industry' });
         }
@@ -98,7 +85,7 @@ export function assembleCandidates(req: GenerationRequest): Candidate[] {
     // 1. Inject Literal Morphemes first (highest priority)
     for (const lm of literalMorphemes) {
         // Find if this exists in morpheme_catalog, or just inject it artificially
-        const existing = db.prepare(`SELECT id, morpheme FROM morpheme_catalog WHERE morpheme = ? OR morpheme LIKE ? LIMIT 5`).all(lm, `${lm}%`) as any[];
+        const existing = (await db.prepare(`SELECT id, morpheme FROM morpheme_catalog WHERE morpheme = ? OR morpheme LIKE ? LIMIT 5`).bind(lm, `${lm}%`).all()).results as any[];
         if (existing.length > 0) {
             for (const ex of existing) {
                 morphemePool.set(ex.id, { morpheme: ex.morpheme, score: 1.0, source: 'intent' });
@@ -111,14 +98,14 @@ export function assembleCandidates(req: GenerationRequest): Candidate[] {
     }
 
     for (const c of concepts.values()) {
-        const morphemes = db.prepare(`
+        const morphemes = (await db.prepare(`
             SELECT m.id, m.morpheme, m.detected_type, cmm.semantic_relevance 
             FROM concept_morpheme_map cmm
             JOIN morpheme_catalog m ON m.id = cmm.morpheme_id
             WHERE cmm.concept_id = ?
             ORDER BY cmm.semantic_relevance DESC
             LIMIT 15
-        `).all(c.id) as any[];
+        `).bind(c.id).all()).results as any[];
         
         for (const m of morphemes) {
             if (!morphemePool.has(m.id)) {
@@ -172,7 +159,7 @@ export function assembleCandidates(req: GenerationRequest): Candidate[] {
                 const m2Id = mKeys[Math.floor(Math.random() * mKeys.length)];
                 const m2 = morphemePool.get(m2Id)!;
                 
-                const pmiCheck = db.prepare(`SELECT pmi_score FROM morpheme_cooccurrence WHERE morpheme_a_id = ? AND morpheme_b_id = ?`).get(m1Id, m2Id) as any;
+                const pmiCheck = await db.prepare(`SELECT pmi_score FROM morpheme_cooccurrence WHERE morpheme_a_id = ? AND morpheme_b_id = ?`).bind(m1Id, m2Id).first() as any;
                 if (pmiCheck) pmiScore = pmiCheck.pmi_score;
                 else pmiScore = 0.2;
                 
@@ -193,7 +180,7 @@ export function assembleCandidates(req: GenerationRequest): Candidate[] {
             if (!valResult.isValid) continue;
 
             // Phase 4.5A: Apply Mutation Engine to transform raw words
-            const mutationResult = mutator.mutateCandidate(rawStr, rawStr);
+            const mutationResult = await mutator.mutateCandidate(rawStr, rawStr);
             
             // If mutation didn't change anything and we don't want exact dictionary words, we could drop it
             // but we will trust the engine's checkNovelty. Let's force some change if it's an exact intent word.
@@ -213,7 +200,7 @@ export function assembleCandidates(req: GenerationRequest): Candidate[] {
             let semanticPreservation = mutationResult.semanticPreservationScore;
             let history: string[] = mutationResult.mutationHistory;
             
-            const finalPhono = analyzePhonotactics(req.requestId, finalStr);
+            const finalPhono = await analyzePhonotactics(req.requestId, finalStr, db);
             const finalBrand = scoreBrandability(req.requestId, finalStr, valResult, finalPhono);
 
             // Phase 4.5 Phonotactics Guardrail: Drop if it fails strict pronounceability check
@@ -274,13 +261,13 @@ export function assembleCandidates(req: GenerationRequest): Candidate[] {
     let finalCandidates: Candidate[] = [...candidates];
         
     // 4.5B CONDITIONAL MUTATION: Only mutate if HSS(mutated) > HSS(parent)
-    const engine = new MutationEngine(getDB());
+    const engine = await MutationEngine.create(db);
     for (const c of candidates) {
         const hssParent = calculateHSS(c);
         
         // Try up to 2 mutations
         for (let i = 0; i < 2; i++) {
-            const mutResult = engine.mutateCandidate(c.candidateString, c.candidateString);
+            const mutResult = await engine.mutateCandidate(c.candidateString, c.candidateString);
             if (mutResult.success && mutResult.mutatedString !== c.candidateString) {
                 // Assemble a mock candidate to score it
                 const mutatedCandidate: Candidate = {
@@ -366,39 +353,36 @@ export function assembleCandidates(req: GenerationRequest): Candidate[] {
     
     const uniqueCandidates: Candidate[] = finalCandidates;
 
-    persistDebugLog(req.requestId, 'INFO', 'ASSEMBLY_COMPLETE', `Generated ${uniqueCandidates.length} unique candidates.`);
+    await persistDebugLog(req.requestId, 'INFO', 'ASSEMBLY_COMPLETE', `Generated ${uniqueCandidates.length} unique candidates.`, db);
     
     // We shouldn't drop the generation_scores table insertions, but the schema needs updating if we add new columns, 
     // for now we'll just skip inserting new columns into sqlite generation_scores table to avoid schema issues,
     // or just insert the old columns.
-    const persistDb = new Database(DB_PATH);
-    const insertScore = persistDb.prepare(`
+    const insertScore = db.prepare(`
         INSERT INTO generation_scores (
             request_id, candidate_string, semantic_relevance, industry_affinity, 
             pmi_compatibility, novelty, trend_velocity, structural_success, composite_score
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `);
 
-    persistDb.transaction(() => {
-        for (const c of uniqueCandidates) {
-            try {
-                insertScore.run(
-                    req.requestId,
-                    c.candidateString,
-                    c.scoreComponents.semanticRelevance,
-                    c.scoreComponents.industryAffinity,
-                    c.scoreComponents.pmiCompatibility,
-                    c.scoreComponents.novelty,
-                    c.scoreComponents.trendVelocity,
-                    c.scoreComponents.structuralSuccess,
-                    c.compositeScore
-                );
-            } catch(e) {
-                // duplicate insertion ignore
-            }
-        }
-    })();
-    persistDb.close();
+    // D1 does not have .transaction() in the exact same way, but since we are doing Promise.all we can batch
+    const insertPromises = [];
+    for (const c of uniqueCandidates) {
+        insertPromises.push(
+            insertScore.bind(
+                req.requestId,
+                c.candidateString,
+                c.scoreComponents.semanticRelevance,
+                c.scoreComponents.industryAffinity,
+                c.scoreComponents.pmiCompatibility,
+                c.scoreComponents.novelty,
+                c.scoreComponents.trendVelocity,
+                c.scoreComponents.structuralSuccess,
+                c.compositeScore
+            ).run().catch((e: any) => { /* duplicate insertion ignore */ })
+        );
+    }
+    await Promise.all(insertPromises);
 
     return uniqueCandidates;
 }
