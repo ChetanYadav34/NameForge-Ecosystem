@@ -13,7 +13,16 @@ export interface ValidationResult {
 }
 
 // Common dictionary fragments that should not stand alone without a suffix/prefix
-const FRAGMENTS = ['healt', 'financ', 'techn', 'analyt', 'softw', 'educ', 'med', 'serv'];
+const FRAGMENTS = [
+    'healt', 'health', 'financ', 'finance', 'techn', 'tech', 'analyt', 'softw', 'educ', 'med', 'serv',
+    'read', 'sales', 'realty', 'real', 'estate', 'food', 'auto', 'car', 'bank', 'pay', 'shop', 'store',
+    'buy', 'sell', 'trade', 'market', 'stock', 'share', 'fund', 'wealth', 'money', 'cash', 'coin',
+    'crypto', 'block', 'chain', 'web', 'net', 'app', 'soft', 'data', 'cloud', 'host', 'server',
+    'system', 'network', 'smart', 'intel', 'brain', 'mind', 'think', 'idea', 'innov', 'create',
+    'design', 'build', 'make', 'do', 'go', 'run', 'fast', 'quick', 'speed', 'swift', 'rapid',
+    'agile', 'nimble', 'easy', 'simple', 'clear', 'pure', 'true', 'trust', 'safe', 'secure',
+    'guard', 'shield', 'protect', 'defend', 'care', 'help', 'heal', 'cure', 'fix', 'solve'
+];
 
 export async function validateCandidate(requestId: string, candidate: string, db: Database): Promise<ValidationResult> {
     const failures: string[] = [];

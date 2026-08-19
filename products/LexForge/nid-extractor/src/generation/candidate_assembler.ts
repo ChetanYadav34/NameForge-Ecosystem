@@ -284,10 +284,22 @@ export async function assembleCandidates(req: GenerationRequest, db: Database): 
             let finalStr = mutationResult.mutatedString;
             
             // Safety measure: if the raw string is an exact match for one of the literal morphemes, 
+            // OR if it exactly matches any word the user typed in their prompt,
             // and the mutation engine failed to change it, we manually add a random tech suffix 
-            // so we don't output "Name" or "Creation".
-            if (finalStr.toLowerCase() === rawStr.toLowerCase() && literalMorphemes.includes(rawStr.toLowerCase())) {
-                const suffixes = ['io', 'ai', 'ify', 'ly', 'hq', 'tech'];
+            // so we don't output boring unmutated words like "Sales" or "Read".
+            let isExactInputWord = literalMorphemes.includes(rawStr.toLowerCase());
+            if (req.intent) {
+                for (const intentStr of req.intent) {
+                    const words = intentStr.split(/\s+/).map(w => w.replace(/[^a-zA-Z]/g, '').toLowerCase());
+                    if (words.includes(rawStr.toLowerCase())) {
+                        isExactInputWord = true;
+                        break;
+                    }
+                }
+            }
+            
+            if (finalStr.toLowerCase() === rawStr.toLowerCase() && isExactInputWord) {
+                const suffixes = ['io', 'ai', 'ify', 'ly', 'hq', 'tech', 'base', 'hub', 'os'];
                 finalStr += suffixes[Math.floor(Math.random() * suffixes.length)];
                 mutationResult.mutationHistory.push('ForcedSuffix:PreventLiteralWord');
                 mutationResult.mutationQualityScore = Math.max(mutationResult.mutationQualityScore, 0.8);
