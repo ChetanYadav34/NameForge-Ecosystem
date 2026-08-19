@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS company_normalized (id INTEGER PRIMARY KEY, original_name TEXT, normalized_name TEXT, phonetic_key TEXT);
+CREATE TABLE IF NOT EXISTS domain_cache (id INTEGER PRIMARY KEY, name TEXT, tld TEXT, status TEXT, provider TEXT, checked_at DATETIME, expires_at DATETIME, UNIQUE(name, tld));
+CREATE TABLE IF NOT EXISTS trademark_cache (id INTEGER PRIMARY KEY, name TEXT, jurisdiction TEXT, status TEXT, provider TEXT, checked_at DATETIME, expires_at DATETIME, raw_response TEXT, UNIQUE(name, jurisdiction));
+CREATE TABLE IF NOT EXISTS user_preference_signals (id INTEGER PRIMARY KEY, selected_candidate TEXT, unknown_word TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE IF NOT EXISTS concept_catalog (id INTEGER PRIMARY KEY, canonical_name TEXT, global_frequency INTEGER);
+CREATE TABLE IF NOT EXISTS morpheme_catalog (id INTEGER PRIMARY KEY, morpheme TEXT);
+CREATE TABLE IF NOT EXISTS concept_morpheme_map (id INTEGER PRIMARY KEY, concept_id INTEGER, morpheme_id INTEGER, co_occurrence_count INTEGER, semantic_relevance REAL, semantic_confidence REAL, UNIQUE(concept_id, morpheme_id));
+CREATE TABLE IF NOT EXISTS industry_ontology (id INTEGER PRIMARY KEY, canonical_name TEXT, UNIQUE(canonical_name));
+CREATE TABLE IF NOT EXISTS industry_alias (id INTEGER PRIMARY KEY, canonical_id INTEGER, alias_name TEXT);
+CREATE TABLE IF NOT EXISTS concept_industry_map (id INTEGER PRIMARY KEY, concept_id INTEGER, industry_id INTEGER, affinity_score REAL, UNIQUE(concept_id, industry_id));
+CREATE TABLE IF NOT EXISTS concept_discovery_queue (id INTEGER PRIMARY KEY, unknown_word TEXT, context TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP);
