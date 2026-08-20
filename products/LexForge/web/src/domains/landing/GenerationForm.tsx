@@ -111,8 +111,10 @@ export const GenerationForm = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
-          <label className="text-xs font-mono font-medium text-slate-500 uppercase tracking-widest mb-2 block">Industry</label>
+          <label htmlFor="industry-select" className="text-xs font-mono font-medium text-slate-500 uppercase tracking-widest mb-2 block">Industry</label>
           <select 
+            id="industry-select"
+            name="industry"
             value={industry}
             onChange={(e) => setIndustry(e.target.value)}
             disabled={isLoading}
@@ -133,8 +135,10 @@ export const GenerationForm = () => {
           </select>
         </div>
         <div>
-          <label className="text-xs font-mono font-medium text-slate-500 uppercase tracking-widest mb-2 block">Tone</label>
+          <label htmlFor="tone-select" className="text-xs font-mono font-medium text-slate-500 uppercase tracking-widest mb-2 block">Tone</label>
           <select 
+            id="tone-select"
+            name="tone"
             value={tone}
             onChange={(e) => setTone(e.target.value)}
             disabled={isLoading}
@@ -148,8 +152,10 @@ export const GenerationForm = () => {
           </select>
         </div>
         <div>
-          <label className="text-xs font-mono font-medium text-slate-500 uppercase tracking-widest mb-2 block">Approach</label>
+          <label htmlFor="approach-select" className="text-xs font-mono font-medium text-slate-500 uppercase tracking-widest mb-2 block">Approach</label>
           <select
+            id="approach-select"
+            name="approach"
             value={strategy}
             onChange={(e) => setStrategy(e.target.value)}
             className="w-full text-base py-3 px-4 bg-white/50 border border-slate-200 rounded-lg text-slate-900 focus:ring-2 focus:ring-primary focus:border-primary focus:outline-none disabled:opacity-50 appearance-none"

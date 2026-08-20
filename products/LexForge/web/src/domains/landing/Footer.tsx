@@ -12,14 +12,14 @@ export const Footer = () => {
             <Link href="/" className="block font-serif text-2xl font-bold text-white tracking-tight mb-4 hover:opacity-90 transition-opacity">
               LexForge
             </Link>
-            <p className="text-sm text-slate-500 max-w-xs">
+            <p className="text-sm text-slate-400 max-w-xs">
               The premier algorithmic branding and linguistic generation engine.
             </p>
           </div>
           
           {(landingConfig.footerLinks as FooterColumn[]).map((column) => (
             <div key={column.title} className="flex flex-col gap-4">
-              <h4 className="text-white font-semibold text-sm">{column.title}</h4>
+              <h3 className="text-white font-semibold text-sm">{column.title}</h3>
               <ul className="flex flex-col gap-3">
                 {column.links.map((link) => (
                   <li key={link.label}>
@@ -28,9 +28,9 @@ export const Footer = () => {
                         {link.label}
                       </a>
                     ) : link.comingSoon ? (
-                      <span className="text-sm text-slate-600 flex items-center gap-2 cursor-not-allowed">
+                      <span className="text-sm text-slate-400 opacity-60 flex items-center gap-2 cursor-not-allowed">
                         {link.label}
-                        <Badge variant="default" className="text-[10px] py-0 px-1 border-slate-700 text-slate-500">Soon</Badge>
+                        <Badge variant="default" className="text-[10px] py-0 px-1 border-slate-700 text-slate-400">Soon</Badge>
                       </span>
                     ) : (
                       <Link href={link.href} className="text-sm hover:text-white transition-colors duration-200">
@@ -44,9 +44,9 @@ export const Footer = () => {
           ))}
         </div>
 
-        <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+        <div className="pt-8 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
           <div>
-            © {new Date().getFullYear()} LexForge Computational Linguistics Institute. All rights reserved.
+            &copy; {new Date().getFullYear()} LexForge Computational Linguistics Institute. All rights reserved.
           </div>
           <div className="flex gap-6">
             <Link href="/legal/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
