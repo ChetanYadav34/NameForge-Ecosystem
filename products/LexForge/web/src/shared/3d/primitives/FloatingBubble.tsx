@@ -12,23 +12,30 @@ interface FloatingBubbleProps {
 }
 
 // Renders text onto a canvas and returns a THREE.Texture — no worker needed.
+// Canvas is 512×128 (4:1). Font fills the canvas height so it looks large on the bubble.
 function makeTextTexture(name: string): THREE.Texture {
+  const W = 512, H = 128;
   const canvas = document.createElement('canvas');
-  canvas.width = 256;
-  canvas.height = 64;
+  canvas.width = W;
+  canvas.height = H;
   const ctx = canvas.getContext('2d')!;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  const fontSize = Math.max(16, Math.min(32, Math.floor(180 / name.length)));
-  ctx.font = `600 ${fontSize}px Inter, sans-serif`;
+  ctx.clearRect(0, 0, W, H);
+
+  // Scale font to fill canvas height — longer names get smaller font, but min is 36px
+  const fontSize = Math.max(36, Math.min(80, Math.floor(520 / name.length)));
+  ctx.font = `700 ${fontSize}px Inter, ui-sans-serif, system-ui, sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
-  // white outline
-  ctx.strokeStyle = 'rgba(255,255,255,0.9)';
-  ctx.lineWidth = 4;
-  ctx.strokeText(name, 128, 32);
-  // dark text
+
+  // Crisp white outline for glass legibility
+  ctx.strokeStyle = 'rgba(255,255,255,0.95)';
+  ctx.lineWidth = 8;
+  ctx.strokeText(name, W / 2, H / 2);
+
+  // Deep indigo fill
   ctx.fillStyle = '#1c0062';
-  ctx.fillText(name, 128, 32);
+  ctx.fillText(name, W / 2, H / 2);
+
   const tex = new THREE.CanvasTexture(canvas);
   tex.needsUpdate = true;
   return tex;
@@ -98,7 +105,10 @@ export const FloatingBubble: React.FC<FloatingBubbleProps> = ({ name, position, 
     }
   });
 
-  const spriteScale = Math.min(0.9, (bubbleSize * 1.6) / (name.length * 0.18));
+  // Sprite fills ~65% of bubble diameter (inscribed square ≈ diameter / √2 ≈ 1.41r)
+  // Canvas ratio is 4:1 (512×128), so height = width / 4
+  const spriteW = bubbleSize * 1.3;
+  const spriteH = spriteW * 0.25;
 
   return (
     <group
@@ -113,7 +123,7 @@ export const FloatingBubble: React.FC<FloatingBubbleProps> = ({ name, position, 
       </mesh>
 
       {/* Canvas-texture sprite — no troika worker required */}
-      <sprite scale={[spriteScale, spriteScale * 0.25, 1]}>
+      <sprite scale={[spriteW, spriteH, 1]}>
         <primitive object={spriteMaterial} attach="material" />
       </sprite>
     </group>
