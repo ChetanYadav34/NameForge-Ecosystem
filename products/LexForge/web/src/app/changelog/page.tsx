@@ -21,7 +21,45 @@ export default function ChangelogPage() {
           <div className="relative pl-8 md:pl-0">
             <div className="hidden md:block absolute left-4 md:left-[120px] top-0 bottom-0 w-px bg-slate-200"></div>
             
+            {/* v1.0.0 Entry */}
             <div className="relative mb-12">
+              <div className="hidden md:block absolute left-0 w-24 text-right text-sm font-semibold text-slate-500 pt-1">
+                Aug 2026
+              </div>
+              <div className="absolute left-[-32px] md:left-[116px] w-[9px] h-[9px] rounded-full bg-primary mt-2 shadow-[0_0_0_4px_white]"></div>
+              
+              <div className="pl-0 md:pl-40">
+                <Card className="p-8 border border-slate-200 bg-white shadow-sm ring-1 ring-primary/20">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="px-2 py-1 bg-primary text-white text-xs font-bold rounded">v1.0.0</span>
+                    <h3 className="text-xl font-serif font-bold text-slate-900">Stable Release</h3>
+                  </div>
+                  
+                  <div className="md:hidden text-sm font-semibold text-slate-500 mb-4">August 2026</div>
+
+                  <div className="prose prose-slate prose-sm max-w-none">
+                    <p>
+                      The official stable release of LexForge Engine is here. This release brings a fully serverless Cloudflare Workers backend, extensive accessibility improvements, and a beautiful WebGL 3D environment that performs seamlessly across devices.
+                    </p>
+                    <h4 className="font-semibold text-slate-900 mt-6 mb-2">Backend Architecture</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-slate-600">
+                      <li>Migrated generation pipeline from in-memory Next.js route handlers to Cloudflare Workers for edge deployment.</li>
+                      <li>Implemented SQLite via Cloudflare D1 for blazing fast, low-latency dictionary lookups.</li>
+                      <li>Added batch queries to stay well under Cloudflare subrequest limits.</li>
+                    </ul>
+                    <h4 className="font-semibold text-slate-900 mt-6 mb-2">Frontend & Visuals</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-slate-600">
+                      <li>Upgraded 3D Canvas visualizer. Bypassed Turbopack worker limitations by rendering dynamic generative names on 2D canvas textures and injecting them into the 3D scene.</li>
+                      <li>Implemented smart <code>mix-blend-mode: multiply</code> on the 3D background to prevent text obscuration.</li>
+                      <li>Resolved all WCAG AA contrast issues for 100% Lighthouse Accessibility score.</li>
+                    </ul>
+                  </div>
+                </Card>
+              </div>
+            </div>
+
+            {/* v0.5-alpha Entry */}
+            <div className="relative mb-12 opacity-80">
               <div className="hidden md:block absolute left-0 w-24 text-right text-sm font-semibold text-slate-500 pt-1">
                 Aug 2026
               </div>
