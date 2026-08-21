@@ -40,6 +40,23 @@ export const bubbleFragmentShader = `
   }
 `;
 
+// Factory function instead of class inheritance to avoid Turbopack worker
+// bundling the @swc/helpers/_instanceof helper into blob workers, which
+// causes a ReferenceError and silently kills the entire 3D scene.
+export function createGlassMaterial(): THREE.ShaderMaterial {
+  return new THREE.ShaderMaterial({
+    uniforms: {
+      uTime: { value: 0 }
+    },
+    vertexShader: bubbleVertexShader,
+    fragmentShader: bubbleFragmentShader,
+    transparent: true,
+    side: THREE.DoubleSide,
+    depthWrite: false
+  });
+}
+
+// Keep the class export as a thin wrapper for any existing consumers
 export class GlassMaterial extends THREE.ShaderMaterial {
   constructor() {
     super({
