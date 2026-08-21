@@ -21,8 +21,8 @@ function makeTextTexture(name: string): THREE.Texture {
   const ctx = canvas.getContext('2d')!;
   ctx.clearRect(0, 0, W, H);
 
-  // Scale font to fill canvas height — longer names get smaller font, but min is 36px
-  const fontSize = Math.max(36, Math.min(80, Math.floor(520 / name.length)));
+  // Scale font to fill canvas height — longer names get smaller font, but min is 48px
+  const fontSize = Math.max(48, Math.min(96, Math.floor(650 / name.length)));
   ctx.font = `700 ${fontSize}px Inter, ui-sans-serif, system-ui, sans-serif`;
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
@@ -105,9 +105,8 @@ export const FloatingBubble: React.FC<FloatingBubbleProps> = ({ name, position, 
     }
   });
 
-  // Sprite fills ~65% of bubble diameter (inscribed square ≈ diameter / √2 ≈ 1.41r)
-  // Canvas ratio is 4:1 (512×128), so height = width / 4
-  const spriteW = bubbleSize * 1.3;
+  // Sprite fills ~80% of bubble diameter — text stays well inside the sphere edge
+  const spriteW = bubbleSize * 1.6;
   const spriteH = spriteW * 0.25;
 
   return (
